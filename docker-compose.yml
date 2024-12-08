@@ -1,0 +1,124 @@
+version: '3.8'
+
+services:
+#   flask_api:
+#     container_name: flask_api
+#     restart: unless-stopped
+#     build:
+#       context: ./werfplanning_REST_python
+#       dockerfile: Dockerfile
+#     command: tail -f /dev/null  # Start de Flask-app
+#     ports:
+#       - "5000:5000"
+#     depends_on:
+#       - db
+#     environment:
+#       - FLASK_APP=/app/app.py
+#       - FLASK_ENV=development
+#       - DB_HOST=db
+#       - DB_PORT=3306
+#       - DB_DATABASE=restapi
+#       - DB_USERNAME=flask
+#       - DB_PASSWORD=flaskPwd
+#     volumes:
+#       - ./werfplanning_REST_python/app:/app
+#     networks:
+#       - mynetwork  
+
+#   db:
+#     image: mariadb:10.6.19-focal
+#     container_name: flask_api_db
+#     restart: unless-stopped
+#     environment:
+#       - MARIADB_DATABASE=restapi
+#       - MARIADB_USER=flask
+#       - MARIADB_PASSWORD=flaskPwd
+#       - MARIADB_ROOT_PASSWORD=root
+#     volumes:
+#       - ./werfplanning_REST_python/db_data:/var/lib/mysql
+#     networks:
+#       - mynetwork  
+
+  werfplanning_api:
+    container_name: werfplanning_api
+    restart: unless-stopped
+    build:
+      context: ./werfplanning
+      dockerfile: Dockerfile
+    command: tail -f /dev/null  # Start de Flask-app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - FLASK_APP=/app/app.py
+      - FLASK_ENV=development
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=restapi
+      - DB_USERNAME=flask
+      - DB_PASSWORD=flaskPwd
+    volumes:
+      - ./werfplanning/app:/app
+    networks:
+      - mynetwork  
+
+  db:
+    image: mariadb:10.6.19-focal
+    container_name: werfplanning_db
+    restart: unless-stopped
+    environment:
+      - MARIADB_DATABASE=restapi
+      - MARIADB_USER=flask
+      - MARIADB_PASSWORD=flaskPwd
+      - MARIADB_ROOT_PASSWORD=root
+    volumes:
+      - ./werfplanning/db_data:/var/lib/mysql
+    networks:
+      - mynetwork  
+
+  laravel_consume_api:
+    image: bitnami/laravel:11-debian-12
+    container_name: laravel_consume_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./laravel_consumer:/app
+    command: tail -f /dev/null  # Laat de container gewoon oneindig draaien. Goed voor development omgeving.
+    depends_on:
+      - consume_api_db
+    environment:
+      - DB_HOST=consume_api_db
+      - DB_PORT=3306
+      - DB_DATABASE=consumeApi
+      - DB_USERNAME=laravel
+      - DB_PASSWORD=laravelPwd
+    networks:
+      - mynetwork  
+
+  consume_api_db:
+    image: mariadb:10.6.19-focal
+    container_name: laravel_consume_api_db
+    restart: unless-stopped
+    environment:
+      - MARIADB_DATABASE=consumeApi
+      - MARIADB_USER=laravel
+      - MARIADB_PASSWORD=laravelPwd
+      - MARIADB_ROOT_PASSWORD=root
+    volumes:
+      - ./laravel_consumer/db_data:/var/lib/mysql:Z
+    networks:
+      - mynetwork  
+
+  adminer:
+    image: adminer:4.8.1-standalone
+    restart: unless-stopped
+    ports:
+      - "9092:8080"
+    networks:
+      - mynetwork  
+
+networks:
+  mynetwork: 
+    driver: bridge
