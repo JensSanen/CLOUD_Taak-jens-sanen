@@ -13,13 +13,13 @@ class FlaskUserController extends Controller
     public function __construct()
     {
         // uri is de flask service uit onze docker-compose
-        $this->client = new Client(['base_uri' => 'flask_api:5000']);
+        $this->client = new Client(['base_uri' => 'werfplanning_api:5000']);
     }
 
     // GET all users
     public function index(Request $request)
     {
-        $response = $this->client->get('/api/users', [
+        $response = $this->client->get('/api/projects', [
             'query' => ['pwd' => 'mypassword']
         ]);
         // error_log($response);

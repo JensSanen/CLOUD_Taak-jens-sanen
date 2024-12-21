@@ -47,7 +47,7 @@
     // Function to fetch users and populate the table
     function fetchUsers() {
         // Hier doen we dus een oproep naar het lokale endpoint
-        fetch('/flaskusers')
+        fetch('/api/flaskprojects')
             .then(response => response.json())
             .then(users => {
                 const usersTable = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
@@ -55,9 +55,9 @@
 
                 users.forEach(user => {
                     const row = usersTable.insertRow();
-                    row.insertCell(0).textContent = user.id;
-                    row.insertCell(1).textContent = user.name;
-                    row.insertCell(2).textContent = user.email;
+                    row.insertCell(0).textContent = user.project_id;
+                    row.insertCell(1).textContent = user.naam;
+                    row.insertCell(2).textContent = user.beschrijving;
 
                     const actionsCell = row.insertCell(3);
                     const deleteButton = document.createElement('button');
@@ -72,7 +72,7 @@
 
     // Function to delete a user
     function deleteUser(id) {
-        fetch(`/users/${id}`, {
+        fetch(`/api/users/${id}`, {
             method: 'DELETE'
         })
         .then(response => response.json())
@@ -95,7 +95,7 @@
             email: document.getElementById('email').value,
         };
 
-        fetch('/users', {
+        fetch('/api/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

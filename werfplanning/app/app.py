@@ -39,40 +39,6 @@ def get_projects():
         finally:
             db.close()    
 
-# READ - vraag een specifieke user op basis van de id in de tabel
-# we gebruiken het endpoint /api/users/<int>. Elk http-get request naar www.mijnwebsite.be/api/users/<int> zal de gebruiker met id=<int> terugkrijgen als een JSON object
-@app.route('/api/project/<int:project_id>', methods=['GET'])
-# We specifieren dat elke integer als een geldig endpoint beschouwd moet worden en dat we dat integer opslaan in de variabele user_id
-def get_project(project_id):
-    db = get_db_connection()
-    try:
-        cursor = db.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("SELECT * FROM projects WHERE project_id = %s", (project_id))
-        user = cursor.fetchone()
-        # We geven de user enkel terug als die ook echt bestaat, de user_id kan namelijk fout zijn
-        if user:
-            return jsonify(user), 200
-        else:
-            return jsonify({"message":"Project not found"}), 500
-    
-    except Exception as e:
-        return jsonify({"error":str(e)}), 500
-    finally:
-        db.close()
-
-@app.route('/api/phases', methods=['GET'])
-def get_phases():
-    db = get_db_connection()
-    try:
-        cursor = db.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("SELECT * FROM phases")
-        users = cursor.fetchall()
-        return jsonify(users), 200
-    except Exception as e:
-        return jsonify({"error":str(e)}), 500
-    finally:
-        db.close() 
-
 @app.route('/api/project/<int:project_id>/phases', methods=['GET'])
 def get_project_phases(project_id):
     db = get_db_connection()
@@ -99,34 +65,21 @@ def get_project_phase(project_id, phase_id):
     finally:
         db.close()
 
-@app.route('/api/phase/<int:phase_id>', methods=['GET'])
-def get_phase(phase_id):
-    db = get_db_connection()
-    try:
-        cursor = db.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("SELECT * FROM phases where phase_id = %s", (phase_id))
-        users = cursor.fetchone()
-        return jsonify(users), 200
-    except Exception as e:
-        return jsonify({"error":str(e)}), 500
-    finally:
-        db.close()
-
 # DELETE - delete een specifieke user op basis van de id in de tabel
 # we gebruiken het endpoint /api/users/<int>. Elk http-get request naar www.mijnwebsite.be/api/users/<int> zal de gebruiker met id=<int> deleten
-@app.route('/api/phase/<int:user_id>', methods=['DELETE'])
+@app.route('/api/projects/<int:project_id>', methods=['DELETE'])
 # We specifieren dat elke integer als een geldig endpoint beschouwd moet worden en dat we dat integer opslaan in de variabele user_id
-def delete_user(user_id):
+def delete_project(project_id):
     db = get_db_connection()
     try:
         cursor = db.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("DELETE FROM users WHERE id = %s", user_id)
+        cursor.execute("DELETE FROM projects WHERE projectId = %s", project_id)
         # aangezien we niet enkel uitlezen maar de database ook effectief wijzigen, is het belangrijk de wijziging ook te committen
         db.commit()
         # enkel als er effectief iets gewijzigd is, is er een user gedelete
         if cursor.rowcount == 0:
-            return jsonify({"message":"User not found"}), 404
-        return jsonify({"message":"User deleted successfully"}), 200
+            return jsonify({"message":"Project not found"}), 404
+        return jsonify({"message":"Project deleted successfully"}), 200
     except Exception as e:
         return jsonify({"error":str(e)}), 500
     finally:

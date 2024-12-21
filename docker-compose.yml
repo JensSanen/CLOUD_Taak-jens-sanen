@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile
     command: tail -f /dev/null  # Start de Flask-app
     ports:
-      - "5000:5000"
+      - "30001:5000"
     depends_on:
       - werfplanning_db
     environment:
@@ -36,6 +36,79 @@ services:
       - MARIADB_ROOT_PASSWORD=root
     volumes:
       - ./werfplanning/db_data:/var/lib/mysql
+    networks:
+      - mynetwork  
+
+  calculatie_api:
+    container_name: calculatie_api
+    restart: unless-stopped
+    build:
+      context: ./calculatie
+      dockerfile: Dockerfile
+    ports:
+      - "30002:50051"
+    depends_on:
+      - calculatie_db
+    environment:
+      - DB_HOST=calculatie_db
+      - DB_PORT=3306
+      - DB_DATABASE=calculatieAPI
+      - DB_USERNAME=calculatie
+      - DB_PASSWORD=calculatiePwd
+    volumes:
+      - ./calculatie/app:/app
+    networks:
+      - mynetwork  
+
+  calculatie_db:
+    image: mariadb:10.6.19-focal
+    container_name: calculatie_db
+    restart: unless-stopped
+    environment:
+      - MARIADB_DATABASE=calculatieAPI
+      - MARIADB_USER=calculatie
+      - MARIADB_PASSWORD=calculatiePwd
+      - MARIADB_ROOT_PASSWORD=root
+    volumes:
+      - ./calculatie/db_data:/var/lib/mysql
+    networks:
+      - mynetwork  
+
+  uurregistratie_api:
+    container_name: uurregistratie_api
+    restart: unless-stopped
+    build:
+      context: ./uurregistratie
+      dockerfile: Dockerfile
+    command: tail -f /dev/null  # Start de Flask-app
+    ports:
+      - "30003:5000"
+    depends_on:
+      - uurregistratie_db
+    environment:
+      - FLASK_APP=/app/app.py
+      - FLASK_ENV=development
+      - DB_HOST=uurregistratie_db
+      - DB_PORT=3306
+      - DB_DATABASE=uurregistratieAPI
+      - DB_USERNAME=uurregistratie
+      - DB_PASSWORD=uurregistratiePwd
+    volumes:
+      - ./uurregistratie/app:/app
+    networks:
+      - mynetwork  
+
+  uurregistratie_db:
+    image: mariadb:10.6.19-focal
+    container_name: uurregistratie_db
+    restart: unless-stopped
+    environment:
+      - MARIADB_DATABASE=uurregistratieAPI
+      - MARIADB_USER=uurregistratie
+      - MARIADB_PASSWORD=uurregistratiePwd
+      - MARIADB_ROOT_PASSWORD=root
+    volumes:
+      - ./uurregistratie/db_data:/var/lib/mysql
     networks:
       - mynetwork  
 
