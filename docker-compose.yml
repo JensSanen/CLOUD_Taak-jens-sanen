@@ -112,6 +112,43 @@ services:
     networks:
       - mynetwork  
 
+  stockbeheer_api:
+    container_name: stockbeheer_api
+    restart: unless-stopped
+    build:
+      context: ./stockbeheer
+      dockerfile: Dockerfile
+    ports:
+      - "30005:30005"
+    depends_on:
+      - stockbeheer_db
+    environment:
+      - FLASK_APP=/app/app.py
+      - FLASK_ENV=development
+      - DB_HOST=stockbeheer_db
+      - DB_PORT=3306
+      - DB_DATABASE=stockbeheerAPI
+      - DB_USERNAME=stockbeheer
+      - DB_PASSWORD=stockbeheerPwd
+    volumes:
+      - ./stockbeheer/app:/app
+    networks:
+      - mynetwork  
+
+  stockbeheer_db:
+    image: mariadb:10.6.19-focal
+    container_name: stockbeheer_db
+    restart: unless-stopped
+    environment:
+      - MARIADB_DATABASE=stockbeheerAPI
+      - MARIADB_USER=stockbeheer
+      - MARIADB_PASSWORD=stockbeheerPwd
+      - MARIADB_ROOT_PASSWORD=root
+    volumes:
+      - ./stockbeheer/db_data:/var/lib/mysql
+    networks:
+      - mynetwork  
+
   laravel_consume_api:
     image: bitnami/laravel:11-debian-12
     container_name: laravel_consume_api

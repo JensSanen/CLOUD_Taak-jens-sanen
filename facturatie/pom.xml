@@ -12,13 +12,13 @@
 	<artifactId>facturatie</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>facturatie</name>
-	<description>Project voor facturatie service</description>
+	<description>Facturatie microservice</description>
 	<url/>
 	<licenses>
 		<license/>
 	</licenses>
 	<developers>
-		<devreloper/>
+		<developer/>
 	</developers>
 	<scm>
 		<connection/>
@@ -29,9 +29,6 @@
 	<properties>
 		<java.version>23</java.version>
 	</properties>
-	<packaging>
-		jar
-	</packaging>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -45,7 +42,6 @@
 			<groupId>wsdl4j</groupId>
 			<artifactId>wsdl4j</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

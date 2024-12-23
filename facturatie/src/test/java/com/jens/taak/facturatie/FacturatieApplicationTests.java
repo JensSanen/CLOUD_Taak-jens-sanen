@@ -1,13 +1,13 @@
-// package com.jens.taak.facturatie;
+package com.jens.taak.facturatie;
 
-// import org.junit.jupiter.api.Test;
-// import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-// @SpringBootTest
-// class FacturatieApplicationTests {
+@SpringBootTest
+class FacturatieApplicationTests {
 
-// 	@Test
-// 	void contextLoads() {
-// 	}
+	@Test
+	void contextLoads() {
+	}
 
-// }
+}
