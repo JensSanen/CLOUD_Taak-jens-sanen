@@ -2,27 +2,56 @@ import grpc
 import calculatie_pb2
 import calculatie_pb2_grpc
 
-def run():
-    # Maak verbinding met de server
-    channel = grpc.insecure_channel('localhost:30002')
+channel = grpc.insecure_channel('localhost:30002')
+
+def run_calculation():
     stub = calculatie_pb2_grpc.CalculationServiceStub(channel)
-    
-    # Maak een lijst van requests die naar de server worden gestuurd
+
+    # Voorbeelden van requests
     requests = [
         calculatie_pb2.CalculatePriceRequest(
-            building_specification_id="ID_001", name="Project A", unit="m2", quantity=100, price_per_unit=50),
+            project_id=1,
+            article_id=101,
+            description="Staalbalk",
+            measurement_type="FH",
+            measurement_unit="m",
+            quantity=10,
+            price_per_unit=50.0
+        ),
         calculatie_pb2.CalculatePriceRequest(
-            building_specification_id="ID_002", name="Project B", unit="m2", quantity=200, price_per_unit=40),
-        calculatie_pb2.CalculatePriceRequest(
-            building_specification_id="ID_003", name="Project C", unit="m2", quantity=150, price_per_unit=60)
+            project_id=1,
+            article_id=102,
+            description="Betonplaat",
+            measurement_type="FH",
+            measurement_unit="m²",
+            quantity=20,
+            price_per_unit=80.0
+        )
     ]
-    
-    # Roep de gRPC-methode aan met de lijst van berekeningen
-    response_iterator = stub.CalculateProject(iter(requests))
-    
-    # Ontvang de resultaten van de server
-    for response in response_iterator:
-        print(f"Building Specification ID: {response.building_specification_id}, Total Price: {response.total_price}")
+
+    try:
+        responses = stub.CalculateProject(iter(requests))
+        for response in responses:
+            print(f"Project {response.project_id} - Artikel {response.article_id}: Totale prijs = {response.total_price}")
+    except grpc.RpcError as e:
+        print(f"Fout tijdens berekening: {e.details()} (Statuscode: {e.code()})")
+
+def run_get_project_calculations(project_id):
+    stub = calculatie_pb2_grpc.ProjectCalculationServiceStub(channel)
+
+    request = calculatie_pb2.GetProjectCalculationsRequest(project_id=project_id)
+
+    try:
+        responses = stub.GetProjectCalculations(request)
+        print(f"Berekeningen voor project {project_id}:")
+        for response in responses:
+            print(f"Artikel {response.article_id}: {response.description}, {response.quantity} {response.measurement_unit} à {response.price_per_unit}, Totale prijs = {response.total_price}")
+    except grpc.RpcError as e:
+        print(f"Fout bij ophalen berekeningen: {e.details()} (Statuscode: {e.code()})")
 
 if __name__ == '__main__':
-    run()
+    print("Start berekening...")
+    run_calculation()
+
+    print("\nHaal berekeningen op voor project 1...")
+    run_get_project_calculations(project_id=1)

@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package calculatie;
+
+// Verzoek om de prijs te berekenen voor een project
+message CalculatePriceRequest {
+  int32 project_id = 1; 
+  int32 article_id = 2;
+  string description = 3;
+  string measurement_type = 4;
+  string measurement_unit = 5;
+  float quantity = 6;
+  float price_per_unit = 7;
+}
+
+// Antwoord voor de berekening van de prijs
+message CalculatePriceResponse {
+  int32 project_id = 1;
+  int32 article_id = 2;
+  float total_price = 3;
+}
+
+// Verzoek om alle berekeningen voor een project op te halen
+message GetProjectCalculationsRequest {
+  int32 project_id = 1;
+}
+
+// Antwoord voor de berekeningen van een project
+message GetProjectCalculationsResponse {
+  int32 project_id = 1;
+  int32 article_id = 2;
+  string description = 3;
+  string measurement_type = 4;
+  string measurement_unit = 5;
+  float quantity = 6;
+  float price_per_unit = 7;
+  float total_price = 8;
+}
+
+// Service voor het berekenen van de prijzen
+service CalculationService {
+  // Bereken de prijs voor meerdere artikelen in een project
+  rpc CalculateProject (stream CalculatePriceRequest) returns (stream CalculatePriceResponse);
+}
+
+// Service voor het ophalen van berekeningen voor een specifiek project
+service ProjectCalculationService {
+  // Haal alle berekeningen op voor een project
+  rpc GetProjectCalculations (GetProjectCalculationsRequest) returns (stream GetProjectCalculationsResponse);
+}

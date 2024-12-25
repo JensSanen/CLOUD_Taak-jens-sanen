@@ -26,7 +26,8 @@ if _version_not_supported:
 
 
 class CalculationServiceStub(object):
-    """Missing associated documentation comment in .proto file."""
+    """Service voor het berekenen van de prijzen
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -42,10 +43,12 @@ class CalculationServiceStub(object):
 
 
 class CalculationServiceServicer(object):
-    """Missing associated documentation comment in .proto file."""
+    """Service voor het berekenen van de prijzen
+    """
 
     def CalculateProject(self, request_iterator, context):
-        """Missing associated documentation comment in .proto file."""
+        """Bereken de prijs voor meerdere artikelen in een project
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -67,7 +70,8 @@ def add_CalculationServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class CalculationService(object):
-    """Missing associated documentation comment in .proto file."""
+    """Service voor het berekenen van de prijzen
+    """
 
     @staticmethod
     def CalculateProject(request_iterator,
@@ -86,6 +90,82 @@ class CalculationService(object):
             '/calculatie.CalculationService/CalculateProject',
             calculatie__pb2.CalculatePriceRequest.SerializeToString,
             calculatie__pb2.CalculatePriceResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+
+class ProjectCalculationServiceStub(object):
+    """Service voor het ophalen van berekeningen voor een specifiek project
+    """
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.GetProjectCalculations = channel.unary_stream(
+                '/calculatie.ProjectCalculationService/GetProjectCalculations',
+                request_serializer=calculatie__pb2.GetProjectCalculationsRequest.SerializeToString,
+                response_deserializer=calculatie__pb2.GetProjectCalculationsResponse.FromString,
+                _registered_method=True)
+
+
+class ProjectCalculationServiceServicer(object):
+    """Service voor het ophalen van berekeningen voor een specifiek project
+    """
+
+    def GetProjectCalculations(self, request, context):
+        """Haal alle berekeningen op voor een project
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_ProjectCalculationServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'GetProjectCalculations': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetProjectCalculations,
+                    request_deserializer=calculatie__pb2.GetProjectCalculationsRequest.FromString,
+                    response_serializer=calculatie__pb2.GetProjectCalculationsResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'calculatie.ProjectCalculationService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('calculatie.ProjectCalculationService', rpc_method_handlers)
+
+
+ # This class is part of an EXPERIMENTAL API.
+class ProjectCalculationService(object):
+    """Service voor het ophalen van berekeningen voor een specifiek project
+    """
+
+    @staticmethod
+    def GetProjectCalculations(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/calculatie.ProjectCalculationService/GetProjectCalculations',
+            calculatie__pb2.GetProjectCalculationsRequest.SerializeToString,
+            calculatie__pb2.GetProjectCalculationsResponse.FromString,
             options,
             channel_credentials,
             insecure,
