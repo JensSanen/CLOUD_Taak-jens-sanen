@@ -202,7 +202,59 @@ services:
     ports:
       - "9092:8080"
     networks:
-      - mynetwork  
+      - mynetwork 
+
+  influxdb:
+    image: influxdb:2
+    ports:
+      - 8086:8086
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=password
+      - DOCKER_INFLUXDB_INIT_ORG=werfmonitoring_taak
+      - DOCKER_INFLUXDB_INIT_BUCKET=timeseries
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=admintoken
+    volumes:
+      - "./werfmonitoring/influxdb2_data/config:/etc/influxdb2"
+      - "./werfmonitoring/influxdb2_data/data:/var/lib/influxdb2"
+
+  werfmonitoring_mqtt:
+    build: 
+      context: ./werfmonitoring/dummy_datasource
+      dockerfile: Dockerfile
+    depends_on:
+      - mosquitto
+    environment:
+      - MQTT_BROKER_HOST=mosquitto
+      - MQTT_BROKER_PORT=1883
+  
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./werfmonitoring/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  telegraf:
+    image: telegraf:latest
+    depends_on:
+      - influxdb
+      - mosquitto
+    environment:
+      - INFLUX_TOKEN=admintoken
+    volumes:
+      - ./werfmonitoring/telegraf_taak.conf:/etc/telegraf/telegraf.conf:ro
+
+  grafana:
+    image: grafana/grafana:latest
+    volumes:
+      - ./werfmonitoring/grafana_data:/var/lib/grafana
+    ports:
+      - 3000:3000
+    depends_on:
+      - influxdb
 
 networks:
   mynetwork: 
