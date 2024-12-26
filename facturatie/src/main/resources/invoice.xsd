@@ -20,6 +20,8 @@
     <xs:complexType name="invoice">
         <xs:sequence>
             <xs:element name="project" type="tns:project"/>
+            <xs:element name="workers" type="tns:worker" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="calculations" type="tns:calculation" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -55,4 +57,39 @@
             <xs:enumeration value="Paused"/>
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:complexType name="worker">
+        <xs:sequence>
+            <xs:element name="workerId" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="surname" type="xs:string"/>
+            <xs:element name="age" type="xs:int"/>
+            <xs:element name="function" type="tns:function"/>
+            <xs:element name="workedHours" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="function">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Manager"/>
+            <xs:enumeration value="Engineer"/>
+            <xs:enumeration value="Calculator"/>
+            <xs:enumeration value="Administrator"/>
+            <xs:enumeration value="Labourer"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="calculation">
+        <xs:sequence>
+            <xs:element name="projectId" type="xs:int"/>
+            <xs:element name="articleId" type="xs:int"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="measurementType" type="xs:string"/>
+            <xs:element name="measurementUnit" type="xs:string"/>
+            <xs:element name="quantity" type="xs:float"/>
+            <xs:element name="pricePerUnit" type="xs:float"/>
+            <xs:element name="totalPrice" type="xs:float"/>
+        </xs:sequence>
+    </xs:complexType>
+
 </xs:schema>

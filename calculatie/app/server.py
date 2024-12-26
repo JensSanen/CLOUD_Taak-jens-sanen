@@ -23,13 +23,13 @@ class CalculationService(calculatie_pb2_grpc.CalculationServiceServicer):
             db = get_db_connection()
             cursor = db.cursor(pymysql.cursors.DictCursor)
             for request in request_iterator:
-                total_price = request.quantity * request.price_per_unit
+                totalPrice = request.quantity * request.pricePerUnit
                 response = calculatie_pb2.CalculatePriceResponse(
-                    project_id=request.project_id,
-                    article_id=request.article_id,
-                    total_price=total_price
+                    projectId=request.projectId,
+                    articleId=request.articleId,
+                    totalPrice=totalPrice
                 )
-                cursor.execute("INSERT INTO calculations (project_id, article_id, description, measurement_type, measurement_unit, quantity, price_per_unit, total_price) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (request.project_id, request.article_id, request.description, request.measurement_type, request.measurement_unit, request.quantity, request.price_per_unit, total_price))
+                cursor.execute("INSERT INTO calculations (projectId, articleId, description, measurementType, measurementUnit, quantity, pricePerUnit, totalPrice) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (request.projectId, request.articleId, request.description, request.measurementType, request.measurementUnit, request.quantity, request.pricePerUnit, totalPrice))
                 yield response
             db.commit()
         except Exception as e:
@@ -44,18 +44,18 @@ class ProjectCalculationService(calculatie_pb2_grpc.ProjectCalculationServiceSer
         db = get_db_connection()
         cursor = db.cursor(pymysql.cursors.DictCursor)
         try:
-            cursor.execute("SELECT * FROM calculations WHERE project_id = %s", (request.project_id))
+            cursor.execute("SELECT * FROM calculations WHERE projectId = %s", (request.projectId))
             calculations = cursor.fetchall()
             for calculation in calculations:
                 yield calculatie_pb2.GetProjectCalculationsResponse(
-                    project_id=calculation['project_id'],
-                    article_id=calculation['article_id'],
+                    projectId=calculation['projectId'],
+                    articleId=calculation['articleId'],
                     description=calculation['description'],
-                    measurement_type=calculation['measurement_type'],
-                    measurement_unit=calculation['measurement_unit'],
+                    measurementType=calculation['measurementType'],
+                    measurementUnit=calculation['measurementUnit'],
                     quantity=calculation['quantity'],
-                    price_per_unit=calculation['price_per_unit'],
-                    total_price=calculation['total_price']
+                    pricePerUnit=calculation['pricePerUnit'],
+                    totalPrice=calculation['totalPrice']
                 )
         except Exception as e:
             context.set_details(str(e))

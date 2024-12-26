@@ -10,42 +10,42 @@ def run_calculation():
     # Voorbeelden van requests
     requests = [
         calculatie_pb2.CalculatePriceRequest(
-            project_id=1,
-            article_id=101,
+            projectId=1,
+            articleId=101,
             description="Staalbalk",
-            measurement_type="FH",
-            measurement_unit="m",
+            measurementType="FH",
+            measurementUnit="m",
             quantity=10,
-            price_per_unit=50.0
+            pricePerUnit=50.0
         ),
         calculatie_pb2.CalculatePriceRequest(
-            project_id=1,
-            article_id=102,
+            projectId=1,
+            articleId=102,
             description="Betonplaat",
-            measurement_type="FH",
-            measurement_unit="m²",
+            measurementType="FH",
+            measurementUnit="m²",
             quantity=20,
-            price_per_unit=80.0
+            pricePerUnit=80.0
         )
     ]
 
     try:
         responses = stub.CalculateProject(iter(requests))
         for response in responses:
-            print(f"Project {response.project_id} - Artikel {response.article_id}: Totale prijs = {response.total_price}")
+            print(f"Project {response.projectId} - Artikel {response.articleId}: Totale prijs = {response.totalPrice}")
     except grpc.RpcError as e:
         print(f"Fout tijdens berekening: {e.details()} (Statuscode: {e.code()})")
 
-def run_get_project_calculations(project_id):
+def run_get_project_calculations(projectId):
     stub = calculatie_pb2_grpc.ProjectCalculationServiceStub(channel)
 
-    request = calculatie_pb2.GetProjectCalculationsRequest(project_id=project_id)
+    request = calculatie_pb2.GetProjectCalculationsRequest(projectId=projectId)
 
     try:
         responses = stub.GetProjectCalculations(request)
-        print(f"Berekeningen voor project {project_id}:")
+        print(f"Berekeningen voor project {projectId}:")
         for response in responses:
-            print(f"Artikel {response.article_id}: {response.description}, {response.quantity} {response.measurement_unit} à {response.price_per_unit}, Totale prijs = {response.total_price}")
+            print(f"Artikel {response.articleId}: {response.description}, {response.quantity} {response.measurementUnit} à {response.pricePerUnit}, Totale prijs = {response.totalPrice}")
     except grpc.RpcError as e:
         print(f"Fout bij ophalen berekeningen: {e.details()} (Statuscode: {e.code()})")
 
@@ -54,4 +54,4 @@ if __name__ == '__main__':
     run_calculation()
 
     print("\nHaal berekeningen op voor project 1...")
-    run_get_project_calculations(project_id=1)
+    run_get_project_calculations(projectId=1)

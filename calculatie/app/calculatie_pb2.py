@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x63\x61lculatie.proto\x12\ncalculatie\"\xb2\x01\n\x15\x43\x61lculatePriceRequest\x12\x12\n\nproject_id\x18\x01 \x01(\x05\x12\x12\n\narticle_id\x18\x02 \x01(\x05\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x18\n\x10measurement_type\x18\x04 \x01(\t\x12\x18\n\x10measurement_unit\x18\x05 \x01(\t\x12\x10\n\x08quantity\x18\x06 \x01(\x02\x12\x16\n\x0eprice_per_unit\x18\x07 \x01(\x02\"U\n\x16\x43\x61lculatePriceResponse\x12\x12\n\nproject_id\x18\x01 \x01(\x05\x12\x12\n\narticle_id\x18\x02 \x01(\x05\x12\x13\n\x0btotal_price\x18\x03 \x01(\x02\"3\n\x1dGetProjectCalculationsRequest\x12\x12\n\nproject_id\x18\x01 \x01(\x05\"\xd0\x01\n\x1eGetProjectCalculationsResponse\x12\x12\n\nproject_id\x18\x01 \x01(\x05\x12\x12\n\narticle_id\x18\x02 \x01(\x05\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x18\n\x10measurement_type\x18\x04 \x01(\t\x12\x18\n\x10measurement_unit\x18\x05 \x01(\t\x12\x10\n\x08quantity\x18\x06 \x01(\x02\x12\x16\n\x0eprice_per_unit\x18\x07 \x01(\x02\x12\x13\n\x0btotal_price\x18\x08 \x01(\x02\x32s\n\x12\x43\x61lculationService\x12]\n\x10\x43\x61lculateProject\x12!.calculatie.CalculatePriceRequest\x1a\".calculatie.CalculatePriceResponse(\x01\x30\x01\x32\x8e\x01\n\x19ProjectCalculationService\x12q\n\x16GetProjectCalculations\x12).calculatie.GetProjectCalculationsRequest\x1a*.calculatie.GetProjectCalculationsResponse0\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x63\x61lculatie.proto\x12\ncalculatie\"\xac\x01\n\x15\x43\x61lculatePriceRequest\x12\x11\n\tprojectId\x18\x01 \x01(\x05\x12\x11\n\tarticleId\x18\x02 \x01(\x05\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x17\n\x0fmeasurementType\x18\x04 \x01(\t\x12\x17\n\x0fmeasurementUnit\x18\x05 \x01(\t\x12\x10\n\x08quantity\x18\x06 \x01(\x02\x12\x14\n\x0cpricePerUnit\x18\x07 \x01(\x02\"R\n\x16\x43\x61lculatePriceResponse\x12\x11\n\tprojectId\x18\x01 \x01(\x05\x12\x11\n\tarticleId\x18\x02 \x01(\x05\x12\x12\n\ntotalPrice\x18\x03 \x01(\x02\"2\n\x1dGetProjectCalculationsRequest\x12\x11\n\tprojectId\x18\x01 \x01(\x05\"\xc9\x01\n\x1eGetProjectCalculationsResponse\x12\x11\n\tprojectId\x18\x01 \x01(\x05\x12\x11\n\tarticleId\x18\x02 \x01(\x05\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x17\n\x0fmeasurementType\x18\x04 \x01(\t\x12\x17\n\x0fmeasurementUnit\x18\x05 \x01(\t\x12\x10\n\x08quantity\x18\x06 \x01(\x02\x12\x14\n\x0cpricePerUnit\x18\x07 \x01(\x02\x12\x12\n\ntotalPrice\x18\x08 \x01(\x02\x32s\n\x12\x43\x61lculationService\x12]\n\x10\x43\x61lculateProject\x12!.calculatie.CalculatePriceRequest\x1a\".calculatie.CalculatePriceResponse(\x01\x30\x01\x32\x8e\x01\n\x19ProjectCalculationService\x12q\n\x16GetProjectCalculations\x12).calculatie.GetProjectCalculationsRequest\x1a*.calculatie.GetProjectCalculationsResponse0\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,15 +32,15 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'calculatie_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_CALCULATEPRICEREQUEST']._serialized_start=33
-  _globals['_CALCULATEPRICEREQUEST']._serialized_end=211
-  _globals['_CALCULATEPRICERESPONSE']._serialized_start=213
-  _globals['_CALCULATEPRICERESPONSE']._serialized_end=298
-  _globals['_GETPROJECTCALCULATIONSREQUEST']._serialized_start=300
-  _globals['_GETPROJECTCALCULATIONSREQUEST']._serialized_end=351
-  _globals['_GETPROJECTCALCULATIONSRESPONSE']._serialized_start=354
-  _globals['_GETPROJECTCALCULATIONSRESPONSE']._serialized_end=562
-  _globals['_CALCULATIONSERVICE']._serialized_start=564
-  _globals['_CALCULATIONSERVICE']._serialized_end=679
-  _globals['_PROJECTCALCULATIONSERVICE']._serialized_start=682
-  _globals['_PROJECTCALCULATIONSERVICE']._serialized_end=824
+  _globals['_CALCULATEPRICEREQUEST']._serialized_end=205
+  _globals['_CALCULATEPRICERESPONSE']._serialized_start=207
+  _globals['_CALCULATEPRICERESPONSE']._serialized_end=289
+  _globals['_GETPROJECTCALCULATIONSREQUEST']._serialized_start=291
+  _globals['_GETPROJECTCALCULATIONSREQUEST']._serialized_end=341
+  _globals['_GETPROJECTCALCULATIONSRESPONSE']._serialized_start=344
+  _globals['_GETPROJECTCALCULATIONSRESPONSE']._serialized_end=545
+  _globals['_CALCULATIONSERVICE']._serialized_start=547
+  _globals['_CALCULATIONSERVICE']._serialized_end=662
+  _globals['_PROJECTCALCULATIONSERVICE']._serialized_start=665
+  _globals['_PROJECTCALCULATIONSERVICE']._serialized_end=807
 # @@protoc_insertion_point(module_scope)
