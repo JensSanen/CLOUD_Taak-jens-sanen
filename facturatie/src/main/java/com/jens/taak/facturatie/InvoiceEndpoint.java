@@ -26,8 +26,8 @@ import calculatie.Calculatie.GetProjectCalculationsResponse;
 public class InvoiceEndpoint {
 
     private static final String NAMESPACE_URI = "http://com.jens.taak/facturatie";
-    private static final String API_PROJECT_URL = "http://localhost:30001/api/project/";
-    private static final String API_WORKERS_URL = "http://localhost:30003/api/worked_hours/project/";
+    private static final String API_PROJECT_URL = "http://host.docker.internal:30001/api/project/";
+    private static final String API_WORKERS_URL = "http://host.docker.internal:30003/api/worked_hours/project/";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper jsonMapper;
@@ -37,7 +37,7 @@ public class InvoiceEndpoint {
     public InvoiceEndpoint(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
         this.jsonMapper = new ObjectMapper();
-        this.grpcClient = new GrpcClient("localhost", 30002);
+        this.grpcClient = new GrpcClient("host.docker.internal", 30002);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getInvoiceRequest")
