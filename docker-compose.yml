@@ -198,6 +198,7 @@ services:
 
   adminer:
     image: adminer:4.8.1-standalone
+    container_name: adminer
     restart: unless-stopped
     ports:
       - "9092:8080"
@@ -206,6 +207,7 @@ services:
 
   influxdb:
     image: influxdb:2
+    container_name: werfmonitoring_influxdb
     ports:
       - 8086:8086
     environment:
@@ -223,6 +225,7 @@ services:
     build: 
       context: ./werfmonitoring/dummy_datasource
       dockerfile: Dockerfile
+    container_name: werfmonitoring_mqtt
     depends_on:
       - mosquitto
     environment:
@@ -231,6 +234,7 @@ services:
   
   mosquitto:
     image: eclipse-mosquitto
+    container_name: werfmonitoring_mosquitto
     ports:
       - "1883:1883"
       - "9001:9001"
@@ -239,6 +243,7 @@ services:
 
   telegraf:
     image: telegraf:latest
+    container_name: werfmonitoring_telegraf
     depends_on:
       - influxdb
       - mosquitto
@@ -249,6 +254,7 @@ services:
 
   grafana:
     image: grafana/grafana:latest
+    container_name: werfmonitoring_grafana
     volumes:
       - ./werfmonitoring/grafana_data:/var/lib/grafana
     ports:

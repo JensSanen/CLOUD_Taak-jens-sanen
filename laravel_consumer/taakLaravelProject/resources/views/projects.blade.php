@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projecten en Fasen</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="bg-light">
     <div class="container my-5">
@@ -13,6 +13,7 @@
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newProjectModal">
                 Nieuw Project
             </button>
+            <div id="message" class="text-center ms-3"></div>
         </div>
         <h1 class="text-center mb-4">Projecten Overzicht</h1>
         <div id="projectList" class="row">
@@ -28,17 +29,28 @@
                     <h5 class="modal-title" id="newProjectLabel">Nieuw Project Aanmaken</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body
-                    <form id="newProjectForm">
+                <div class="modal-body">
+                    <form id="newProjectForm" onsubmit="createProject(event)">
                         <div class="mb-3">
-                            <label for="newProjectName" class="form-label
-                                Naam
-                            </label>
+                            <label for="newProjectName" class="form-label">Naam</label>
                             <input type="text" class="form-control" id="newProjectName" required>
                         </div>
                         <div class="mb-3">
                             <label for="newProjectDescription" class="form-label">Beschrijving</label>
-                            <textarea class="form-control" id="newProjectDescription" rows="3" required></textarea>
+                            <textarea class="form-control" id="newProjectDescription" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newProjectLocation" class="form-label">Locatie</label>
+                            <input type="text" class="form-control" id="newProjectLocation" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newProjectStatus" class="form-label">Status</label>
+                            <select id="newProjectStatus" class="form-select" required>
+                                <option value="ACTIVE">Active</option>
+                                <option value="COMPLETED">Completed</option>
+                                <option value="CANCELLED">Cancelled</option>
+                                <option value="PAUSED">Paused</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Aanmaken</button>
                     </form>
@@ -47,16 +59,16 @@
         </div>
     </div>
 
-    <!-- Modal voor het aanpassen van project attributen -->
+    <!-- Modal voor het bewerken van een project -->
     <div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editProjectLabel">Project Aanpassen</h5>
+                    <h5 class="modal-title" id="editProjectLabel">Bewerk Project</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editProjectForm">
+                    <form id="editProjectForm" onsubmit="updateProject(event)">
                         <input type="hidden" id="editProjectId">
                         <div class="mb-3">
                             <label for="editProjectName" class="form-label">Naam</label>
@@ -64,7 +76,20 @@
                         </div>
                         <div class="mb-3">
                             <label for="editProjectDescription" class="form-label">Beschrijving</label>
-                            <textarea class="form-control" id="editProjectDescription" rows="3" required></textarea>
+                            <textarea class="form-control" id="editProjectDescription" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProjectLocation" class="form-label">Locatie</label>
+                            <input type="text" class="form-control" id="editProjectLocation" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProjectStatus" class="form-label">Status</label>
+                            <select id="editProjectStatus" class="form-select" required>
+                                <option value="ACTIVE">Active</option>
+                                <option value="COMPLETED">Completed</option>
+                                <option value="CANCELLED">Cancelled</option>
+                                <option value="PAUSED">Paused</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Opslaan</button>
                     </form>
@@ -73,44 +98,17 @@
         </div>
     </div>
 
-    <!-- Modal voor fasen -->
-    <div class="modal fade" id="phaseModal" tabindex="-1" aria-labelledby="phaseLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="phaseLabel">Fasen van het project</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul id="phaseList" class="list-group">
-                        <!-- Fasen worden hier geladen via JavaScript -->
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        function createProject() {
-            const newProjectForm = document.getElementById('newProjectForm');
-            const formData = new FormData(newProjectForm);
-            fetch('/projectsAPI', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        const newProjectModal = new bootstrap.Modal(document.getElementById('newProjectModal'));
-                        newProjectModal.hide();
-                        fetchProjects();
-                    }
-                })
-                .catch(error => console.error('Error creating project:', error));
+        function showMessage(type, text) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = `<div class="alert alert-${type}">${text}</div>`;
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 3000);
         }
 
         function fetchProjects() {
-            fetch('/projectsAPI')
+            fetch('/api/projects')
                 .then(response => response.json())
                 .then(projects => {
                     const projectList = document.getElementById('projectList');
@@ -121,14 +119,17 @@
                         projectCard.innerHTML = `
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <h5 class="card-title">${project.naam}</h5>
-                                    <p class="card-text">${project.beschrijving}</p>
-                                    <p class="card-text"><strong>Startdatum:</strong> ${project.startdatum}</p>
-                                    <p class="card-text"><strong>Einddatum:</strong> ${project.einddatum}</p>
+                                    <h5 class="card-title"><strong>${project.name}</strong></h5>
+                                    <p class="card-text">${project.description}</p>
+                                    <p class="card-text"><strong>Locatie:</strong> ${project.location}</p>
                                     <p class="card-text"><strong>Status:</strong> ${project.status}</p>
-                                    <button class="btn btn-primary btn-sm" onclick="editProject(${project.projectId})">Aanpassen</button>
-                                    <button class="btn btn-secondary btn-sm" onclick="showPhases(${project.projectId})">Toon Fasen</button>
-                                    <button class="btn btn-danger btn-sm" onclick="deleteProject(${project.projectId})">Verwijderen</button>
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <button class="btn btn-primary btn-sm" onclick="openProjectPhases(${project.projectId})">Bekijk fases</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="openEditModal(${project.projectId})">Bewerken</button>
+                                        </div>
+                                        <button class="btn btn-danger btn-sm" onclick="deleteProject(${project.projectId})">Verwijderen</button>
+                                    </div>
                                 </div>
                             </div>
                         `;
@@ -138,48 +139,107 @@
                 .catch(error => console.error('Error fetching projects:', error));
         }
 
-        // Toon modal om project aan te passen
-        function editProject(projectId) {
-            const project = projects.find(p => p.id === projectId);
-            if (project) {
-                document.getElementById('editProjectId').value = project.id;
-                document.getElementById('editProjectName').value = project.name;
-                document.getElementById('editProjectDescription').value = project.description;
-                const editModal = new bootstrap.Modal(document.getElementById('editProjectModal'));
-                editModal.show();
-            }
+        function openEditModal(projectId) {
+            fetch(`/api/projects/${projectId}`)
+                .then(response => response.json())
+                .then(project => {
+                    document.getElementById('editProjectId').value = project.projectId;
+                    document.getElementById('editProjectName').value = project.name;
+                    document.getElementById('editProjectDescription').value = project.description;
+                    document.getElementById('editProjectLocation').value = project.location;
+                    document.getElementById('editProjectStatus').value = project.status;
+
+                    const editProjectModal = new bootstrap.Modal(document.getElementById('editProjectModal'));
+                    editProjectModal.show();
+                })
+                .catch(error => console.error('Error fetching project details:', error));
         }
 
-            // Function to delete a user
-        function deleteProject(projectId) {
-            fetch(`/projects/${projectId}`, {
-                method: 'DELETE'
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('message').innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-                fetchUsers();  // Refresh the user list
-            })
-            .catch(error => {
-                console.error('Error deleting user:', error);
-                document.getElementById('message').innerHTML = `<div class="alert alert-danger">Failed to delete user</div>`;
-            });
+        function openProjectPhases(projectId) {
+            const projectPhasesURL = `/projects/${projectId}/phases`;
+            window.open(projectPhasesURL, '_blank');
         }
 
-        // Toon modal met fasen
-        function showPhases(projectId) {
-            const phaseList = document.getElementById('phaseList');
-            phaseList.innerHTML = '';
-            if (phases[projectId]) {
-                phases[projectId].forEach(phase => {
-                    const phaseItem = document.createElement('li');
-                    phaseItem.className = 'list-group-item';
-                    phaseItem.innerHTML = `<strong>${phase.name}</strong>: ${phase.details}`;
-                    phaseList.appendChild(phaseItem);
+        function updateProject(event) {
+            event.preventDefault();
+            const projectId = document.getElementById('editProjectId').value;
+            const name = document.getElementById('editProjectName').value;
+            const description = document.getElementById('editProjectDescription').value;
+            const location = document.getElementById('editProjectLocation').value;
+            const status = document.getElementById('editProjectStatus').value;
+
+            fetch(`/api/projects/${projectId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, description, location, status })
+            })
+                .then(response => {
+                    if (response.ok)
+                        return response.json();
+                    else
+                        throw new Error('Failed to update project');
+                })
+                .then(data => {
+                    showMessage('success', data.message);
+                    fetchProjects();
+                    const editProjectModal = bootstrap.Modal.getInstance(document.getElementById('editProjectModal'));
+                    editProjectModal.hide();
+                })
+                .catch(error => {
+                    console.error(error);
+                    showMessage('danger', 'Er is een fout opgetreden bij het bijwerken van het project.');
                 });
-            }
-            const phaseModal = new bootstrap.Modal(document.getElementById('phaseModal'));
-            phaseModal.show();
+        }
+
+        function deleteProject(projectId) {
+            fetch(`/api/projects/${projectId}`, { method: 'DELETE' })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Failed to delete project');
+                    }
+                })
+                .then(data => {
+                    showMessage('success', data.message);
+                    fetchProjects();
+                })
+                .catch(error => {
+                    console.error(error);
+                    showMessage('danger', 'Er is een fout opgetreden bij het verwijderen van het project.');
+                });
+        }
+
+        function createProject(event) {
+            event.preventDefault();
+            const name = document.getElementById('newProjectName').value;
+            const description = document.getElementById('newProjectDescription').value;
+            const location = document.getElementById('newProjectLocation').value;
+            const status = document.getElementById('newProjectStatus').value;
+
+            fetch('/api/projects', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, description, location, status })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Failed to create project');
+                    }
+                })
+                .then(data => {
+                    showMessage('success', data.message);
+                    fetchProjects();
+                    document.getElementById('newProjectForm').reset();
+                    const newProjectModal = bootstrap.Modal.getInstance(document.getElementById('newProjectModal'));
+                    newProjectModal.hide();
+                })
+                .catch(error => {
+                    console.error(error);
+                    showMessage('danger', 'Er is een fout opgetreden bij het aanmaken van het project.');
+                });
         }
 
         fetchProjects();
