@@ -22,35 +22,35 @@ class WeatherController extends Controller
     // Stap 1: Verkrijg de coördinaten op basis van het adres
     public function getCoordinatesFromAddress($address)
     {
-        $url = 'http://api.positionstack.com/v1/forward';
-        try {
-            // Log::info("Fetching coordinates for address: $address");
-            // $response = $this->client->request('GET', $url, [
-            //     'query' => [
-            //         'access_key' => $this->positionStackApiKey,
-            //         'query' => $address
-            //     ]
-            // ]);
+        return ['latitude' => 50.8432, 'longitude' => 4.3718]; // For testing -> Max 100 requests per month
+        // $url = 'http://api.positionstack.com/v1/forward';
+        // try {
+        //     Log::info("Fetching coordinates for address: $address");
+        //     $response = $this->client->request('GET', $url, [
+        //         'query' => [
+        //             'access_key' => $this->positionStackApiKey,
+        //             'query' => $address
+        //         ]
+        //     ]);
 
-            // $data = json_decode($response->getBody(), true);
+        //     $data = json_decode($response->getBody(), true);
 
-            // Log::info('PositionStack API response: ', $data);
+        //     Log::info('PositionStack API response: ', $data);
 
-            // if (isset($data['data'][0])) {
-            //     $latitude = round($data['data'][0]['latitude'], 4);
-            //     $longitude = round($data['data'][0]['longitude'], 4);
-            //     Log::info("Coordinates found: Latitude: $latitude, Longitude: $longitude");
-            //     return ['latitude' => $latitude, 'longitude' => $longitude];
-            // }
+        //     if (isset($data['data'][0])) {
+        //         $latitude = round($data['data'][0]['latitude'], 4);
+        //         $longitude = round($data['data'][0]['longitude'], 4);
+        //         Log::info("Coordinates found: Latitude: $latitude, Longitude: $longitude");
+        //         return ['latitude' => $latitude, 'longitude' => $longitude];
+        //     }
 
-            return ['latitude' => 50.8432, 'longitude' => 4.3718];
 
-            Log::warning("No coordinates found for address: $address");
-            return null;
-        } catch (\Exception $e) {
-            Log::error('Error in getCoordinatesFromAddress: ' . $e->getMessage());
-            return null;
-        }
+        //     Log::warning("No coordinates found for address: $address");
+        //     return null;
+        // } catch (\Exception $e) {
+        //     Log::error('Error in getCoordinatesFromAddress: ' . $e->getMessage());
+        //     return null;
+        // }
     }
 
     // Stap 2: Verkrijg het weerbericht op basis van de coördinaten
@@ -76,9 +76,15 @@ class WeatherController extends Controller
                 for ($i = 0; $i < count($data['timelines']['daily']); $i++) {
                     $day = $data['timelines']['daily'][$i]['time'];
                     $temperature = $data['timelines']['daily'][$i]['values']['temperatureMax'];
+                    $precipitationProbabilityMax = $data['timelines']['daily'][$i]['values']['precipitationProbabilityMax'];
+                    $rainAccumulationMax = $data['timelines']['daily'][$i]['values']['rainAccumulationMax'];
+                    $windSpeedMax = $data['timelines']['daily'][$i]['values']['windSpeedMax'];
                     $weather_data[] = [
                         'day' => $day,
-                        'temperature' => $temperature
+                        'temperature' => $temperature,
+                        'precipitationProbability' => $precipitationProbabilityMax,
+                        'rainAccumulation' => $rainAccumulationMax,
+                        'windSpeed' => $windSpeedMax
                     ];
                 }
             }

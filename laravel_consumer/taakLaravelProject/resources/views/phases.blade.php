@@ -35,6 +35,25 @@
         </table>
     </div>
 
+    <div class="container mt-5">
+        <h2 id= WeatherForecastLabel>Weersvoorspelling</h2>
+        <table class="table table-bordered" id="weatherTable">
+            <thead>
+                <tr id="weatherTableHeader">
+                    <!-- Headers worden dynamisch toegevoegd -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="weatherTableTemperature"></tr>
+                <tr id="weatherTablePrecipitationProbability"></tr>
+                <tr id="weatherTablePrecipitationAmount"></tr>
+                <tr id="weatherTableWindSpeed"></tr>
+                <!-- Rijen worden dynamisch toegevoegd -->
+            </tbody>
+        </table>
+    </div>
+
+
     <!-- Add Phase Modal -->
     <div class="modal" tabindex="-1" id="addPhaseModal">
         <div class="modal-dialog">
@@ -240,13 +259,92 @@
                 .then(response => response.json())
                 .then(project => {
                     const location = project.location;
+                    document.getElementById('WeatherForecastLabel').innerText = `Weersvoorspelling voor ${location}`;
                     fetch(`/api/weather/${location}`)
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
-                        });
+                            const headerRow = document.getElementById('weatherTableHeader');
+                            const temperatureRow = document.getElementById('weatherTableTemperature');
+                            const precipitationProbabilityRow = document.getElementById('weatherTablePrecipitationProbability');
+                            const precipitationAmountRow = document.getElementById('weatherTablePrecipitationAmount');
+                            const windSpeedRow = document.getElementById('weatherTableWindSpeed');
+
+                            // Maak de tabel leeg voordat nieuwe data wordt toegevoegd
+                            headerRow.innerHTML = '';
+                            temperatureRow.innerHTML = '';
+                            precipitationProbabilityRow.innerHTML = '';
+                            precipitationAmountRow.innerHTML = '';
+                            windSpeedRow.innerHTML = '';
+
+
+                            const headers = ['Dag', 'Temperatuur', 'Neerslagkans', 'Neerslaghoeveelheid', 'Windsnelheid'];
+
+                            headers.forEach(header => {
+                                if (header === 'Dag') {
+                                    const th = document.createElement('th');
+                                    th.textContent = header;
+                                    headerRow.appendChild(th);;
+                                }
+                                if (header === 'Temperatuur') {
+                                    const td = document.createElement('td');
+                                    td.textContent = header;
+                                    temperatureRow.appendChild(td);
+                                }
+                                if (header === 'Neerslagkans') {
+                                    const td = document.createElement('td');
+                                    td.textContent = header;
+                                    precipitationProbabilityRow.appendChild(td);
+                                }
+                                if (header === 'Neerslaghoeveelheid') {
+                                    const td = document.createElement('td');
+                                    td.textContent = header;
+                                    precipitationAmountRow.appendChild(td);
+                                }
+                                if (header === 'Windsnelheid') {
+                                    const td = document.createElement('td');
+                                    td.textContent = header;
+                                    windSpeedRow.appendChild(td);
+                                }
+                                data.forEach(entry => {
+                                    if (header === 'Dag') {
+                                    const day = new Date(entry.day).toLocaleDateString('nl-NL', { weekday: 'long', day: 'numeric', month: 'long' });
+                                    const th = document.createElement('th');
+                                    th.textContent = day;
+                                    headerRow.appendChild(th);
+                                    }
+                                    if (header === 'Temperatuur') {
+                                    const temperature = `${entry.temperature.toFixed(1)} °C`;
+                                    const td = document.createElement('td');
+                                    td.textContent = temperature;
+                                    temperatureRow.appendChild(td);
+                                    }
+                                    if (header === 'Neerslagkans') {
+                                    const precipitation = `${entry.precipitationProbability.toFixed(0)}%`;
+                                    const td = document.createElement('td');
+                                    td.textContent = precipitation;
+                                    precipitationProbabilityRow.appendChild(td);
+                                    }
+                                    if (header === 'Neerslaghoeveelheid') {
+                                    const precipitationAmount = `${entry.rainAccumulation.toFixed(1)} mm`;
+                                    const td = document.createElement('td');
+                                    td.textContent = precipitationAmount;
+                                    precipitationAmountRow.appendChild(td);
+                                    }
+                                    if (header === 'Windsnelheid') {
+                                    const windSpeed = `${entry.windSpeed.toFixed(1)} m/s`;
+                                    const td = document.createElement('td');
+                                    td.textContent = windSpeed;
+                                    windSpeedRow.appendChild(td);
+                                    }
+                                });
+
+                            });
+
+                        })
+                        .catch(error => console.error('Error fetching weather data:', error));
                 });
         }
+
 
         fetchProjectInformation();
         fetchPhases();
