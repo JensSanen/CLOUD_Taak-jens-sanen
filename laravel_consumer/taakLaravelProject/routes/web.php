@@ -12,8 +12,12 @@ Route::get('/projects',function () {
     return view('projects');
 });
 
-Route::get('/projects/{id}/phases', function ($projectId) {
+Route::get('/projects/{projectId}/phases', function ($projectId) {
     return view('phases', ['projectId' => $projectId]);
+});
+
+Route::get('/projects/{projectId}/hours', function ($projectId) {
+    return view('hours', ['projectId' => $projectId]);
 });
 
 

@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projecten en Fasen</title>
+    <title>Projecten</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="bg-light">
     <div class="container my-5">
-        <div class="d-flex justify-content-start mb-4">
+        <div id="message" ></div>
+        <h1 class="text-center mb-4">Projecten Overzicht</h1>
+        <div class="d-flex justify-content-end mb-4">
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newProjectModal">
                 Nieuw Project
             </button>
-            <div id="message" class="text-center ms-3"></div>
         </div>
-        <h1 class="text-center mb-4">Projecten Overzicht</h1>
         <div id="projectList" class="row">
             <!-- Projecten worden hier geladen via JavaScript -->
         </div>
@@ -123,12 +123,19 @@
                                     <p class="card-text">${project.description}</p>
                                     <p class="card-text"><strong>Locatie:</strong> ${project.location}</p>
                                     <p class="card-text"><strong>Status:</strong> ${project.status}</p>
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex justify-content-between align-items-start">
                                         <div>
-                                            <button class="btn btn-primary btn-sm" onclick="openProjectPhases(${project.projectId})">Bekijk fases</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="openEditModal(${project.projectId})">Bewerken</button>
+                                            <div class="d-grid gap-2" style="grid-template-columns: repeat(2, 1fr);">
+                                                <button class="btn btn-primary btn-sm" onclick="openProjectPhases(${project.projectId})">Fases</button>
+                                                <button class="btn btn-primary btn-sm" onclick="openProjectHours(${project.projectId})">Gewerkte uren</button>
+                                                <button class="btn btn-primary btn-sm" onclick="openProjectPhases(${project.projectId})">Calculatie</button>
+                                                <button class="btn btn-primary btn-sm" onclick="openProjectHours(${project.projectId})">Factuur</button>
+                                            </div>
                                         </div>
-                                        <button class="btn btn-danger btn-sm" onclick="deleteProject(${project.projectId})">Verwijderen</button>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <button class="btn btn-secondary btn-sm" onclick="openEditModal(${project.projectId})">Bewerken</button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteProject(${project.projectId})">Verwijderen</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -158,6 +165,11 @@
         function openProjectPhases(projectId) {
             const projectPhasesURL = `/projects/${projectId}/phases`;
             window.open(projectPhasesURL, '_blank');
+        }
+
+        function openProjectHours(projectId) {
+            const projectHoursURL = `/projects/${projectId}/hours`;
+            window.open(projectHoursURL, '_blank');
         }
 
         function updateProject(event) {

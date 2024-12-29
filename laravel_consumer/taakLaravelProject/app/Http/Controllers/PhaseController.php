@@ -35,25 +35,25 @@ class PhaseController extends Controller
         }
     }
 
-     public function store($projectId, Request $request)
-     {
-         $data = [
-             'name' => $request->input('name'),
-             'description' => $request->input('description'),
-             'startDate' => $request->input('startDate'),
-             'endDate' => $request->input('endDate')
-         ];
+    public function store($projectId, Request $request)
+    {
+        $data = [
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'startDate' => $request->input('startDate'),
+            'endDate' => $request->input('endDate')
+        ];
 
-         try {
-             $response = $this->client->post("/api/projects/${projectId}/phases", [
-                 'json' => $data
-             ]);
+        try {
+            $response = $this->client->post("/api/projects/${projectId}/phases", [
+                'json' => $data
+            ]);
 
-             return response()->json(json_decode($response->getBody(), true), $response->getStatusCode());
-         } catch (\Exception $e) {
-             return response()->json(['error' => $e->getMessage()], 500);
-         }
-     }
+            return response()->json(json_decode($response->getBody(), true), $response->getStatusCode());
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 
     public function destroy($projectId, $phaseId)
     {
