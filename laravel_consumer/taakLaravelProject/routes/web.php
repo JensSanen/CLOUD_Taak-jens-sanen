@@ -20,5 +20,9 @@ Route::get('/projects/{projectId}/hours', function ($projectId) {
     return view('hours', ['projectId' => $projectId]);
 });
 
+Route::get('/stock', function () {
+    return view('stock');
+});
+
 
 

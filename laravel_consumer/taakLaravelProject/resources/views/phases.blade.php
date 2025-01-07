@@ -154,7 +154,7 @@
                             <td>${phase.startDate}</td>
                             <td>${phase.endDate}</td>
                             <td>
-                                <button class="btn btn-secondary btn-sm" onclick="openEditModal(${phase.phaseId})">Bewerken</button>
+                                <button class="btn btn-primary btn-sm" onclick="openEditModal(${phase.phaseId})">Bewerken</button>
                                 <button class="btn btn-danger btn-sm" onclick="deletePhase(${phase.phaseId})">Verwijderen</button>
                             </td>
                         `;

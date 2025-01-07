@@ -10,6 +10,10 @@
 <body class="bg-light">
     <div class="container my-5">
         <div id="message" ></div>
+        <div class="d-flex justify-content-start mb-4">
+            <button class="btn btn-secondary me-3" onclick="window.location.href = '/projects'">Projecten</button>
+            <button class="btn btn-secondary" onclick="window.location.href = '/stock'">Voorraad</button>
+        </div>
         <h1 class="text-center mb-4">Projecten Overzicht</h1>
         <div class="d-flex justify-content-end mb-4">
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newProjectModal">
@@ -128,7 +132,7 @@
                                             <div class="d-grid gap-2" style="grid-template-columns: repeat(2, 1fr);">
                                                 <button class="btn btn-primary btn-sm" onclick="openProjectPhases(${project.projectId})">Fases</button>
                                                 <button class="btn btn-primary btn-sm" onclick="openProjectHours(${project.projectId})">Gewerkte uren</button>
-                                                <button class="btn btn-primary btn-sm" onclick="openProjectPhases(${project.projectId})">Calculatie</button>
+                                                <button class="btn btn-primary btn-sm" onclick="fetch('/stock')">Calculatie</button>
                                                 <button class="btn btn-primary btn-sm" onclick="openProjectHours(${project.projectId})">Factuur</button>
                                             </div>
                                         </div>

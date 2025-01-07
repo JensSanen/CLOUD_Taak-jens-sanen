@@ -45,7 +45,7 @@ class PhaseController extends Controller
         ];
 
         try {
-            $response = $this->client->post("/api/projects/${projectId}/phases", [
+            $response = $this->client->post("/api/projects/{$projectId}/phases", [
                 'json' => $data
             ]);
 

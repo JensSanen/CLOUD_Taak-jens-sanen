@@ -51,6 +51,18 @@ const RackType = new GraphQLObjectType({
         rackId: { type: GraphQLNonNull(GraphQLInt) },
         name: { type: GraphQLNonNull(GraphQLString) },
         rows: { type: GraphQLNonNull(GraphQLInt) },
+        products: {
+            type: new GraphQLList(ProductType),
+            resolve: async (rack) => {
+                try {
+                    const [results] = await db.query('SELECT * FROM products WHERE locationId IN (SELECT locationId FROM locations WHERE rackId = ?)', [rack.rackId]);
+                    return results;
+                } catch (err) {
+                    console.error('Error fetching products for rack:', err);
+                    throw err;
+                }
+            }
+        },
         locations: {
             type: new GraphQLList(LocationType),
             resolve: async (rack) => {
@@ -62,6 +74,18 @@ const RackType = new GraphQLObjectType({
                     throw err;
                 }
             }
+        },
+        emptyLocations: {
+            type: new GraphQLList(LocationType),
+            resolve: async (rack) => {
+                try {
+                    const [results] = await db.query('SELECT locations.locationId, row FROM locations LEFT JOIN products ON locations.locationId = products.locationId WHERE products.productId IS NULL AND locations.rackId = ?', [rack.rackId]);
+                    return results;
+                } catch (err) {
+                    console.error('Error fetching empty locations for rack:', err);
+                    throw err;
+                }
+            }   
         }
     })
 });
@@ -213,6 +237,19 @@ const RootQueryType = new GraphQLObjectType({
                 }
             }
         },
+        locationsEmpty: {
+            type: new GraphQLList(LocationType),
+            description: "List of all empty locations",
+            resolve: async () => {
+                try {
+                    const [locations] = await db.query('SELECT * FROM locations LEFT JOIN products ON locations.locationId = products.locationId WHERE products.productId IS NULL');
+                    return locations;
+                } catch (err) {
+                    console.error('Error fetching empty locations:', err);
+                    throw err;
+                }
+            }
+        },
         supplier: {
             type: SupplierType,
             description: "A single supplier by ID",
@@ -308,9 +345,30 @@ const RootMutationType = new GraphQLObjectType({
                 try {
                     const [suppliers] = await db.query('SELECT * FROM suppliers WHERE supplierId = ?', [args.supplierId]);
                     const [results] = await db.query('DELETE FROM suppliers WHERE supplierId = ?', [args.supplierId]);
+                    await db.query('DELETE FROM products WHERE supplierId = ?', [args.supplierId]);
                     return suppliers[0];
                 } catch (err) {
                     console.error('Error deleting supplier:', err);
+                    throw err;
+                }
+            }
+        },
+        updateSupplier: {
+            type: SupplierType,
+            description: "Update a supplier",
+            args: {
+                supplierId: { type: GraphQLNonNull(GraphQLInt) },
+                name: { type: GraphQLNonNull(GraphQLString) },
+                email: { type: GraphQLNonNull(GraphQLString) },
+                address: { type: GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                try {
+                    const [results] = await db.query('UPDATE suppliers SET name = ?, email = ?, address = ? WHERE supplierId = ?', [args.name, args.email, args.address, args.supplierId]);
+                    const [suppliers] = await db.query('SELECT * FROM suppliers WHERE supplierId = ?', [args.supplierId]);
+                    return suppliers[0];
+                } catch (err) {
+                    console.error('Error updating supplier:', err);
                     throw err;
                 }
             }
@@ -354,16 +412,21 @@ const RootMutationType = new GraphQLObjectType({
                 }
             }
         },
-        changeProductQuantity: {
+        updateProduct: {
             type: ProductType,
-            description: "Change the quantity of a product",
+            description: "Update a product",
             args: {
                 productId: { type: GraphQLNonNull(GraphQLInt) },
+                name: { type: GraphQLNonNull(GraphQLString) },
+                description: { type: GraphQLNonNull(GraphQLString) },
+                price: { type: GraphQLNonNull(GraphQLFloat) },
                 quantity: { type: GraphQLNonNull(GraphQLInt) },
+                locationId: { type: GraphQLNonNull(GraphQLInt) },
+                supplierId: { type: GraphQLNonNull(GraphQLInt) },
             },
             resolve: async (parent, args) => {
                 try {
-                    const [results] = await db.query('UPDATE products SET quantity = ? WHERE productId = ?', [args.quantity, args.productId]);
+                    const [results] = await db.query('UPDATE products SET name = ?, description = ?, price = ?, quantity = ?, locationId = ?, supplierId = ? WHERE productId = ?', [args.name, args.description, args.price, args.quantity, args.locationId, args.supplierId, args.productId]);
                     const [products] = await db.query('SELECT * FROM products WHERE productId = ?', [args.productId]);
                     return products[0];
                 } catch (err) {
@@ -389,7 +452,76 @@ const RootMutationType = new GraphQLObjectType({
                     throw err;
                 }
             }
-        }
+        },
+        addRack: {
+            type: RackType,
+            description: "Add a rack",
+            args: {
+                name: { type: GraphQLNonNull(GraphQLString) },
+                rows: { type: GraphQLNonNull(GraphQLInt) },
+            },
+            resolve: async (parent, args) => {
+                try {
+                    const [results] = await db.query('INSERT INTO racks (name, `rows`) VALUES (?, ?)', [args.name, args.rows]);
+                    const [racks] = await db.query('SELECT * FROM racks WHERE rackId = ?', [results.insertId]);
+                    
+                    for (let i = 1; i <= args.rows; i++) {
+                        await db.query('INSERT INTO locations (row, rackId) VALUES (?, ?)', [i, results.insertId]);
+                    }
+
+                    return racks[0];
+                } catch (err) {
+                    console.error('Error adding rack:', err);
+                    throw err;
+                }
+            }
+        },
+        deleteRack: {
+            type: RackType,
+            description: "Delete a rack",
+            args: {
+                rackId: { type: GraphQLNonNull(GraphQLInt) }
+            },
+            resolve: async (parent, args) => {
+                try {
+                    const [racks] = await db.query('SELECT * FROM racks WHERE rackId = ?', [args.rackId]);
+                    const [results] = await db.query('DELETE FROM racks WHERE rackId = ?', [args.rackId]);
+                    await db.query('DELETE FROM locations WHERE rackId = ?', [args.rackId]);
+                    return racks[0];
+                } catch (err) {
+                    console.error('Error deleting rack:', err);
+                    throw err;
+                }
+            }
+        },
+        updateRack: {
+            type: RackType,
+            description: "Update a rack",
+            args: {
+                rackId: { type: GraphQLNonNull(GraphQLInt) },
+                name: { type: GraphQLNonNull(GraphQLString) },
+                rows: { type: GraphQLNonNull(GraphQLInt) },
+            },
+            resolve: async (parent, args) => {
+                try {
+                    currentRows = await db.query('SELECT `rows` FROM racks WHERE rackId = ?', [args.rackId]);
+                    if (currentRows[0][0].rows < args.rows) {
+                        for (let i = currentRows[0][0].rows + 1; i <= args.rows; i++) {
+                            await db.query('INSERT INTO locations (row, rackId) VALUES (?, ?)', [i, args.rackId]);
+                        }
+                    } else if (currentRows[0][0].rows > args.rows) {
+                        await db.query('DELETE FROM locations WHERE row > ? AND rackId = ?', [args.rows, args.rackId]);
+                    }
+                    
+                    const [results] = await db.query('UPDATE racks SET name = ?, `rows` = ? WHERE rackId = ?', [args.name, args.rows, args.rackId]);
+                    const [racks] = await db.query('SELECT * FROM racks WHERE rackId = ?', [args.rackId]);
+                    return racks[0];
+                } catch (err) {
+                    console.error('Error updating rack:', err);
+                    throw err;
+                }
+            }
+        },
     })
 });
 
