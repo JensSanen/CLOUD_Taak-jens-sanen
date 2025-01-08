@@ -132,8 +132,8 @@
                                             <div class="d-grid gap-2" style="grid-template-columns: repeat(2, 1fr);">
                                                 <button class="btn btn-primary btn-sm" onclick="openProjectPhases(${project.projectId})">Fases</button>
                                                 <button class="btn btn-primary btn-sm" onclick="openProjectHours(${project.projectId})">Gewerkte uren</button>
-                                                <button class="btn btn-primary btn-sm" onclick="fetch('/stock')">Calculatie</button>
-                                                <button class="btn btn-primary btn-sm" onclick="openProjectHours(${project.projectId})">Factuur</button>
+                                                <button class="btn btn-primary btn-sm" onclick="openCalculations(${project.projectId})">Calculatie</button>
+                                                <button class="btn btn-primary btn-sm" onclick="openCalculations(${project.projectId})">Factuur</button>
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center gap-2">
@@ -174,6 +174,11 @@
         function openProjectHours(projectId) {
             const projectHoursURL = `/projects/${projectId}/hours`;
             window.open(projectHoursURL, '_blank');
+        }
+
+        function openCalculations(projectId) {
+            const projectCalculationsURL = `/projects/${projectId}/calculations`;
+            window.open(projectCalculationsURL, '_blank');
         }
 
         function updateProject(event) {

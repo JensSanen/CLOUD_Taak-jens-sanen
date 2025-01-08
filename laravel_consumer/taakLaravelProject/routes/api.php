@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\RackController;
 use App\Http\Controllers\RackPositionController;
+use App\Http\Controllers\CalculationController;
 
 
 Route::get('/projects', [ProjectController::class, 'index']);
@@ -58,5 +59,7 @@ Route::get('/racks/{rackId}', [RackController::class, 'show']);
 Route::post('/racks', [RackController::class, 'store']);
 Route::delete('/racks/{rackId}', [RackController::class, 'destroy']);
 Route::put('/racks/{rackId}', [RackController::class, 'update']);
+
+Route::get('/projects/{projectId}/calculations', [CalculationController::class, 'index']);
 
 

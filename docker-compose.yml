@@ -43,7 +43,7 @@ services:
     container_name: calculatie_api
     restart: unless-stopped
     build:
-      context: ./calculatie
+      context: ./calculatie/gRPC_server
       dockerfile: Dockerfile
     ports:
       - "30002:50051"
@@ -56,7 +56,7 @@ services:
       - DB_USERNAME=calculatie
       - DB_PASSWORD=calculatiePwd
     volumes:
-      - ./calculatie/app:/app
+      - ./calculatie/gRPC_server/app:/app
     networks:
       - mynetwork  
 
@@ -73,6 +73,24 @@ services:
       - ./calculatie/db_data:/var/lib/mysql
     networks:
       - mynetwork  
+
+  calculatie_rest_layer:
+    container_name: calculatie_REST_layer
+    restart: unless-stopped
+    build:
+      context: ./calculatie/REST_layer
+      dockerfile: Dockerfile
+    ports:
+      - "30006:5000"
+    depends_on:
+      - calculatie_db
+    environment:
+      - FLASK_APP=/app/app.py
+      - FLASK_ENV=development
+    volumes:
+      - ./calculatie/REST_layer/app:/app
+    networks:
+      - mynetwork
 
   uurregistratie_api:
     container_name: uurregistratie_api

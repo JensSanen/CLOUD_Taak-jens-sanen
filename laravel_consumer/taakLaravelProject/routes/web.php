@@ -13,16 +13,21 @@ Route::get('/projects',function () {
 });
 
 Route::get('/projects/{projectId}/phases', function ($projectId) {
-    return view('phases', ['projectId' => $projectId]);
+    return view('phases', ['projectId' => 2]);
 });
 
 Route::get('/projects/{projectId}/hours', function ($projectId) {
     return view('hours', ['projectId' => $projectId]);
 });
 
+Route::get('/projects/{projectId}/calculations', function ($projectId) {
+    return view('calculations', ['projectId' => 1]);
+});
+
 Route::get('/stock', function () {
     return view('stock');
 });
+
 
 
 
