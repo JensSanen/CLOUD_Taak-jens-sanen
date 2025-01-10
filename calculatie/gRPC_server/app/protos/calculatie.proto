@@ -27,14 +27,15 @@ message GetProjectCalculationsRequest {
 
 // Antwoord voor de berekeningen van een project
 message GetProjectCalculationsResponse {
-  int32 projectId = 1;
-  int32 articleId = 2;
-  string description = 3;
-  string measurementType = 4;
-  string measurementUnit = 5;
-  float quantity = 6;
-  float pricePerUnit = 7;
-  float totalPrice = 8;
+  int32 calculationId = 1;
+  int32 projectId = 2;
+  int32 articleId = 3;
+  string description = 4;
+  string measurementType = 5;
+  string measurementUnit = 6;
+  float quantity = 7;
+  float pricePerUnit = 8;
+  float totalPrice = 9;
 }
 
 // Service voor het berekenen van de prijzen

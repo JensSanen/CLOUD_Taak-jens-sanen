@@ -33,25 +33,25 @@ class ProjectController extends Controller
         }
     }
 
-        public function store(Request $request)
-        {
-            $data = [
-                'name' => $request->input('name'),
-                'description' => $request->input('description'),
-                'location' => $request->input('location'),
-                'status' => $request->input('status')
-            ];
+    public function store(Request $request)
+    {
+        $data = [
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'location' => $request->input('location'),
+            'status' => $request->input('status')
+        ];
 
-            try {
-                $response = $this->client->post('/api/projects', [
-                    'json' => $data
-                ]);
+        try {
+            $response = $this->client->post('/api/projects', [
+                'json' => $data
+            ]);
 
-                return response()->json(json_decode($response->getBody(), true), $response->getStatusCode());
-            } catch (\Exception $e) {
-                return response()->json(['error' => $e->getMessage()], 500);
-            }
+            return response()->json(json_decode($response->getBody(), true), $response->getStatusCode());
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
 
     public function destroy($projectId)
     {

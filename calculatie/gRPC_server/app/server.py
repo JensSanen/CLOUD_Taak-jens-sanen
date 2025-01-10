@@ -48,6 +48,7 @@ class ProjectCalculationService(calculatie_pb2_grpc.ProjectCalculationServiceSer
             calculations = cursor.fetchall()
             for calculation in calculations:
                 yield calculatie_pb2.GetProjectCalculationsResponse(
+                    calculationId=calculation['calculationId'],
                     projectId=calculation['projectId'],
                     articleId=calculation['articleId'],
                     description=calculation['description'],

@@ -45,7 +45,7 @@ def run_get_project_calculations(projectId):
         responses = stub.GetProjectCalculations(request)
         print(f"Berekeningen voor project {projectId}:")
         for response in responses:
-            print(f"Artikel {response.articleId}: {response.description}, {response.quantity} {response.measurementUnit} à {response.pricePerUnit}, Totale prijs = {response.totalPrice}")
+            print(f"Calculation: {response.calculationId} Artikel {response.articleId}: {response.description}, {response.quantity} {response.measurementUnit} à {response.pricePerUnit}, Totale prijs = {response.totalPrice}")
         return responses
     except grpc.RpcError as e:
         print(f"Fout bij ophalen berekeningen: {e.details()} (Statuscode: {e.code()})")

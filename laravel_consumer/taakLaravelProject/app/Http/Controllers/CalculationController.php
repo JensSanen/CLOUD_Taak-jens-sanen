@@ -22,11 +22,30 @@ class CalculationController extends Controller
         try {
             $response = $this->client->get("/api/projects/{$projectId}/calculations");
             $calculations = json_decode($response->getBody()->getContents(), true);
-            Log::info("Calculations fetched successfully: " . json_encode($calculations));
+            // Log::info("Calculations fetched successfully: " . json_encode($calculations));
             return response()->json($calculations);
         } catch (\Exception $e) {
             Log::error("Calculations not found: " . $e->getMessage());
             return response()->json(['error' => 'Calculations not found'], 404);
+        }
+    }
+
+    public function store($projectId, Request $request)
+    {
+        Log::info("Storing calculation for project with id: $projectId");
+
+        $data = $request->all();
+
+        log::info("Data to be stored: " . json_encode($data));
+
+        try {
+            $response = $this->client->post("/api/projects/{$projectId}/calculations", [
+                'json' => $data
+            ]);
+
+            return response()->json(json_decode($response->getBody(), true), $response->getStatusCode());
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 

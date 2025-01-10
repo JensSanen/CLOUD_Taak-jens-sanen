@@ -13,14 +13,14 @@ app = Flask(__name__)
 CORS(app)
 
 # Functie om berekeningen te starten
-def run_calculation(request_data):
+def run_calculation(projectId, request_data):
     stub = calculatie_pb2_grpc.CalculationServiceStub(channel)
 
     # Voorbereiden van de berekeningsaanvragen uit de ontvangen gegevens
     requests = []
     for item in request_data:
         calc_request = calculatie_pb2.CalculatePriceRequest(
-            projectId=item['projectId'],
+            projectId=int(projectId),
             articleId=item['articleId'],
             description=item['description'],
             measurementType=item['measurementType'],
@@ -44,15 +44,16 @@ def run_calculation(request_data):
         return {"error": f"Fout tijdens berekening: {e.details()} (Statuscode: {e.code()})"}
 
 # REST API endpoint voor berekening
-@app.route('/calculate', methods=['POST'])
-def calculate():
+@app.route('/api/projects/<int:projectId>/calculations', methods=['POST'])
+def calculate(projectId):
     request_data = request.get_json()
+    print(request_data)
 
     if not request_data:
         return jsonify({"error": "Geen gegevens ontvangen"}), 400
 
-    result = run_calculation(request_data)
-    return jsonify(result)
+    result = run_calculation(projectId, request_data)
+    return jsonify(result), 201
 
 # Functie om projectberekeningen op te halen
 def run_get_project_calculations(projectId):
@@ -65,6 +66,7 @@ def run_get_project_calculations(projectId):
         result = []
         for response in responses:
             result.append({
+                "calculationId": response.calculationId,
                 "projectId": response.projectId,
                 "articleId": response.articleId,
                 "description": response.description,

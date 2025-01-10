@@ -61,5 +61,6 @@ Route::delete('/racks/{rackId}', [RackController::class, 'destroy']);
 Route::put('/racks/{rackId}', [RackController::class, 'update']);
 
 Route::get('/projects/{projectId}/calculations', [CalculationController::class, 'index']);
+Route::post('/projects/{projectId}/calculations', [CalculationController::class, 'store']);
 
 
