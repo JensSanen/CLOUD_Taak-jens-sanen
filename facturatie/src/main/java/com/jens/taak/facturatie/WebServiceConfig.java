@@ -30,14 +30,14 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(servlet, "/ws/*");
+        return new ServletRegistrationBean<>(servlet, "/api/invoice");
     }
 
     @Bean(name = "invoice")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema invoiceSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("InvoicePort");
-        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setLocationUri("/api/invoice");
         wsdl11Definition.setTargetNamespace("http://com.jens.taak/facturatie");
         wsdl11Definition.setSchema(invoiceSchema);
         return wsdl11Definition;

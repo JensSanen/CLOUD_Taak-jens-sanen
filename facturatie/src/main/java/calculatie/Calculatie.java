@@ -90,10 +90,6 @@ public final class Calculatie {
     float getPricePerUnit();
   }
   /**
-   * <pre>
-   * Verzoek om de prijs te berekenen voor een project
-   * </pre>
-   *
    * Protobuf type {@code calculatie.CalculatePriceRequest}
    */
   public static final class CalculatePriceRequest extends
@@ -519,10 +515,6 @@ public final class Calculatie {
       return builder;
     }
     /**
-     * <pre>
-     * Verzoek om de prijs te berekenen voor een project
-     * </pre>
-     *
      * Protobuf type {@code calculatie.CalculatePriceRequest}
      */
     public static final class Builder extends
@@ -1131,594 +1123,6 @@ public final class Calculatie {
 
   }
 
-  public interface CalculatePriceResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:calculatie.CalculatePriceResponse)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int32 projectId = 1;</code>
-     * @return The projectId.
-     */
-    int getProjectId();
-
-    /**
-     * <code>int32 articleId = 2;</code>
-     * @return The articleId.
-     */
-    int getArticleId();
-
-    /**
-     * <code>float totalPrice = 3;</code>
-     * @return The totalPrice.
-     */
-    float getTotalPrice();
-  }
-  /**
-   * <pre>
-   * Antwoord voor de berekening van de prijs
-   * </pre>
-   *
-   * Protobuf type {@code calculatie.CalculatePriceResponse}
-   */
-  public static final class CalculatePriceResponse extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:calculatie.CalculatePriceResponse)
-      CalculatePriceResponseOrBuilder {
-  private static final long serialVersionUID = 0L;
-    static {
-      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
-        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
-        /* major= */ 4,
-        /* minor= */ 29,
-        /* patch= */ 0,
-        /* suffix= */ "-rc3",
-        CalculatePriceResponse.class.getName());
-    }
-    // Use CalculatePriceResponse.newBuilder() to construct.
-    private CalculatePriceResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-    }
-    private CalculatePriceResponse() {
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return calculatie.Calculatie.internal_static_calculatie_CalculatePriceResponse_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return calculatie.Calculatie.internal_static_calculatie_CalculatePriceResponse_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              calculatie.Calculatie.CalculatePriceResponse.class, calculatie.Calculatie.CalculatePriceResponse.Builder.class);
-    }
-
-    public static final int PROJECTID_FIELD_NUMBER = 1;
-    private int projectId_ = 0;
-    /**
-     * <code>int32 projectId = 1;</code>
-     * @return The projectId.
-     */
-    @java.lang.Override
-    public int getProjectId() {
-      return projectId_;
-    }
-
-    public static final int ARTICLEID_FIELD_NUMBER = 2;
-    private int articleId_ = 0;
-    /**
-     * <code>int32 articleId = 2;</code>
-     * @return The articleId.
-     */
-    @java.lang.Override
-    public int getArticleId() {
-      return articleId_;
-    }
-
-    public static final int TOTALPRICE_FIELD_NUMBER = 3;
-    private float totalPrice_ = 0F;
-    /**
-     * <code>float totalPrice = 3;</code>
-     * @return The totalPrice.
-     */
-    @java.lang.Override
-    public float getTotalPrice() {
-      return totalPrice_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (projectId_ != 0) {
-        output.writeInt32(1, projectId_);
-      }
-      if (articleId_ != 0) {
-        output.writeInt32(2, articleId_);
-      }
-      if (java.lang.Float.floatToRawIntBits(totalPrice_) != 0) {
-        output.writeFloat(3, totalPrice_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (projectId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, projectId_);
-      }
-      if (articleId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, articleId_);
-      }
-      if (java.lang.Float.floatToRawIntBits(totalPrice_) != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(3, totalPrice_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof calculatie.Calculatie.CalculatePriceResponse)) {
-        return super.equals(obj);
-      }
-      calculatie.Calculatie.CalculatePriceResponse other = (calculatie.Calculatie.CalculatePriceResponse) obj;
-
-      if (getProjectId()
-          != other.getProjectId()) return false;
-      if (getArticleId()
-          != other.getArticleId()) return false;
-      if (java.lang.Float.floatToIntBits(getTotalPrice())
-          != java.lang.Float.floatToIntBits(
-              other.getTotalPrice())) return false;
-      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + PROJECTID_FIELD_NUMBER;
-      hash = (53 * hash) + getProjectId();
-      hash = (37 * hash) + ARTICLEID_FIELD_NUMBER;
-      hash = (53 * hash) + getArticleId();
-      hash = (37 * hash) + TOTALPRICE_FIELD_NUMBER;
-      hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getTotalPrice());
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static calculatie.Calculatie.CalculatePriceResponse parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static calculatie.Calculatie.CalculatePriceResponse parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static calculatie.Calculatie.CalculatePriceResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static calculatie.Calculatie.CalculatePriceResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static calculatie.Calculatie.CalculatePriceResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static calculatie.Calculatie.CalculatePriceResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static calculatie.Calculatie.CalculatePriceResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
-    }
-    public static calculatie.Calculatie.CalculatePriceResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static calculatie.Calculatie.CalculatePriceResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static calculatie.Calculatie.CalculatePriceResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static calculatie.Calculatie.CalculatePriceResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
-    }
-    public static calculatie.Calculatie.CalculatePriceResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(calculatie.Calculatie.CalculatePriceResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * Antwoord voor de berekening van de prijs
-     * </pre>
-     *
-     * Protobuf type {@code calculatie.CalculatePriceResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:calculatie.CalculatePriceResponse)
-        calculatie.Calculatie.CalculatePriceResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return calculatie.Calculatie.internal_static_calculatie_CalculatePriceResponse_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return calculatie.Calculatie.internal_static_calculatie_CalculatePriceResponse_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                calculatie.Calculatie.CalculatePriceResponse.class, calculatie.Calculatie.CalculatePriceResponse.Builder.class);
-      }
-
-      // Construct using calculatie.Calculatie.CalculatePriceResponse.newBuilder()
-      private Builder() {
-
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        bitField0_ = 0;
-        projectId_ = 0;
-        articleId_ = 0;
-        totalPrice_ = 0F;
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return calculatie.Calculatie.internal_static_calculatie_CalculatePriceResponse_descriptor;
-      }
-
-      @java.lang.Override
-      public calculatie.Calculatie.CalculatePriceResponse getDefaultInstanceForType() {
-        return calculatie.Calculatie.CalculatePriceResponse.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public calculatie.Calculatie.CalculatePriceResponse build() {
-        calculatie.Calculatie.CalculatePriceResponse result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public calculatie.Calculatie.CalculatePriceResponse buildPartial() {
-        calculatie.Calculatie.CalculatePriceResponse result = new calculatie.Calculatie.CalculatePriceResponse(this);
-        if (bitField0_ != 0) { buildPartial0(result); }
-        onBuilt();
-        return result;
-      }
-
-      private void buildPartial0(calculatie.Calculatie.CalculatePriceResponse result) {
-        int from_bitField0_ = bitField0_;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.projectId_ = projectId_;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.articleId_ = articleId_;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.totalPrice_ = totalPrice_;
-        }
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof calculatie.Calculatie.CalculatePriceResponse) {
-          return mergeFrom((calculatie.Calculatie.CalculatePriceResponse)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(calculatie.Calculatie.CalculatePriceResponse other) {
-        if (other == calculatie.Calculatie.CalculatePriceResponse.getDefaultInstance()) return this;
-        if (other.getProjectId() != 0) {
-          setProjectId(other.getProjectId());
-        }
-        if (other.getArticleId() != 0) {
-          setArticleId(other.getArticleId());
-        }
-        if (other.getTotalPrice() != 0F) {
-          setTotalPrice(other.getTotalPrice());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 8: {
-                projectId_ = input.readInt32();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 8
-              case 16: {
-                articleId_ = input.readInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 16
-              case 29: {
-                totalPrice_ = input.readFloat();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 29
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
-            } // switch (tag)
-          } // while (!done)
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.unwrapIOException();
-        } finally {
-          onChanged();
-        } // finally
-        return this;
-      }
-      private int bitField0_;
-
-      private int projectId_ ;
-      /**
-       * <code>int32 projectId = 1;</code>
-       * @return The projectId.
-       */
-      @java.lang.Override
-      public int getProjectId() {
-        return projectId_;
-      }
-      /**
-       * <code>int32 projectId = 1;</code>
-       * @param value The projectId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setProjectId(int value) {
-
-        projectId_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 projectId = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearProjectId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        projectId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int articleId_ ;
-      /**
-       * <code>int32 articleId = 2;</code>
-       * @return The articleId.
-       */
-      @java.lang.Override
-      public int getArticleId() {
-        return articleId_;
-      }
-      /**
-       * <code>int32 articleId = 2;</code>
-       * @param value The articleId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setArticleId(int value) {
-
-        articleId_ = value;
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 articleId = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearArticleId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        articleId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float totalPrice_ ;
-      /**
-       * <code>float totalPrice = 3;</code>
-       * @return The totalPrice.
-       */
-      @java.lang.Override
-      public float getTotalPrice() {
-        return totalPrice_;
-      }
-      /**
-       * <code>float totalPrice = 3;</code>
-       * @param value The totalPrice to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTotalPrice(float value) {
-
-        totalPrice_ = value;
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>float totalPrice = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTotalPrice() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        totalPrice_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:calculatie.CalculatePriceResponse)
-    }
-
-    // @@protoc_insertion_point(class_scope:calculatie.CalculatePriceResponse)
-    private static final calculatie.Calculatie.CalculatePriceResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new calculatie.Calculatie.CalculatePriceResponse();
-    }
-
-    public static calculatie.Calculatie.CalculatePriceResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<CalculatePriceResponse>
-        PARSER = new com.google.protobuf.AbstractParser<CalculatePriceResponse>() {
-      @java.lang.Override
-      public CalculatePriceResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
-
-    public static com.google.protobuf.Parser<CalculatePriceResponse> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<CalculatePriceResponse> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public calculatie.Calculatie.CalculatePriceResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface GetProjectCalculationsRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:calculatie.GetProjectCalculationsRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -1730,10 +1134,6 @@ public final class Calculatie {
     int getProjectId();
   }
   /**
-   * <pre>
-   * Verzoek om alle berekeningen voor een project op te halen
-   * </pre>
-   *
    * Protobuf type {@code calculatie.GetProjectCalculationsRequest}
    */
   public static final class GetProjectCalculationsRequest extends
@@ -1939,10 +1339,6 @@ public final class Calculatie {
       return builder;
     }
     /**
-     * <pre>
-     * Verzoek om alle berekeningen voor een project op te halen
-     * </pre>
-     *
      * Protobuf type {@code calculatie.GetProjectCalculationsRequest}
      */
     public static final class Builder extends
@@ -2161,87 +1557,23 @@ public final class Calculatie {
 
   }
 
-  public interface GetProjectCalculationsResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:calculatie.GetProjectCalculationsResponse)
+  public interface GetCalculationRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:calculatie.GetCalculationRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 projectId = 1;</code>
-     * @return The projectId.
+     * <code>int32 calculationId = 1;</code>
+     * @return The calculationId.
      */
-    int getProjectId();
-
-    /**
-     * <code>int32 articleId = 2;</code>
-     * @return The articleId.
-     */
-    int getArticleId();
-
-    /**
-     * <code>string description = 3;</code>
-     * @return The description.
-     */
-    java.lang.String getDescription();
-    /**
-     * <code>string description = 3;</code>
-     * @return The bytes for description.
-     */
-    com.google.protobuf.ByteString
-        getDescriptionBytes();
-
-    /**
-     * <code>string measurementType = 4;</code>
-     * @return The measurementType.
-     */
-    java.lang.String getMeasurementType();
-    /**
-     * <code>string measurementType = 4;</code>
-     * @return The bytes for measurementType.
-     */
-    com.google.protobuf.ByteString
-        getMeasurementTypeBytes();
-
-    /**
-     * <code>string measurementUnit = 5;</code>
-     * @return The measurementUnit.
-     */
-    java.lang.String getMeasurementUnit();
-    /**
-     * <code>string measurementUnit = 5;</code>
-     * @return The bytes for measurementUnit.
-     */
-    com.google.protobuf.ByteString
-        getMeasurementUnitBytes();
-
-    /**
-     * <code>float quantity = 6;</code>
-     * @return The quantity.
-     */
-    float getQuantity();
-
-    /**
-     * <code>float pricePerUnit = 7;</code>
-     * @return The pricePerUnit.
-     */
-    float getPricePerUnit();
-
-    /**
-     * <code>float totalPrice = 8;</code>
-     * @return The totalPrice.
-     */
-    float getTotalPrice();
+    int getCalculationId();
   }
   /**
-   * <pre>
-   * Antwoord voor de berekeningen van een project
-   * </pre>
-   *
-   * Protobuf type {@code calculatie.GetProjectCalculationsResponse}
+   * Protobuf type {@code calculatie.GetCalculationRequest}
    */
-  public static final class GetProjectCalculationsResponse extends
+  public static final class GetCalculationRequest extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:calculatie.GetProjectCalculationsResponse)
-      GetProjectCalculationsResponseOrBuilder {
+      // @@protoc_insertion_point(message_implements:calculatie.GetCalculationRequest)
+      GetCalculationRequestOrBuilder {
   private static final long serialVersionUID = 0L;
     static {
       com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -2250,13 +1582,941 @@ public final class Calculatie {
         /* minor= */ 29,
         /* patch= */ 0,
         /* suffix= */ "-rc3",
-        GetProjectCalculationsResponse.class.getName());
+        GetCalculationRequest.class.getName());
     }
-    // Use GetProjectCalculationsResponse.newBuilder() to construct.
-    private GetProjectCalculationsResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    // Use GetCalculationRequest.newBuilder() to construct.
+    private GetCalculationRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
-    private GetProjectCalculationsResponse() {
+    private GetCalculationRequest() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return calculatie.Calculatie.internal_static_calculatie_GetCalculationRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return calculatie.Calculatie.internal_static_calculatie_GetCalculationRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              calculatie.Calculatie.GetCalculationRequest.class, calculatie.Calculatie.GetCalculationRequest.Builder.class);
+    }
+
+    public static final int CALCULATIONID_FIELD_NUMBER = 1;
+    private int calculationId_ = 0;
+    /**
+     * <code>int32 calculationId = 1;</code>
+     * @return The calculationId.
+     */
+    @java.lang.Override
+    public int getCalculationId() {
+      return calculationId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (calculationId_ != 0) {
+        output.writeInt32(1, calculationId_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (calculationId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, calculationId_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof calculatie.Calculatie.GetCalculationRequest)) {
+        return super.equals(obj);
+      }
+      calculatie.Calculatie.GetCalculationRequest other = (calculatie.Calculatie.GetCalculationRequest) obj;
+
+      if (getCalculationId()
+          != other.getCalculationId()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CALCULATIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getCalculationId();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static calculatie.Calculatie.GetCalculationRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.GetCalculationRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.GetCalculationRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.GetCalculationRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.GetCalculationRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.GetCalculationRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.GetCalculationRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static calculatie.Calculatie.GetCalculationRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static calculatie.Calculatie.GetCalculationRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static calculatie.Calculatie.GetCalculationRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static calculatie.Calculatie.GetCalculationRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static calculatie.Calculatie.GetCalculationRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(calculatie.Calculatie.GetCalculationRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code calculatie.GetCalculationRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:calculatie.GetCalculationRequest)
+        calculatie.Calculatie.GetCalculationRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return calculatie.Calculatie.internal_static_calculatie_GetCalculationRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return calculatie.Calculatie.internal_static_calculatie_GetCalculationRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                calculatie.Calculatie.GetCalculationRequest.class, calculatie.Calculatie.GetCalculationRequest.Builder.class);
+      }
+
+      // Construct using calculatie.Calculatie.GetCalculationRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        calculationId_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return calculatie.Calculatie.internal_static_calculatie_GetCalculationRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.GetCalculationRequest getDefaultInstanceForType() {
+        return calculatie.Calculatie.GetCalculationRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.GetCalculationRequest build() {
+        calculatie.Calculatie.GetCalculationRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.GetCalculationRequest buildPartial() {
+        calculatie.Calculatie.GetCalculationRequest result = new calculatie.Calculatie.GetCalculationRequest(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(calculatie.Calculatie.GetCalculationRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.calculationId_ = calculationId_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof calculatie.Calculatie.GetCalculationRequest) {
+          return mergeFrom((calculatie.Calculatie.GetCalculationRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(calculatie.Calculatie.GetCalculationRequest other) {
+        if (other == calculatie.Calculatie.GetCalculationRequest.getDefaultInstance()) return this;
+        if (other.getCalculationId() != 0) {
+          setCalculationId(other.getCalculationId());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                calculationId_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int calculationId_ ;
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @return The calculationId.
+       */
+      @java.lang.Override
+      public int getCalculationId() {
+        return calculationId_;
+      }
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @param value The calculationId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCalculationId(int value) {
+
+        calculationId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCalculationId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        calculationId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:calculatie.GetCalculationRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:calculatie.GetCalculationRequest)
+    private static final calculatie.Calculatie.GetCalculationRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new calculatie.Calculatie.GetCalculationRequest();
+    }
+
+    public static calculatie.Calculatie.GetCalculationRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetCalculationRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetCalculationRequest>() {
+      @java.lang.Override
+      public GetCalculationRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetCalculationRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetCalculationRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public calculatie.Calculatie.GetCalculationRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface DeleteCalculationRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:calculatie.DeleteCalculationRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 calculationId = 1;</code>
+     * @return The calculationId.
+     */
+    int getCalculationId();
+  }
+  /**
+   * Protobuf type {@code calculatie.DeleteCalculationRequest}
+   */
+  public static final class DeleteCalculationRequest extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:calculatie.DeleteCalculationRequest)
+      DeleteCalculationRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 0,
+        /* suffix= */ "-rc3",
+        DeleteCalculationRequest.class.getName());
+    }
+    // Use DeleteCalculationRequest.newBuilder() to construct.
+    private DeleteCalculationRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private DeleteCalculationRequest() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return calculatie.Calculatie.internal_static_calculatie_DeleteCalculationRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return calculatie.Calculatie.internal_static_calculatie_DeleteCalculationRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              calculatie.Calculatie.DeleteCalculationRequest.class, calculatie.Calculatie.DeleteCalculationRequest.Builder.class);
+    }
+
+    public static final int CALCULATIONID_FIELD_NUMBER = 1;
+    private int calculationId_ = 0;
+    /**
+     * <code>int32 calculationId = 1;</code>
+     * @return The calculationId.
+     */
+    @java.lang.Override
+    public int getCalculationId() {
+      return calculationId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (calculationId_ != 0) {
+        output.writeInt32(1, calculationId_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (calculationId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, calculationId_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof calculatie.Calculatie.DeleteCalculationRequest)) {
+        return super.equals(obj);
+      }
+      calculatie.Calculatie.DeleteCalculationRequest other = (calculatie.Calculatie.DeleteCalculationRequest) obj;
+
+      if (getCalculationId()
+          != other.getCalculationId()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CALCULATIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getCalculationId();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static calculatie.Calculatie.DeleteCalculationRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.DeleteCalculationRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.DeleteCalculationRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.DeleteCalculationRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.DeleteCalculationRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.DeleteCalculationRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.DeleteCalculationRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static calculatie.Calculatie.DeleteCalculationRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static calculatie.Calculatie.DeleteCalculationRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static calculatie.Calculatie.DeleteCalculationRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static calculatie.Calculatie.DeleteCalculationRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static calculatie.Calculatie.DeleteCalculationRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(calculatie.Calculatie.DeleteCalculationRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code calculatie.DeleteCalculationRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:calculatie.DeleteCalculationRequest)
+        calculatie.Calculatie.DeleteCalculationRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return calculatie.Calculatie.internal_static_calculatie_DeleteCalculationRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return calculatie.Calculatie.internal_static_calculatie_DeleteCalculationRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                calculatie.Calculatie.DeleteCalculationRequest.class, calculatie.Calculatie.DeleteCalculationRequest.Builder.class);
+      }
+
+      // Construct using calculatie.Calculatie.DeleteCalculationRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        calculationId_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return calculatie.Calculatie.internal_static_calculatie_DeleteCalculationRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.DeleteCalculationRequest getDefaultInstanceForType() {
+        return calculatie.Calculatie.DeleteCalculationRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.DeleteCalculationRequest build() {
+        calculatie.Calculatie.DeleteCalculationRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.DeleteCalculationRequest buildPartial() {
+        calculatie.Calculatie.DeleteCalculationRequest result = new calculatie.Calculatie.DeleteCalculationRequest(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(calculatie.Calculatie.DeleteCalculationRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.calculationId_ = calculationId_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof calculatie.Calculatie.DeleteCalculationRequest) {
+          return mergeFrom((calculatie.Calculatie.DeleteCalculationRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(calculatie.Calculatie.DeleteCalculationRequest other) {
+        if (other == calculatie.Calculatie.DeleteCalculationRequest.getDefaultInstance()) return this;
+        if (other.getCalculationId() != 0) {
+          setCalculationId(other.getCalculationId());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                calculationId_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int calculationId_ ;
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @return The calculationId.
+       */
+      @java.lang.Override
+      public int getCalculationId() {
+        return calculationId_;
+      }
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @param value The calculationId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCalculationId(int value) {
+
+        calculationId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCalculationId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        calculationId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:calculatie.DeleteCalculationRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:calculatie.DeleteCalculationRequest)
+    private static final calculatie.Calculatie.DeleteCalculationRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new calculatie.Calculatie.DeleteCalculationRequest();
+    }
+
+    public static calculatie.Calculatie.DeleteCalculationRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DeleteCalculationRequest>
+        PARSER = new com.google.protobuf.AbstractParser<DeleteCalculationRequest>() {
+      @java.lang.Override
+      public DeleteCalculationRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<DeleteCalculationRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DeleteCalculationRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public calculatie.Calculatie.DeleteCalculationRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UpdateCalculationRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:calculatie.UpdateCalculationRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 calculationId = 1;</code>
+     * @return The calculationId.
+     */
+    int getCalculationId();
+
+    /**
+     * <code>int32 projectId = 2;</code>
+     * @return The projectId.
+     */
+    int getProjectId();
+
+    /**
+     * <code>int32 articleId = 3;</code>
+     * @return The articleId.
+     */
+    int getArticleId();
+
+    /**
+     * <code>string description = 4;</code>
+     * @return The description.
+     */
+    java.lang.String getDescription();
+    /**
+     * <code>string description = 4;</code>
+     * @return The bytes for description.
+     */
+    com.google.protobuf.ByteString
+        getDescriptionBytes();
+
+    /**
+     * <code>string measurementType = 5;</code>
+     * @return The measurementType.
+     */
+    java.lang.String getMeasurementType();
+    /**
+     * <code>string measurementType = 5;</code>
+     * @return The bytes for measurementType.
+     */
+    com.google.protobuf.ByteString
+        getMeasurementTypeBytes();
+
+    /**
+     * <code>string measurementUnit = 6;</code>
+     * @return The measurementUnit.
+     */
+    java.lang.String getMeasurementUnit();
+    /**
+     * <code>string measurementUnit = 6;</code>
+     * @return The bytes for measurementUnit.
+     */
+    com.google.protobuf.ByteString
+        getMeasurementUnitBytes();
+
+    /**
+     * <code>float quantity = 7;</code>
+     * @return The quantity.
+     */
+    float getQuantity();
+
+    /**
+     * <code>float pricePerUnit = 8;</code>
+     * @return The pricePerUnit.
+     */
+    float getPricePerUnit();
+  }
+  /**
+   * Protobuf type {@code calculatie.UpdateCalculationRequest}
+   */
+  public static final class UpdateCalculationRequest extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:calculatie.UpdateCalculationRequest)
+      UpdateCalculationRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 0,
+        /* suffix= */ "-rc3",
+        UpdateCalculationRequest.class.getName());
+    }
+    // Use UpdateCalculationRequest.newBuilder() to construct.
+    private UpdateCalculationRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private UpdateCalculationRequest() {
       description_ = "";
       measurementType_ = "";
       measurementUnit_ = "";
@@ -2264,21 +2524,32 @@ public final class Calculatie {
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return calculatie.Calculatie.internal_static_calculatie_GetProjectCalculationsResponse_descriptor;
+      return calculatie.Calculatie.internal_static_calculatie_UpdateCalculationRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return calculatie.Calculatie.internal_static_calculatie_GetProjectCalculationsResponse_fieldAccessorTable
+      return calculatie.Calculatie.internal_static_calculatie_UpdateCalculationRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              calculatie.Calculatie.GetProjectCalculationsResponse.class, calculatie.Calculatie.GetProjectCalculationsResponse.Builder.class);
+              calculatie.Calculatie.UpdateCalculationRequest.class, calculatie.Calculatie.UpdateCalculationRequest.Builder.class);
     }
 
-    public static final int PROJECTID_FIELD_NUMBER = 1;
+    public static final int CALCULATIONID_FIELD_NUMBER = 1;
+    private int calculationId_ = 0;
+    /**
+     * <code>int32 calculationId = 1;</code>
+     * @return The calculationId.
+     */
+    @java.lang.Override
+    public int getCalculationId() {
+      return calculationId_;
+    }
+
+    public static final int PROJECTID_FIELD_NUMBER = 2;
     private int projectId_ = 0;
     /**
-     * <code>int32 projectId = 1;</code>
+     * <code>int32 projectId = 2;</code>
      * @return The projectId.
      */
     @java.lang.Override
@@ -2286,10 +2557,10 @@ public final class Calculatie {
       return projectId_;
     }
 
-    public static final int ARTICLEID_FIELD_NUMBER = 2;
+    public static final int ARTICLEID_FIELD_NUMBER = 3;
     private int articleId_ = 0;
     /**
-     * <code>int32 articleId = 2;</code>
+     * <code>int32 articleId = 3;</code>
      * @return The articleId.
      */
     @java.lang.Override
@@ -2297,11 +2568,11 @@ public final class Calculatie {
       return articleId_;
     }
 
-    public static final int DESCRIPTION_FIELD_NUMBER = 3;
+    public static final int DESCRIPTION_FIELD_NUMBER = 4;
     @SuppressWarnings("serial")
     private volatile java.lang.Object description_ = "";
     /**
-     * <code>string description = 3;</code>
+     * <code>string description = 4;</code>
      * @return The description.
      */
     @java.lang.Override
@@ -2318,7 +2589,7 @@ public final class Calculatie {
       }
     }
     /**
-     * <code>string description = 3;</code>
+     * <code>string description = 4;</code>
      * @return The bytes for description.
      */
     @java.lang.Override
@@ -2336,11 +2607,11 @@ public final class Calculatie {
       }
     }
 
-    public static final int MEASUREMENTTYPE_FIELD_NUMBER = 4;
+    public static final int MEASUREMENTTYPE_FIELD_NUMBER = 5;
     @SuppressWarnings("serial")
     private volatile java.lang.Object measurementType_ = "";
     /**
-     * <code>string measurementType = 4;</code>
+     * <code>string measurementType = 5;</code>
      * @return The measurementType.
      */
     @java.lang.Override
@@ -2357,7 +2628,7 @@ public final class Calculatie {
       }
     }
     /**
-     * <code>string measurementType = 4;</code>
+     * <code>string measurementType = 5;</code>
      * @return The bytes for measurementType.
      */
     @java.lang.Override
@@ -2375,11 +2646,11 @@ public final class Calculatie {
       }
     }
 
-    public static final int MEASUREMENTUNIT_FIELD_NUMBER = 5;
+    public static final int MEASUREMENTUNIT_FIELD_NUMBER = 6;
     @SuppressWarnings("serial")
     private volatile java.lang.Object measurementUnit_ = "";
     /**
-     * <code>string measurementUnit = 5;</code>
+     * <code>string measurementUnit = 6;</code>
      * @return The measurementUnit.
      */
     @java.lang.Override
@@ -2396,7 +2667,7 @@ public final class Calculatie {
       }
     }
     /**
-     * <code>string measurementUnit = 5;</code>
+     * <code>string measurementUnit = 6;</code>
      * @return The bytes for measurementUnit.
      */
     @java.lang.Override
@@ -2414,10 +2685,10 @@ public final class Calculatie {
       }
     }
 
-    public static final int QUANTITY_FIELD_NUMBER = 6;
+    public static final int QUANTITY_FIELD_NUMBER = 7;
     private float quantity_ = 0F;
     /**
-     * <code>float quantity = 6;</code>
+     * <code>float quantity = 7;</code>
      * @return The quantity.
      */
     @java.lang.Override
@@ -2425,10 +2696,10 @@ public final class Calculatie {
       return quantity_;
     }
 
-    public static final int PRICEPERUNIT_FIELD_NUMBER = 7;
+    public static final int PRICEPERUNIT_FIELD_NUMBER = 8;
     private float pricePerUnit_ = 0F;
     /**
-     * <code>float pricePerUnit = 7;</code>
+     * <code>float pricePerUnit = 8;</code>
      * @return The pricePerUnit.
      */
     @java.lang.Override
@@ -2436,10 +2707,1768 @@ public final class Calculatie {
       return pricePerUnit_;
     }
 
-    public static final int TOTALPRICE_FIELD_NUMBER = 8;
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (calculationId_ != 0) {
+        output.writeInt32(1, calculationId_);
+      }
+      if (projectId_ != 0) {
+        output.writeInt32(2, projectId_);
+      }
+      if (articleId_ != 0) {
+        output.writeInt32(3, articleId_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, description_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(measurementType_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 5, measurementType_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(measurementUnit_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 6, measurementUnit_);
+      }
+      if (java.lang.Float.floatToRawIntBits(quantity_) != 0) {
+        output.writeFloat(7, quantity_);
+      }
+      if (java.lang.Float.floatToRawIntBits(pricePerUnit_) != 0) {
+        output.writeFloat(8, pricePerUnit_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (calculationId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, calculationId_);
+      }
+      if (projectId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, projectId_);
+      }
+      if (articleId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, articleId_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, description_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(measurementType_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(5, measurementType_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(measurementUnit_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(6, measurementUnit_);
+      }
+      if (java.lang.Float.floatToRawIntBits(quantity_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(7, quantity_);
+      }
+      if (java.lang.Float.floatToRawIntBits(pricePerUnit_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(8, pricePerUnit_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof calculatie.Calculatie.UpdateCalculationRequest)) {
+        return super.equals(obj);
+      }
+      calculatie.Calculatie.UpdateCalculationRequest other = (calculatie.Calculatie.UpdateCalculationRequest) obj;
+
+      if (getCalculationId()
+          != other.getCalculationId()) return false;
+      if (getProjectId()
+          != other.getProjectId()) return false;
+      if (getArticleId()
+          != other.getArticleId()) return false;
+      if (!getDescription()
+          .equals(other.getDescription())) return false;
+      if (!getMeasurementType()
+          .equals(other.getMeasurementType())) return false;
+      if (!getMeasurementUnit()
+          .equals(other.getMeasurementUnit())) return false;
+      if (java.lang.Float.floatToIntBits(getQuantity())
+          != java.lang.Float.floatToIntBits(
+              other.getQuantity())) return false;
+      if (java.lang.Float.floatToIntBits(getPricePerUnit())
+          != java.lang.Float.floatToIntBits(
+              other.getPricePerUnit())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CALCULATIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getCalculationId();
+      hash = (37 * hash) + PROJECTID_FIELD_NUMBER;
+      hash = (53 * hash) + getProjectId();
+      hash = (37 * hash) + ARTICLEID_FIELD_NUMBER;
+      hash = (53 * hash) + getArticleId();
+      hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
+      hash = (53 * hash) + getDescription().hashCode();
+      hash = (37 * hash) + MEASUREMENTTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getMeasurementType().hashCode();
+      hash = (37 * hash) + MEASUREMENTUNIT_FIELD_NUMBER;
+      hash = (53 * hash) + getMeasurementUnit().hashCode();
+      hash = (37 * hash) + QUANTITY_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getQuantity());
+      hash = (37 * hash) + PRICEPERUNIT_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getPricePerUnit());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static calculatie.Calculatie.UpdateCalculationRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.UpdateCalculationRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.UpdateCalculationRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.UpdateCalculationRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.UpdateCalculationRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.UpdateCalculationRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.UpdateCalculationRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static calculatie.Calculatie.UpdateCalculationRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static calculatie.Calculatie.UpdateCalculationRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static calculatie.Calculatie.UpdateCalculationRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static calculatie.Calculatie.UpdateCalculationRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static calculatie.Calculatie.UpdateCalculationRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(calculatie.Calculatie.UpdateCalculationRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code calculatie.UpdateCalculationRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:calculatie.UpdateCalculationRequest)
+        calculatie.Calculatie.UpdateCalculationRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return calculatie.Calculatie.internal_static_calculatie_UpdateCalculationRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return calculatie.Calculatie.internal_static_calculatie_UpdateCalculationRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                calculatie.Calculatie.UpdateCalculationRequest.class, calculatie.Calculatie.UpdateCalculationRequest.Builder.class);
+      }
+
+      // Construct using calculatie.Calculatie.UpdateCalculationRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        calculationId_ = 0;
+        projectId_ = 0;
+        articleId_ = 0;
+        description_ = "";
+        measurementType_ = "";
+        measurementUnit_ = "";
+        quantity_ = 0F;
+        pricePerUnit_ = 0F;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return calculatie.Calculatie.internal_static_calculatie_UpdateCalculationRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.UpdateCalculationRequest getDefaultInstanceForType() {
+        return calculatie.Calculatie.UpdateCalculationRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.UpdateCalculationRequest build() {
+        calculatie.Calculatie.UpdateCalculationRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.UpdateCalculationRequest buildPartial() {
+        calculatie.Calculatie.UpdateCalculationRequest result = new calculatie.Calculatie.UpdateCalculationRequest(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(calculatie.Calculatie.UpdateCalculationRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.calculationId_ = calculationId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.projectId_ = projectId_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.articleId_ = articleId_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.description_ = description_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.measurementType_ = measurementType_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.measurementUnit_ = measurementUnit_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.quantity_ = quantity_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.pricePerUnit_ = pricePerUnit_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof calculatie.Calculatie.UpdateCalculationRequest) {
+          return mergeFrom((calculatie.Calculatie.UpdateCalculationRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(calculatie.Calculatie.UpdateCalculationRequest other) {
+        if (other == calculatie.Calculatie.UpdateCalculationRequest.getDefaultInstance()) return this;
+        if (other.getCalculationId() != 0) {
+          setCalculationId(other.getCalculationId());
+        }
+        if (other.getProjectId() != 0) {
+          setProjectId(other.getProjectId());
+        }
+        if (other.getArticleId() != 0) {
+          setArticleId(other.getArticleId());
+        }
+        if (!other.getDescription().isEmpty()) {
+          description_ = other.description_;
+          bitField0_ |= 0x00000008;
+          onChanged();
+        }
+        if (!other.getMeasurementType().isEmpty()) {
+          measurementType_ = other.measurementType_;
+          bitField0_ |= 0x00000010;
+          onChanged();
+        }
+        if (!other.getMeasurementUnit().isEmpty()) {
+          measurementUnit_ = other.measurementUnit_;
+          bitField0_ |= 0x00000020;
+          onChanged();
+        }
+        if (other.getQuantity() != 0F) {
+          setQuantity(other.getQuantity());
+        }
+        if (other.getPricePerUnit() != 0F) {
+          setPricePerUnit(other.getPricePerUnit());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                calculationId_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                projectId_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                articleId_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 34: {
+                description_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 42: {
+                measurementType_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 50: {
+                measurementUnit_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 50
+              case 61: {
+                quantity_ = input.readFloat();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 61
+              case 69: {
+                pricePerUnit_ = input.readFloat();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 69
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int calculationId_ ;
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @return The calculationId.
+       */
+      @java.lang.Override
+      public int getCalculationId() {
+        return calculationId_;
+      }
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @param value The calculationId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCalculationId(int value) {
+
+        calculationId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCalculationId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        calculationId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int projectId_ ;
+      /**
+       * <code>int32 projectId = 2;</code>
+       * @return The projectId.
+       */
+      @java.lang.Override
+      public int getProjectId() {
+        return projectId_;
+      }
+      /**
+       * <code>int32 projectId = 2;</code>
+       * @param value The projectId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setProjectId(int value) {
+
+        projectId_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 projectId = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearProjectId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        projectId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int articleId_ ;
+      /**
+       * <code>int32 articleId = 3;</code>
+       * @return The articleId.
+       */
+      @java.lang.Override
+      public int getArticleId() {
+        return articleId_;
+      }
+      /**
+       * <code>int32 articleId = 3;</code>
+       * @param value The articleId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setArticleId(int value) {
+
+        articleId_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 articleId = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearArticleId() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        articleId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object description_ = "";
+      /**
+       * <code>string description = 4;</code>
+       * @return The description.
+       */
+      public java.lang.String getDescription() {
+        java.lang.Object ref = description_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          description_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string description = 4;</code>
+       * @return The bytes for description.
+       */
+      public com.google.protobuf.ByteString
+          getDescriptionBytes() {
+        java.lang.Object ref = description_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          description_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string description = 4;</code>
+       * @param value The description to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDescription(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        description_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string description = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDescription() {
+        description_ = getDefaultInstance().getDescription();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string description = 4;</code>
+       * @param value The bytes for description to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDescriptionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        description_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object measurementType_ = "";
+      /**
+       * <code>string measurementType = 5;</code>
+       * @return The measurementType.
+       */
+      public java.lang.String getMeasurementType() {
+        java.lang.Object ref = measurementType_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          measurementType_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string measurementType = 5;</code>
+       * @return The bytes for measurementType.
+       */
+      public com.google.protobuf.ByteString
+          getMeasurementTypeBytes() {
+        java.lang.Object ref = measurementType_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          measurementType_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string measurementType = 5;</code>
+       * @param value The measurementType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMeasurementType(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        measurementType_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string measurementType = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMeasurementType() {
+        measurementType_ = getDefaultInstance().getMeasurementType();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string measurementType = 5;</code>
+       * @param value The bytes for measurementType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMeasurementTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        measurementType_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object measurementUnit_ = "";
+      /**
+       * <code>string measurementUnit = 6;</code>
+       * @return The measurementUnit.
+       */
+      public java.lang.String getMeasurementUnit() {
+        java.lang.Object ref = measurementUnit_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          measurementUnit_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string measurementUnit = 6;</code>
+       * @return The bytes for measurementUnit.
+       */
+      public com.google.protobuf.ByteString
+          getMeasurementUnitBytes() {
+        java.lang.Object ref = measurementUnit_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          measurementUnit_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string measurementUnit = 6;</code>
+       * @param value The measurementUnit to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMeasurementUnit(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        measurementUnit_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string measurementUnit = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMeasurementUnit() {
+        measurementUnit_ = getDefaultInstance().getMeasurementUnit();
+        bitField0_ = (bitField0_ & ~0x00000020);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string measurementUnit = 6;</code>
+       * @param value The bytes for measurementUnit to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMeasurementUnitBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        measurementUnit_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+
+      private float quantity_ ;
+      /**
+       * <code>float quantity = 7;</code>
+       * @return The quantity.
+       */
+      @java.lang.Override
+      public float getQuantity() {
+        return quantity_;
+      }
+      /**
+       * <code>float quantity = 7;</code>
+       * @param value The quantity to set.
+       * @return This builder for chaining.
+       */
+      public Builder setQuantity(float value) {
+
+        quantity_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float quantity = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearQuantity() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        quantity_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float pricePerUnit_ ;
+      /**
+       * <code>float pricePerUnit = 8;</code>
+       * @return The pricePerUnit.
+       */
+      @java.lang.Override
+      public float getPricePerUnit() {
+        return pricePerUnit_;
+      }
+      /**
+       * <code>float pricePerUnit = 8;</code>
+       * @param value The pricePerUnit to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPricePerUnit(float value) {
+
+        pricePerUnit_ = value;
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float pricePerUnit = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPricePerUnit() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        pricePerUnit_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:calculatie.UpdateCalculationRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:calculatie.UpdateCalculationRequest)
+    private static final calculatie.Calculatie.UpdateCalculationRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new calculatie.Calculatie.UpdateCalculationRequest();
+    }
+
+    public static calculatie.Calculatie.UpdateCalculationRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UpdateCalculationRequest>
+        PARSER = new com.google.protobuf.AbstractParser<UpdateCalculationRequest>() {
+      @java.lang.Override
+      public UpdateCalculationRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<UpdateCalculationRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UpdateCalculationRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public calculatie.Calculatie.UpdateCalculationRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ConfirmCalculationResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:calculatie.ConfirmCalculationResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 articleId = 1;</code>
+     * @return The articleId.
+     */
+    int getArticleId();
+
+    /**
+     * <code>string description = 2;</code>
+     * @return The description.
+     */
+    java.lang.String getDescription();
+    /**
+     * <code>string description = 2;</code>
+     * @return The bytes for description.
+     */
+    com.google.protobuf.ByteString
+        getDescriptionBytes();
+  }
+  /**
+   * Protobuf type {@code calculatie.ConfirmCalculationResponse}
+   */
+  public static final class ConfirmCalculationResponse extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:calculatie.ConfirmCalculationResponse)
+      ConfirmCalculationResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 0,
+        /* suffix= */ "-rc3",
+        ConfirmCalculationResponse.class.getName());
+    }
+    // Use ConfirmCalculationResponse.newBuilder() to construct.
+    private ConfirmCalculationResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private ConfirmCalculationResponse() {
+      description_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return calculatie.Calculatie.internal_static_calculatie_ConfirmCalculationResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return calculatie.Calculatie.internal_static_calculatie_ConfirmCalculationResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              calculatie.Calculatie.ConfirmCalculationResponse.class, calculatie.Calculatie.ConfirmCalculationResponse.Builder.class);
+    }
+
+    public static final int ARTICLEID_FIELD_NUMBER = 1;
+    private int articleId_ = 0;
+    /**
+     * <code>int32 articleId = 1;</code>
+     * @return The articleId.
+     */
+    @java.lang.Override
+    public int getArticleId() {
+      return articleId_;
+    }
+
+    public static final int DESCRIPTION_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object description_ = "";
+    /**
+     * <code>string description = 2;</code>
+     * @return The description.
+     */
+    @java.lang.Override
+    public java.lang.String getDescription() {
+      java.lang.Object ref = description_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        description_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string description = 2;</code>
+     * @return The bytes for description.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDescriptionBytes() {
+      java.lang.Object ref = description_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        description_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (articleId_ != 0) {
+        output.writeInt32(1, articleId_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, description_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (articleId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, articleId_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, description_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof calculatie.Calculatie.ConfirmCalculationResponse)) {
+        return super.equals(obj);
+      }
+      calculatie.Calculatie.ConfirmCalculationResponse other = (calculatie.Calculatie.ConfirmCalculationResponse) obj;
+
+      if (getArticleId()
+          != other.getArticleId()) return false;
+      if (!getDescription()
+          .equals(other.getDescription())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ARTICLEID_FIELD_NUMBER;
+      hash = (53 * hash) + getArticleId();
+      hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
+      hash = (53 * hash) + getDescription().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static calculatie.Calculatie.ConfirmCalculationResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(calculatie.Calculatie.ConfirmCalculationResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code calculatie.ConfirmCalculationResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:calculatie.ConfirmCalculationResponse)
+        calculatie.Calculatie.ConfirmCalculationResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return calculatie.Calculatie.internal_static_calculatie_ConfirmCalculationResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return calculatie.Calculatie.internal_static_calculatie_ConfirmCalculationResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                calculatie.Calculatie.ConfirmCalculationResponse.class, calculatie.Calculatie.ConfirmCalculationResponse.Builder.class);
+      }
+
+      // Construct using calculatie.Calculatie.ConfirmCalculationResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        articleId_ = 0;
+        description_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return calculatie.Calculatie.internal_static_calculatie_ConfirmCalculationResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.ConfirmCalculationResponse getDefaultInstanceForType() {
+        return calculatie.Calculatie.ConfirmCalculationResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.ConfirmCalculationResponse build() {
+        calculatie.Calculatie.ConfirmCalculationResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public calculatie.Calculatie.ConfirmCalculationResponse buildPartial() {
+        calculatie.Calculatie.ConfirmCalculationResponse result = new calculatie.Calculatie.ConfirmCalculationResponse(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(calculatie.Calculatie.ConfirmCalculationResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.articleId_ = articleId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.description_ = description_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof calculatie.Calculatie.ConfirmCalculationResponse) {
+          return mergeFrom((calculatie.Calculatie.ConfirmCalculationResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(calculatie.Calculatie.ConfirmCalculationResponse other) {
+        if (other == calculatie.Calculatie.ConfirmCalculationResponse.getDefaultInstance()) return this;
+        if (other.getArticleId() != 0) {
+          setArticleId(other.getArticleId());
+        }
+        if (!other.getDescription().isEmpty()) {
+          description_ = other.description_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                articleId_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                description_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int articleId_ ;
+      /**
+       * <code>int32 articleId = 1;</code>
+       * @return The articleId.
+       */
+      @java.lang.Override
+      public int getArticleId() {
+        return articleId_;
+      }
+      /**
+       * <code>int32 articleId = 1;</code>
+       * @param value The articleId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setArticleId(int value) {
+
+        articleId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 articleId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearArticleId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        articleId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object description_ = "";
+      /**
+       * <code>string description = 2;</code>
+       * @return The description.
+       */
+      public java.lang.String getDescription() {
+        java.lang.Object ref = description_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          description_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string description = 2;</code>
+       * @return The bytes for description.
+       */
+      public com.google.protobuf.ByteString
+          getDescriptionBytes() {
+        java.lang.Object ref = description_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          description_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string description = 2;</code>
+       * @param value The description to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDescription(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        description_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string description = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDescription() {
+        description_ = getDefaultInstance().getDescription();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string description = 2;</code>
+       * @param value The bytes for description to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDescriptionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        description_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:calculatie.ConfirmCalculationResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:calculatie.ConfirmCalculationResponse)
+    private static final calculatie.Calculatie.ConfirmCalculationResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new calculatie.Calculatie.ConfirmCalculationResponse();
+    }
+
+    public static calculatie.Calculatie.ConfirmCalculationResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ConfirmCalculationResponse>
+        PARSER = new com.google.protobuf.AbstractParser<ConfirmCalculationResponse>() {
+      @java.lang.Override
+      public ConfirmCalculationResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ConfirmCalculationResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ConfirmCalculationResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public calculatie.Calculatie.ConfirmCalculationResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetCalculationResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:calculatie.GetCalculationResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 calculationId = 1;</code>
+     * @return The calculationId.
+     */
+    int getCalculationId();
+
+    /**
+     * <code>int32 projectId = 2;</code>
+     * @return The projectId.
+     */
+    int getProjectId();
+
+    /**
+     * <code>int32 articleId = 3;</code>
+     * @return The articleId.
+     */
+    int getArticleId();
+
+    /**
+     * <code>string description = 4;</code>
+     * @return The description.
+     */
+    java.lang.String getDescription();
+    /**
+     * <code>string description = 4;</code>
+     * @return The bytes for description.
+     */
+    com.google.protobuf.ByteString
+        getDescriptionBytes();
+
+    /**
+     * <code>string measurementType = 5;</code>
+     * @return The measurementType.
+     */
+    java.lang.String getMeasurementType();
+    /**
+     * <code>string measurementType = 5;</code>
+     * @return The bytes for measurementType.
+     */
+    com.google.protobuf.ByteString
+        getMeasurementTypeBytes();
+
+    /**
+     * <code>string measurementUnit = 6;</code>
+     * @return The measurementUnit.
+     */
+    java.lang.String getMeasurementUnit();
+    /**
+     * <code>string measurementUnit = 6;</code>
+     * @return The bytes for measurementUnit.
+     */
+    com.google.protobuf.ByteString
+        getMeasurementUnitBytes();
+
+    /**
+     * <code>float quantity = 7;</code>
+     * @return The quantity.
+     */
+    float getQuantity();
+
+    /**
+     * <code>float pricePerUnit = 8;</code>
+     * @return The pricePerUnit.
+     */
+    float getPricePerUnit();
+
+    /**
+     * <code>float totalPrice = 9;</code>
+     * @return The totalPrice.
+     */
+    float getTotalPrice();
+  }
+  /**
+   * Protobuf type {@code calculatie.GetCalculationResponse}
+   */
+  public static final class GetCalculationResponse extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:calculatie.GetCalculationResponse)
+      GetCalculationResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 0,
+        /* suffix= */ "-rc3",
+        GetCalculationResponse.class.getName());
+    }
+    // Use GetCalculationResponse.newBuilder() to construct.
+    private GetCalculationResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private GetCalculationResponse() {
+      description_ = "";
+      measurementType_ = "";
+      measurementUnit_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return calculatie.Calculatie.internal_static_calculatie_GetCalculationResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return calculatie.Calculatie.internal_static_calculatie_GetCalculationResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              calculatie.Calculatie.GetCalculationResponse.class, calculatie.Calculatie.GetCalculationResponse.Builder.class);
+    }
+
+    public static final int CALCULATIONID_FIELD_NUMBER = 1;
+    private int calculationId_ = 0;
+    /**
+     * <code>int32 calculationId = 1;</code>
+     * @return The calculationId.
+     */
+    @java.lang.Override
+    public int getCalculationId() {
+      return calculationId_;
+    }
+
+    public static final int PROJECTID_FIELD_NUMBER = 2;
+    private int projectId_ = 0;
+    /**
+     * <code>int32 projectId = 2;</code>
+     * @return The projectId.
+     */
+    @java.lang.Override
+    public int getProjectId() {
+      return projectId_;
+    }
+
+    public static final int ARTICLEID_FIELD_NUMBER = 3;
+    private int articleId_ = 0;
+    /**
+     * <code>int32 articleId = 3;</code>
+     * @return The articleId.
+     */
+    @java.lang.Override
+    public int getArticleId() {
+      return articleId_;
+    }
+
+    public static final int DESCRIPTION_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object description_ = "";
+    /**
+     * <code>string description = 4;</code>
+     * @return The description.
+     */
+    @java.lang.Override
+    public java.lang.String getDescription() {
+      java.lang.Object ref = description_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        description_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string description = 4;</code>
+     * @return The bytes for description.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDescriptionBytes() {
+      java.lang.Object ref = description_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        description_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MEASUREMENTTYPE_FIELD_NUMBER = 5;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object measurementType_ = "";
+    /**
+     * <code>string measurementType = 5;</code>
+     * @return The measurementType.
+     */
+    @java.lang.Override
+    public java.lang.String getMeasurementType() {
+      java.lang.Object ref = measurementType_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        measurementType_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string measurementType = 5;</code>
+     * @return The bytes for measurementType.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getMeasurementTypeBytes() {
+      java.lang.Object ref = measurementType_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        measurementType_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MEASUREMENTUNIT_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object measurementUnit_ = "";
+    /**
+     * <code>string measurementUnit = 6;</code>
+     * @return The measurementUnit.
+     */
+    @java.lang.Override
+    public java.lang.String getMeasurementUnit() {
+      java.lang.Object ref = measurementUnit_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        measurementUnit_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string measurementUnit = 6;</code>
+     * @return The bytes for measurementUnit.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getMeasurementUnitBytes() {
+      java.lang.Object ref = measurementUnit_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        measurementUnit_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int QUANTITY_FIELD_NUMBER = 7;
+    private float quantity_ = 0F;
+    /**
+     * <code>float quantity = 7;</code>
+     * @return The quantity.
+     */
+    @java.lang.Override
+    public float getQuantity() {
+      return quantity_;
+    }
+
+    public static final int PRICEPERUNIT_FIELD_NUMBER = 8;
+    private float pricePerUnit_ = 0F;
+    /**
+     * <code>float pricePerUnit = 8;</code>
+     * @return The pricePerUnit.
+     */
+    @java.lang.Override
+    public float getPricePerUnit() {
+      return pricePerUnit_;
+    }
+
+    public static final int TOTALPRICE_FIELD_NUMBER = 9;
     private float totalPrice_ = 0F;
     /**
-     * <code>float totalPrice = 8;</code>
+     * <code>float totalPrice = 9;</code>
      * @return The totalPrice.
      */
     @java.lang.Override
@@ -2461,29 +4490,32 @@ public final class Calculatie {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (calculationId_ != 0) {
+        output.writeInt32(1, calculationId_);
+      }
       if (projectId_ != 0) {
-        output.writeInt32(1, projectId_);
+        output.writeInt32(2, projectId_);
       }
       if (articleId_ != 0) {
-        output.writeInt32(2, articleId_);
+        output.writeInt32(3, articleId_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 3, description_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, description_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(measurementType_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 4, measurementType_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 5, measurementType_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(measurementUnit_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 5, measurementUnit_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 6, measurementUnit_);
       }
       if (java.lang.Float.floatToRawIntBits(quantity_) != 0) {
-        output.writeFloat(6, quantity_);
+        output.writeFloat(7, quantity_);
       }
       if (java.lang.Float.floatToRawIntBits(pricePerUnit_) != 0) {
-        output.writeFloat(7, pricePerUnit_);
+        output.writeFloat(8, pricePerUnit_);
       }
       if (java.lang.Float.floatToRawIntBits(totalPrice_) != 0) {
-        output.writeFloat(8, totalPrice_);
+        output.writeFloat(9, totalPrice_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2494,34 +4526,38 @@ public final class Calculatie {
       if (size != -1) return size;
 
       size = 0;
+      if (calculationId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, calculationId_);
+      }
       if (projectId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, projectId_);
+          .computeInt32Size(2, projectId_);
       }
       if (articleId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, articleId_);
+          .computeInt32Size(3, articleId_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(description_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, description_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, description_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(measurementType_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, measurementType_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(5, measurementType_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(measurementUnit_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(5, measurementUnit_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(6, measurementUnit_);
       }
       if (java.lang.Float.floatToRawIntBits(quantity_) != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(6, quantity_);
+          .computeFloatSize(7, quantity_);
       }
       if (java.lang.Float.floatToRawIntBits(pricePerUnit_) != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(7, pricePerUnit_);
+          .computeFloatSize(8, pricePerUnit_);
       }
       if (java.lang.Float.floatToRawIntBits(totalPrice_) != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(8, totalPrice_);
+          .computeFloatSize(9, totalPrice_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2533,11 +4569,13 @@ public final class Calculatie {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof calculatie.Calculatie.GetProjectCalculationsResponse)) {
+      if (!(obj instanceof calculatie.Calculatie.GetCalculationResponse)) {
         return super.equals(obj);
       }
-      calculatie.Calculatie.GetProjectCalculationsResponse other = (calculatie.Calculatie.GetProjectCalculationsResponse) obj;
+      calculatie.Calculatie.GetCalculationResponse other = (calculatie.Calculatie.GetCalculationResponse) obj;
 
+      if (getCalculationId()
+          != other.getCalculationId()) return false;
       if (getProjectId()
           != other.getProjectId()) return false;
       if (getArticleId()
@@ -2568,6 +4606,8 @@ public final class Calculatie {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CALCULATIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getCalculationId();
       hash = (37 * hash) + PROJECTID_FIELD_NUMBER;
       hash = (53 * hash) + getProjectId();
       hash = (37 * hash) + ARTICLEID_FIELD_NUMBER;
@@ -2592,44 +4632,44 @@ public final class Calculatie {
       return hash;
     }
 
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseFrom(
+    public static calculatie.Calculatie.GetCalculationResponse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseFrom(
+    public static calculatie.Calculatie.GetCalculationResponse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseFrom(
+    public static calculatie.Calculatie.GetCalculationResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseFrom(
+    public static calculatie.Calculatie.GetCalculationResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseFrom(byte[] data)
+    public static calculatie.Calculatie.GetCalculationResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseFrom(
+    public static calculatie.Calculatie.GetCalculationResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseFrom(java.io.InputStream input)
+    public static calculatie.Calculatie.GetCalculationResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseWithIOException(PARSER, input);
     }
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseFrom(
+    public static calculatie.Calculatie.GetCalculationResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2637,26 +4677,26 @@ public final class Calculatie {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseDelimitedFrom(java.io.InputStream input)
+    public static calculatie.Calculatie.GetCalculationResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseDelimitedFrom(
+    public static calculatie.Calculatie.GetCalculationResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseFrom(
+    public static calculatie.Calculatie.GetCalculationResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseWithIOException(PARSER, input);
     }
-    public static calculatie.Calculatie.GetProjectCalculationsResponse parseFrom(
+    public static calculatie.Calculatie.GetCalculationResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2669,7 +4709,7 @@ public final class Calculatie {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(calculatie.Calculatie.GetProjectCalculationsResponse prototype) {
+    public static Builder newBuilder(calculatie.Calculatie.GetCalculationResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2685,30 +4725,26 @@ public final class Calculatie {
       return builder;
     }
     /**
-     * <pre>
-     * Antwoord voor de berekeningen van een project
-     * </pre>
-     *
-     * Protobuf type {@code calculatie.GetProjectCalculationsResponse}
+     * Protobuf type {@code calculatie.GetCalculationResponse}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:calculatie.GetProjectCalculationsResponse)
-        calculatie.Calculatie.GetProjectCalculationsResponseOrBuilder {
+        // @@protoc_insertion_point(builder_implements:calculatie.GetCalculationResponse)
+        calculatie.Calculatie.GetCalculationResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return calculatie.Calculatie.internal_static_calculatie_GetProjectCalculationsResponse_descriptor;
+        return calculatie.Calculatie.internal_static_calculatie_GetCalculationResponse_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return calculatie.Calculatie.internal_static_calculatie_GetProjectCalculationsResponse_fieldAccessorTable
+        return calculatie.Calculatie.internal_static_calculatie_GetCalculationResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                calculatie.Calculatie.GetProjectCalculationsResponse.class, calculatie.Calculatie.GetProjectCalculationsResponse.Builder.class);
+                calculatie.Calculatie.GetCalculationResponse.class, calculatie.Calculatie.GetCalculationResponse.Builder.class);
       }
 
-      // Construct using calculatie.Calculatie.GetProjectCalculationsResponse.newBuilder()
+      // Construct using calculatie.Calculatie.GetCalculationResponse.newBuilder()
       private Builder() {
 
       }
@@ -2722,6 +4758,7 @@ public final class Calculatie {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
+        calculationId_ = 0;
         projectId_ = 0;
         articleId_ = 0;
         description_ = "";
@@ -2736,17 +4773,17 @@ public final class Calculatie {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return calculatie.Calculatie.internal_static_calculatie_GetProjectCalculationsResponse_descriptor;
+        return calculatie.Calculatie.internal_static_calculatie_GetCalculationResponse_descriptor;
       }
 
       @java.lang.Override
-      public calculatie.Calculatie.GetProjectCalculationsResponse getDefaultInstanceForType() {
-        return calculatie.Calculatie.GetProjectCalculationsResponse.getDefaultInstance();
+      public calculatie.Calculatie.GetCalculationResponse getDefaultInstanceForType() {
+        return calculatie.Calculatie.GetCalculationResponse.getDefaultInstance();
       }
 
       @java.lang.Override
-      public calculatie.Calculatie.GetProjectCalculationsResponse build() {
-        calculatie.Calculatie.GetProjectCalculationsResponse result = buildPartial();
+      public calculatie.Calculatie.GetCalculationResponse build() {
+        calculatie.Calculatie.GetCalculationResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2754,53 +4791,59 @@ public final class Calculatie {
       }
 
       @java.lang.Override
-      public calculatie.Calculatie.GetProjectCalculationsResponse buildPartial() {
-        calculatie.Calculatie.GetProjectCalculationsResponse result = new calculatie.Calculatie.GetProjectCalculationsResponse(this);
+      public calculatie.Calculatie.GetCalculationResponse buildPartial() {
+        calculatie.Calculatie.GetCalculationResponse result = new calculatie.Calculatie.GetCalculationResponse(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(calculatie.Calculatie.GetProjectCalculationsResponse result) {
+      private void buildPartial0(calculatie.Calculatie.GetCalculationResponse result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.projectId_ = projectId_;
+          result.calculationId_ = calculationId_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.articleId_ = articleId_;
+          result.projectId_ = projectId_;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.description_ = description_;
+          result.articleId_ = articleId_;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
-          result.measurementType_ = measurementType_;
+          result.description_ = description_;
         }
         if (((from_bitField0_ & 0x00000010) != 0)) {
-          result.measurementUnit_ = measurementUnit_;
+          result.measurementType_ = measurementType_;
         }
         if (((from_bitField0_ & 0x00000020) != 0)) {
-          result.quantity_ = quantity_;
+          result.measurementUnit_ = measurementUnit_;
         }
         if (((from_bitField0_ & 0x00000040) != 0)) {
-          result.pricePerUnit_ = pricePerUnit_;
+          result.quantity_ = quantity_;
         }
         if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.pricePerUnit_ = pricePerUnit_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
           result.totalPrice_ = totalPrice_;
         }
       }
 
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof calculatie.Calculatie.GetProjectCalculationsResponse) {
-          return mergeFrom((calculatie.Calculatie.GetProjectCalculationsResponse)other);
+        if (other instanceof calculatie.Calculatie.GetCalculationResponse) {
+          return mergeFrom((calculatie.Calculatie.GetCalculationResponse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(calculatie.Calculatie.GetProjectCalculationsResponse other) {
-        if (other == calculatie.Calculatie.GetProjectCalculationsResponse.getDefaultInstance()) return this;
+      public Builder mergeFrom(calculatie.Calculatie.GetCalculationResponse other) {
+        if (other == calculatie.Calculatie.GetCalculationResponse.getDefaultInstance()) return this;
+        if (other.getCalculationId() != 0) {
+          setCalculationId(other.getCalculationId());
+        }
         if (other.getProjectId() != 0) {
           setProjectId(other.getProjectId());
         }
@@ -2809,17 +4852,17 @@ public final class Calculatie {
         }
         if (!other.getDescription().isEmpty()) {
           description_ = other.description_;
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
         if (!other.getMeasurementType().isEmpty()) {
           measurementType_ = other.measurementType_;
-          bitField0_ |= 0x00000008;
+          bitField0_ |= 0x00000010;
           onChanged();
         }
         if (!other.getMeasurementUnit().isEmpty()) {
           measurementUnit_ = other.measurementUnit_;
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000020;
           onChanged();
         }
         if (other.getQuantity() != 0F) {
@@ -2858,45 +4901,50 @@ public final class Calculatie {
                 done = true;
                 break;
               case 8: {
-                projectId_ = input.readInt32();
+                calculationId_ = input.readInt32();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
               case 16: {
-                articleId_ = input.readInt32();
+                projectId_ = input.readInt32();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 16
-              case 26: {
-                description_ = input.readStringRequireUtf8();
+              case 24: {
+                articleId_ = input.readInt32();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 26
+              } // case 24
               case 34: {
-                measurementType_ = input.readStringRequireUtf8();
+                description_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000008;
                 break;
               } // case 34
               case 42: {
-                measurementUnit_ = input.readStringRequireUtf8();
+                measurementType_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000010;
                 break;
               } // case 42
-              case 53: {
-                quantity_ = input.readFloat();
+              case 50: {
+                measurementUnit_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000020;
                 break;
-              } // case 53
+              } // case 50
               case 61: {
-                pricePerUnit_ = input.readFloat();
+                quantity_ = input.readFloat();
                 bitField0_ |= 0x00000040;
                 break;
               } // case 61
               case 69: {
-                totalPrice_ = input.readFloat();
+                pricePerUnit_ = input.readFloat();
                 bitField0_ |= 0x00000080;
                 break;
               } // case 69
+              case 77: {
+                totalPrice_ = input.readFloat();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 77
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2914,9 +4962,41 @@ public final class Calculatie {
       }
       private int bitField0_;
 
+      private int calculationId_ ;
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @return The calculationId.
+       */
+      @java.lang.Override
+      public int getCalculationId() {
+        return calculationId_;
+      }
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @param value The calculationId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCalculationId(int value) {
+
+        calculationId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 calculationId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCalculationId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        calculationId_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int projectId_ ;
       /**
-       * <code>int32 projectId = 1;</code>
+       * <code>int32 projectId = 2;</code>
        * @return The projectId.
        */
       @java.lang.Override
@@ -2924,23 +5004,23 @@ public final class Calculatie {
         return projectId_;
       }
       /**
-       * <code>int32 projectId = 1;</code>
+       * <code>int32 projectId = 2;</code>
        * @param value The projectId to set.
        * @return This builder for chaining.
        */
       public Builder setProjectId(int value) {
 
         projectId_ = value;
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 projectId = 1;</code>
+       * <code>int32 projectId = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearProjectId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         projectId_ = 0;
         onChanged();
         return this;
@@ -2948,7 +5028,7 @@ public final class Calculatie {
 
       private int articleId_ ;
       /**
-       * <code>int32 articleId = 2;</code>
+       * <code>int32 articleId = 3;</code>
        * @return The articleId.
        */
       @java.lang.Override
@@ -2956,23 +5036,23 @@ public final class Calculatie {
         return articleId_;
       }
       /**
-       * <code>int32 articleId = 2;</code>
+       * <code>int32 articleId = 3;</code>
        * @param value The articleId to set.
        * @return This builder for chaining.
        */
       public Builder setArticleId(int value) {
 
         articleId_ = value;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 articleId = 2;</code>
+       * <code>int32 articleId = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearArticleId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         articleId_ = 0;
         onChanged();
         return this;
@@ -2980,7 +5060,7 @@ public final class Calculatie {
 
       private java.lang.Object description_ = "";
       /**
-       * <code>string description = 3;</code>
+       * <code>string description = 4;</code>
        * @return The description.
        */
       public java.lang.String getDescription() {
@@ -2996,7 +5076,7 @@ public final class Calculatie {
         }
       }
       /**
-       * <code>string description = 3;</code>
+       * <code>string description = 4;</code>
        * @return The bytes for description.
        */
       public com.google.protobuf.ByteString
@@ -3013,7 +5093,7 @@ public final class Calculatie {
         }
       }
       /**
-       * <code>string description = 3;</code>
+       * <code>string description = 4;</code>
        * @param value The description to set.
        * @return This builder for chaining.
        */
@@ -3021,22 +5101,22 @@ public final class Calculatie {
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         description_ = value;
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>string description = 3;</code>
+       * <code>string description = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearDescription() {
         description_ = getDefaultInstance().getDescription();
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
       /**
-       * <code>string description = 3;</code>
+       * <code>string description = 4;</code>
        * @param value The bytes for description to set.
        * @return This builder for chaining.
        */
@@ -3045,14 +5125,14 @@ public final class Calculatie {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         description_ = value;
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
 
       private java.lang.Object measurementType_ = "";
       /**
-       * <code>string measurementType = 4;</code>
+       * <code>string measurementType = 5;</code>
        * @return The measurementType.
        */
       public java.lang.String getMeasurementType() {
@@ -3068,7 +5148,7 @@ public final class Calculatie {
         }
       }
       /**
-       * <code>string measurementType = 4;</code>
+       * <code>string measurementType = 5;</code>
        * @return The bytes for measurementType.
        */
       public com.google.protobuf.ByteString
@@ -3085,7 +5165,7 @@ public final class Calculatie {
         }
       }
       /**
-       * <code>string measurementType = 4;</code>
+       * <code>string measurementType = 5;</code>
        * @param value The measurementType to set.
        * @return This builder for chaining.
        */
@@ -3093,22 +5173,22 @@ public final class Calculatie {
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         measurementType_ = value;
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
       /**
-       * <code>string measurementType = 4;</code>
+       * <code>string measurementType = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearMeasurementType() {
         measurementType_ = getDefaultInstance().getMeasurementType();
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
       /**
-       * <code>string measurementType = 4;</code>
+       * <code>string measurementType = 5;</code>
        * @param value The bytes for measurementType to set.
        * @return This builder for chaining.
        */
@@ -3117,14 +5197,14 @@ public final class Calculatie {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         measurementType_ = value;
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
 
       private java.lang.Object measurementUnit_ = "";
       /**
-       * <code>string measurementUnit = 5;</code>
+       * <code>string measurementUnit = 6;</code>
        * @return The measurementUnit.
        */
       public java.lang.String getMeasurementUnit() {
@@ -3140,7 +5220,7 @@ public final class Calculatie {
         }
       }
       /**
-       * <code>string measurementUnit = 5;</code>
+       * <code>string measurementUnit = 6;</code>
        * @return The bytes for measurementUnit.
        */
       public com.google.protobuf.ByteString
@@ -3157,7 +5237,7 @@ public final class Calculatie {
         }
       }
       /**
-       * <code>string measurementUnit = 5;</code>
+       * <code>string measurementUnit = 6;</code>
        * @param value The measurementUnit to set.
        * @return This builder for chaining.
        */
@@ -3165,22 +5245,22 @@ public final class Calculatie {
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         measurementUnit_ = value;
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
       /**
-       * <code>string measurementUnit = 5;</code>
+       * <code>string measurementUnit = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearMeasurementUnit() {
         measurementUnit_ = getDefaultInstance().getMeasurementUnit();
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
       /**
-       * <code>string measurementUnit = 5;</code>
+       * <code>string measurementUnit = 6;</code>
        * @param value The bytes for measurementUnit to set.
        * @return This builder for chaining.
        */
@@ -3189,14 +5269,14 @@ public final class Calculatie {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         measurementUnit_ = value;
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
 
       private float quantity_ ;
       /**
-       * <code>float quantity = 6;</code>
+       * <code>float quantity = 7;</code>
        * @return The quantity.
        */
       @java.lang.Override
@@ -3204,23 +5284,23 @@ public final class Calculatie {
         return quantity_;
       }
       /**
-       * <code>float quantity = 6;</code>
+       * <code>float quantity = 7;</code>
        * @param value The quantity to set.
        * @return This builder for chaining.
        */
       public Builder setQuantity(float value) {
 
         quantity_ = value;
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
       /**
-       * <code>float quantity = 6;</code>
+       * <code>float quantity = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearQuantity() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         quantity_ = 0F;
         onChanged();
         return this;
@@ -3228,7 +5308,7 @@ public final class Calculatie {
 
       private float pricePerUnit_ ;
       /**
-       * <code>float pricePerUnit = 7;</code>
+       * <code>float pricePerUnit = 8;</code>
        * @return The pricePerUnit.
        */
       @java.lang.Override
@@ -3236,23 +5316,23 @@ public final class Calculatie {
         return pricePerUnit_;
       }
       /**
-       * <code>float pricePerUnit = 7;</code>
+       * <code>float pricePerUnit = 8;</code>
        * @param value The pricePerUnit to set.
        * @return This builder for chaining.
        */
       public Builder setPricePerUnit(float value) {
 
         pricePerUnit_ = value;
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
       /**
-       * <code>float pricePerUnit = 7;</code>
+       * <code>float pricePerUnit = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearPricePerUnit() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         pricePerUnit_ = 0F;
         onChanged();
         return this;
@@ -3260,7 +5340,7 @@ public final class Calculatie {
 
       private float totalPrice_ ;
       /**
-       * <code>float totalPrice = 8;</code>
+       * <code>float totalPrice = 9;</code>
        * @return The totalPrice.
        */
       @java.lang.Override
@@ -3268,45 +5348,45 @@ public final class Calculatie {
         return totalPrice_;
       }
       /**
-       * <code>float totalPrice = 8;</code>
+       * <code>float totalPrice = 9;</code>
        * @param value The totalPrice to set.
        * @return This builder for chaining.
        */
       public Builder setTotalPrice(float value) {
 
         totalPrice_ = value;
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         onChanged();
         return this;
       }
       /**
-       * <code>float totalPrice = 8;</code>
+       * <code>float totalPrice = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearTotalPrice() {
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         totalPrice_ = 0F;
         onChanged();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:calculatie.GetProjectCalculationsResponse)
+      // @@protoc_insertion_point(builder_scope:calculatie.GetCalculationResponse)
     }
 
-    // @@protoc_insertion_point(class_scope:calculatie.GetProjectCalculationsResponse)
-    private static final calculatie.Calculatie.GetProjectCalculationsResponse DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:calculatie.GetCalculationResponse)
+    private static final calculatie.Calculatie.GetCalculationResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new calculatie.Calculatie.GetProjectCalculationsResponse();
+      DEFAULT_INSTANCE = new calculatie.Calculatie.GetCalculationResponse();
     }
 
-    public static calculatie.Calculatie.GetProjectCalculationsResponse getDefaultInstance() {
+    public static calculatie.Calculatie.GetCalculationResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<GetProjectCalculationsResponse>
-        PARSER = new com.google.protobuf.AbstractParser<GetProjectCalculationsResponse>() {
+    private static final com.google.protobuf.Parser<GetCalculationResponse>
+        PARSER = new com.google.protobuf.AbstractParser<GetCalculationResponse>() {
       @java.lang.Override
-      public GetProjectCalculationsResponse parsePartialFrom(
+      public GetCalculationResponse parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3325,17 +5405,17 @@ public final class Calculatie {
       }
     };
 
-    public static com.google.protobuf.Parser<GetProjectCalculationsResponse> parser() {
+    public static com.google.protobuf.Parser<GetCalculationResponse> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<GetProjectCalculationsResponse> getParserForType() {
+    public com.google.protobuf.Parser<GetCalculationResponse> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public calculatie.Calculatie.GetProjectCalculationsResponse getDefaultInstanceForType() {
+    public calculatie.Calculatie.GetCalculationResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3347,20 +5427,35 @@ public final class Calculatie {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_calculatie_CalculatePriceRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_calculatie_CalculatePriceResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_calculatie_CalculatePriceResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_calculatie_GetProjectCalculationsRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_calculatie_GetProjectCalculationsRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_calculatie_GetProjectCalculationsResponse_descriptor;
+    internal_static_calculatie_GetCalculationRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_calculatie_GetProjectCalculationsResponse_fieldAccessorTable;
+      internal_static_calculatie_GetCalculationRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculatie_DeleteCalculationRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_calculatie_DeleteCalculationRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculatie_UpdateCalculationRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_calculatie_UpdateCalculationRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculatie_ConfirmCalculationResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_calculatie_ConfirmCalculationResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculatie_GetCalculationResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_calculatie_GetCalculationResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3375,22 +5470,36 @@ public final class Calculatie {
       "rticleId\030\002 \001(\005\022\023\n\013description\030\003 \001(\t\022\027\n\017m" +
       "easurementType\030\004 \001(\t\022\027\n\017measurementUnit\030" +
       "\005 \001(\t\022\020\n\010quantity\030\006 \001(\002\022\024\n\014pricePerUnit\030" +
-      "\007 \001(\002\"R\n\026CalculatePriceResponse\022\021\n\tproje" +
-      "ctId\030\001 \001(\005\022\021\n\tarticleId\030\002 \001(\005\022\022\n\ntotalPr" +
-      "ice\030\003 \001(\002\"2\n\035GetProjectCalculationsReque" +
-      "st\022\021\n\tprojectId\030\001 \001(\005\"\311\001\n\036GetProjectCalc" +
-      "ulationsResponse\022\021\n\tprojectId\030\001 \001(\005\022\021\n\ta" +
-      "rticleId\030\002 \001(\005\022\023\n\013description\030\003 \001(\t\022\027\n\017m" +
-      "easurementType\030\004 \001(\t\022\027\n\017measurementUnit\030" +
-      "\005 \001(\t\022\020\n\010quantity\030\006 \001(\002\022\024\n\014pricePerUnit\030" +
-      "\007 \001(\002\022\022\n\ntotalPrice\030\010 \001(\0022s\n\022Calculation" +
-      "Service\022]\n\020CalculateProject\022!.calculatie" +
-      ".CalculatePriceRequest\032\".calculatie.Calc" +
-      "ulatePriceResponse(\0010\0012\216\001\n\031ProjectCalcul" +
-      "ationService\022q\n\026GetProjectCalculations\022)" +
-      ".calculatie.GetProjectCalculationsReques" +
-      "t\032*.calculatie.GetProjectCalculationsRes" +
-      "ponse0\001b\006proto3"
+      "\007 \001(\002\"2\n\035GetProjectCalculationsRequest\022\021" +
+      "\n\tprojectId\030\001 \001(\005\".\n\025GetCalculationReque" +
+      "st\022\025\n\rcalculationId\030\001 \001(\005\"1\n\030DeleteCalcu" +
+      "lationRequest\022\025\n\rcalculationId\030\001 \001(\005\"\306\001\n" +
+      "\030UpdateCalculationRequest\022\025\n\rcalculation" +
+      "Id\030\001 \001(\005\022\021\n\tprojectId\030\002 \001(\005\022\021\n\tarticleId" +
+      "\030\003 \001(\005\022\023\n\013description\030\004 \001(\t\022\027\n\017measureme" +
+      "ntType\030\005 \001(\t\022\027\n\017measurementUnit\030\006 \001(\t\022\020\n" +
+      "\010quantity\030\007 \001(\002\022\024\n\014pricePerUnit\030\010 \001(\002\"D\n" +
+      "\032ConfirmCalculationResponse\022\021\n\tarticleId" +
+      "\030\001 \001(\005\022\023\n\013description\030\002 \001(\t\"\330\001\n\026GetCalcu" +
+      "lationResponse\022\025\n\rcalculationId\030\001 \001(\005\022\021\n" +
+      "\tprojectId\030\002 \001(\005\022\021\n\tarticleId\030\003 \001(\005\022\023\n\013d" +
+      "escription\030\004 \001(\t\022\027\n\017measurementType\030\005 \001(" +
+      "\t\022\027\n\017measurementUnit\030\006 \001(\t\022\020\n\010quantity\030\007" +
+      " \001(\002\022\024\n\014pricePerUnit\030\010 \001(\002\022\022\n\ntotalPrice" +
+      "\030\t \001(\0022\201\004\n\022CalculationService\022a\n\020Calcula" +
+      "teProject\022!.calculatie.CalculatePriceReq" +
+      "uest\032&.calculatie.ConfirmCalculationResp" +
+      "onse(\0010\001\022i\n\026GetProjectCalculations\022).cal" +
+      "culatie.GetProjectCalculationsRequest\032\"." +
+      "calculatie.GetCalculationResponse0\001\022W\n\016G" +
+      "etCalculation\022!.calculatie.GetCalculatio" +
+      "nRequest\032\".calculatie.GetCalculationResp" +
+      "onse\022a\n\021DeleteCalculation\022$.calculatie.D" +
+      "eleteCalculationRequest\032&.calculatie.Con" +
+      "firmCalculationResponse\022a\n\021UpdateCalcula" +
+      "tion\022$.calculatie.UpdateCalculationReque" +
+      "st\032&.calculatie.ConfirmCalculationRespon" +
+      "seb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -3402,24 +5511,42 @@ public final class Calculatie {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_calculatie_CalculatePriceRequest_descriptor,
         new java.lang.String[] { "ProjectId", "ArticleId", "Description", "MeasurementType", "MeasurementUnit", "Quantity", "PricePerUnit", });
-    internal_static_calculatie_CalculatePriceResponse_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_calculatie_CalculatePriceResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_calculatie_CalculatePriceResponse_descriptor,
-        new java.lang.String[] { "ProjectId", "ArticleId", "TotalPrice", });
     internal_static_calculatie_GetProjectCalculationsRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_calculatie_GetProjectCalculationsRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_calculatie_GetProjectCalculationsRequest_descriptor,
         new java.lang.String[] { "ProjectId", });
-    internal_static_calculatie_GetProjectCalculationsResponse_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_calculatie_GetProjectCalculationsResponse_fieldAccessorTable = new
+    internal_static_calculatie_GetCalculationRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_calculatie_GetCalculationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_calculatie_GetProjectCalculationsResponse_descriptor,
-        new java.lang.String[] { "ProjectId", "ArticleId", "Description", "MeasurementType", "MeasurementUnit", "Quantity", "PricePerUnit", "TotalPrice", });
+        internal_static_calculatie_GetCalculationRequest_descriptor,
+        new java.lang.String[] { "CalculationId", });
+    internal_static_calculatie_DeleteCalculationRequest_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_calculatie_DeleteCalculationRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_calculatie_DeleteCalculationRequest_descriptor,
+        new java.lang.String[] { "CalculationId", });
+    internal_static_calculatie_UpdateCalculationRequest_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_calculatie_UpdateCalculationRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_calculatie_UpdateCalculationRequest_descriptor,
+        new java.lang.String[] { "CalculationId", "ProjectId", "ArticleId", "Description", "MeasurementType", "MeasurementUnit", "Quantity", "PricePerUnit", });
+    internal_static_calculatie_ConfirmCalculationResponse_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_calculatie_ConfirmCalculationResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_calculatie_ConfirmCalculationResponse_descriptor,
+        new java.lang.String[] { "ArticleId", "Description", });
+    internal_static_calculatie_GetCalculationResponse_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_calculatie_GetCalculationResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_calculatie_GetCalculationResponse_descriptor,
+        new java.lang.String[] { "CalculationId", "ProjectId", "ArticleId", "Description", "MeasurementType", "MeasurementUnit", "Quantity", "PricePerUnit", "TotalPrice", });
     descriptor.resolveAllFeaturesImmutable();
   }
 

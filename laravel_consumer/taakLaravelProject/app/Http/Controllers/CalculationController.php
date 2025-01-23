@@ -30,6 +30,21 @@ class CalculationController extends Controller
         }
     }
 
+    public function show($calculationId)
+    {
+        log::info("Fetching calculation with id: $calculationId");
+
+        try {
+            $response = $this->client->get("/api/calculations/{$calculationId}");
+            $calculation = json_decode($response->getBody()->getContents(), true);
+            // Log::info("Calculation fetched successfully: " . json_encode($calculation));
+            return response()->json($calculation);
+        } catch (\Exception $e) {
+            Log::error("Calculation not found: " . $e->getMessage());
+            return response()->json(['error' => 'Calculation not found'], 404);
+        }
+    }
+
     public function store($projectId, Request $request)
     {
         Log::info("Storing calculation for project with id: $projectId");
@@ -49,68 +64,39 @@ class CalculationController extends Controller
         }
     }
 
-    // public function show($projectId, $phaseId)
-    // {
-    //     try {
-    //         $response = $this->client->get("/api/projects/{$projectId}/phases/{$phaseId}");
-    //         $project = json_decode($response->getBody()->getContents(), true);
+    public function update($calculationId, Request $request)
+    {
+        Log::info("Updating calculation with id: $calculationId");
 
-    //         return response()->json($project);
-    //     } catch (\Exception $e) {
-    //         return response()->json(['error' => 'Project not found'], 404);
-    //     }
-    // }
+        $data = $request->all();
 
-    // public function store($projectId, Request $request)
-    // {
-    //     $data = [
-    //         'name' => $request->input('name'),
-    //         'description' => $request->input('description'),
-    //         'startDate' => $request->input('startDate'),
-    //         'endDate' => $request->input('endDate')
-    //     ];
+        log::info("Data to be updated: " . json_encode($data));
 
-    //     try {
-    //         $response = $this->client->post("/api/projects/{$projectId}/phases", [
-    //             'json' => $data
-    //         ]);
+        try {
+            $response = $this->client->put("/api/calculations/{$calculationId}", [
+                'json' => $data
+            ]);
 
-    //         return response()->json(json_decode($response->getBody(), true), $response->getStatusCode());
-    //     } catch (\Exception $e) {
-    //         return response()->json(['error' => $e->getMessage()], 500);
-    //     }
-    // }
+            Log::info("Calculation updated successfully: " . json_encode($response->getBody()));
 
-    // public function destroy($projectId, $phaseId)
-    // {
-    //     try {
-    //         $response = $this->client->delete("/api/projects/{$projectId}/phases/{$phaseId}");
+            return response()->json(json_decode($response->getBody(), true), $response->getStatusCode());
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 
-    //         return response()->json(json_decode($response->getBody(), true), $response->getStatusCode());
-    //     } catch (\Exception $e) {
-    //         return response()->json(['error' => $e->getMessage()], 500);
-    //     }
-    // }
+    public function destroy($calculationId)
+    {
+        Log::info("Deleting calculation with id: $calculationId");
 
-    // public function update($projectId, $phaseId, Request $request)
-    // {
-    //     $data = [
-    //         'name' => $request->input('name'),
-    //         'description' => $request->input('description'),
-    //         'startDate' => $request->input('startDate'),
-    //         'endDate' => $request->input('endDate')
-    //     ];
+        try {
+            $response = $this->client->delete("/api/calculations/{$calculationId}");
 
-    //     try {
-    //         $response = $this->client->put("/api/projects/{$projectId}/phases/{$phaseId}", [
-    //             'json' => $data
-    //         ]);
-
-    //         return response()->json(json_decode($response->getBody(), true), $response->getStatusCode());
-    //     } catch (\Exception $e) {
-    //         return response()->json(['error' => $e->getMessage()], 500);
-    //     }
-    // }
+            return response()->json(json_decode($response->getBody(), true), $response->getStatusCode());
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
 
 

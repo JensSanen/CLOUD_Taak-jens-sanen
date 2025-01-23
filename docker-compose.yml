@@ -130,8 +130,8 @@ services:
     networks:
       - mynetwork  
 
-  facturatie_api:
-    container_name: facturatie_api
+  facturatie-api:
+    container_name: facturatie-api
     restart: unless-stopped
     build:
       context: ./facturatie
@@ -238,6 +238,8 @@ services:
     volumes:
       - "./werfmonitoring/influxdb2_data/config:/etc/influxdb2"
       - "./werfmonitoring/influxdb2_data/data:/var/lib/influxdb2"
+    networks:
+      - mynetwork
 
   werfmonitoring_mqtt:
     build: 
@@ -249,6 +251,8 @@ services:
     environment:
       - MQTT_BROKER_HOST=mosquitto
       - MQTT_BROKER_PORT=1883
+    networks:
+      - mynetwork
   
   mosquitto:
     image: eclipse-mosquitto
@@ -258,6 +262,8 @@ services:
       - "9001:9001"
     volumes:
       - ./werfmonitoring/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - mynetwork
 
   telegraf:
     image: telegraf:latest
@@ -269,16 +275,21 @@ services:
       - INFLUX_TOKEN=admintoken
     volumes:
       - ./werfmonitoring/telegraf_taak.conf:/etc/telegraf/telegraf.conf:ro
+    networks:
+      - mynetwork
 
   grafana:
     image: grafana/grafana:latest
     container_name: werfmonitoring_grafana
     volumes:
       - ./werfmonitoring/grafana_data:/var/lib/grafana
+      - ./werfmonitoring/grafana.ini:/etc/grafana/grafana.ini
     ports:
       - 3000:3000
     depends_on:
       - influxdb
+    networks:
+      - mynetwork
 
 networks:
   mynetwork: 

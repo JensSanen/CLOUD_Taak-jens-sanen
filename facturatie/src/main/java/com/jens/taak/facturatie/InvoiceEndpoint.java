@@ -20,18 +20,23 @@ import taak.jens.com.facturatie.Project;
 import taak.jens.com.facturatie.Phase;
 import taak.jens.com.facturatie.Worker;
 import taak.jens.com.facturatie.Calculation;
-import calculatie.Calculatie.GetProjectCalculationsResponse;
+import calculatie.Calculatie.GetCalculationResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Endpoint
 public class InvoiceEndpoint {
 
     private static final String NAMESPACE_URI = "http://com.jens.taak/facturatie";
-    private static final String API_PROJECT_URL = "http://host.docker.internal:30001/api/project/";
-    private static final String API_WORKERS_URL = "http://host.docker.internal:30003/api/worked_hours/project/";
+    private static final String API_PROJECT_URL = "http://host.docker.internal:30001/api/projects/";
+    private static final String API_WORKERS_URL = "http://host.docker.internal:30003/api/projects/";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper jsonMapper;
     private final GrpcClient grpcClient;
+
+    private static final Logger logger = LoggerFactory.getLogger(InvoiceEndpoint.class);
 
     @Autowired
     public InvoiceEndpoint(RestTemplate restTemplate) {
@@ -43,6 +48,8 @@ public class InvoiceEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getInvoiceRequest")
     @ResponsePayload
     public GetInvoiceResponse getInvoice(@RequestPayload GetInvoiceRequest request) throws Exception {
+        logger.info("Received SOAP request: {}", request.toString());
+        logger.info("Creating invoice for project with ID: {}", request.getProjectId());
         int projectId = request.getProjectId();
         Invoice invoice = createInvoice(projectId);
         GetInvoiceResponse response = new GetInvoiceResponse();
@@ -70,7 +77,7 @@ public class InvoiceEndpoint {
     }
 
     private List<Worker> createWorkers(int projectId) throws Exception {
-        String workers_URL = UriComponentsBuilder.fromUriString(API_WORKERS_URL + projectId).toUriString();
+        String workers_URL = UriComponentsBuilder.fromUriString(API_WORKERS_URL + projectId + "/workedHours").toUriString();
 
         // Stap 1: JSON ophalen van de API
         String jsonResponseWorkers = restTemplate.getForObject(workers_URL, String.class);
@@ -82,7 +89,7 @@ public class InvoiceEndpoint {
 
     private List<Calculation> fetchCalculations(int projectId) throws Exception {
         // Haal berekeningen op via gRPC
-        List<GetProjectCalculationsResponse> grpcCalculations = grpcClient.getProjectCalculations(projectId);
+        List<GetCalculationResponse> grpcCalculations = grpcClient.getProjectCalculations(projectId);
 
         // Zet de gRPC-responses om naar Calculation-objecten
         return grpcCalculations.stream().map(calc -> {

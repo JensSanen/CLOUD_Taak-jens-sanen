@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package calculatie;
 
-// Verzoek om de prijs te berekenen voor een project
+
 message CalculatePriceRequest {
   int32 projectId = 1; 
   int32 articleId = 2;
@@ -13,20 +13,35 @@ message CalculatePriceRequest {
   float pricePerUnit = 7;
 }
 
-// Antwoord voor de berekening van de prijs
-message CalculatePriceResponse {
-  int32 projectId = 1;
-  int32 articleId = 2;
-  float totalPrice = 3;
-}
-
-// Verzoek om alle berekeningen voor een project op te halen
 message GetProjectCalculationsRequest {
   int32 projectId = 1;
 }
 
-// Antwoord voor de berekeningen van een project
-message GetProjectCalculationsResponse {
+message GetCalculationRequest {
+  int32 calculationId = 1;
+}
+
+message DeleteCalculationRequest {
+  int32 calculationId = 1;
+}
+
+message UpdateCalculationRequest {
+  int32 calculationId = 1;
+  int32 projectId = 2;
+  int32 articleId = 3;
+  string description = 4;
+  string measurementType = 5;
+  string measurementUnit = 6;
+  float quantity = 7;
+  float pricePerUnit = 8;
+}
+
+message ConfirmCalculationResponse {
+  int32 articleId = 1;
+  string description = 2;
+}
+
+message GetCalculationResponse {
   int32 calculationId = 1;
   int32 projectId = 2;
   int32 articleId = 3;
@@ -38,14 +53,20 @@ message GetProjectCalculationsResponse {
   float totalPrice = 9;
 }
 
-// Service voor het berekenen van de prijzen
-service CalculationService {
-  // Bereken de prijs voor meerdere artikelen in een project
-  rpc CalculateProject (stream CalculatePriceRequest) returns (stream CalculatePriceResponse);
-}
 
-// Service voor het ophalen van berekeningen voor een specifiek project
-service ProjectCalculationService {
-  // Haal alle berekeningen op voor een project
-  rpc GetProjectCalculations (GetProjectCalculationsRequest) returns (stream GetProjectCalculationsResponse);
+service CalculationService {
+  // Calculate the price of different articles for a project
+  rpc CalculateProject (stream CalculatePriceRequest) returns (stream ConfirmCalculationResponse);
+
+  // Get all calculations for a project
+  rpc GetProjectCalculations (GetProjectCalculationsRequest) returns (stream GetCalculationResponse);
+
+  // Get a calculation by id -> used for updating and deleting
+  rpc GetCalculation (GetCalculationRequest) returns (GetCalculationResponse);
+
+  // Delete a calculation by id
+  rpc DeleteCalculation (DeleteCalculationRequest) returns (ConfirmCalculationResponse);
+
+  // Update a calculation by id
+  rpc UpdateCalculation (UpdateCalculationRequest) returns (ConfirmCalculationResponse);
 }

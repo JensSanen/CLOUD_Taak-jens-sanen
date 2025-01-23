@@ -72,6 +72,51 @@
         </div>
     </div>
 
+    <div class="modal fade" id="editCalculationModal" tabindex="-1" aria-labelledby="editCalculationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCalculationModalLabel">Calculatie bewerken</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="updateCalculation(event)">
+                        <input type="hidden" id="editCalculationId">
+                        <div class="mb-3">
+                            <label for="editArticleId" class="form-label text-start">Artikel Nr</label>
+                            <input type="text" class="form-control" id="editArticleId" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDescription" class="form-label text-start">Artikel Omschrijving</label>
+                            <input type="text" class="form-control" id="editDescription" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editMeasurementType" class="form-label text-start">Meetcode</label>
+                            <select class="form-select" id="editMeasurementType" required>
+                                <option value="1">FH</option>
+                                <option value="2">VH</option>
+                                <option value="3">SOG</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editMeasurementUnit" class="form-label text-start">Eenheid</label>
+                            <input type="text" class="form-control" id="editMeasurementUnit" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editQuantity" class="form-label text-start">Hoeveelheid</label>
+                            <input type="number" step="0.1" class="form-control" id="editQuantity" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPricePerUnit" class="form-label text-start">Eenheidsprijs</label>
+                            <input type="number" step="0.01" class="form-control" id="editPricePerUnit" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Opslaan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const projectId = {{ $projectId }};
 
@@ -99,11 +144,11 @@
                         <td>${calculation.description}</td>
                         <td>${calculation.measurementType}</td>
                         <td>${calculation.measurementUnit}</td>
-                        <td>${calculation.quantity}</td>
-                        <td>€${calculation.pricePerUnit}</td>
-                        <td>€${calculation.totalPrice}</td>
+                        <td>${calculation.quantity.toFixed(2)}</td>
+                        <td>€${calculation.pricePerUnit.toFixed(2)}</td>
+                        <td>€${calculation.totalPrice.toFixed(2)}</td>
                         <td>
-                            <button class="btn btn-primary" onclick="editCalculation(${calculation.calculationId})">Bewerken</button>
+                            <button class="btn btn-primary" onclick="openEditCalculation(${calculation.calculationId})">Bewerken</button>
                             <button class="btn btn-danger" onclick="deleteCalculation(${calculation.calculationId})">Verwijderen</button>
                         </td>
                         `;
@@ -181,6 +226,67 @@
                 document.getElementById('addCalculationsModal').querySelector('.btn-close').click();
                 document.getElementById('calculationRows').innerHTML = '';
 
+            });
+        }
+
+        function deleteCalculation(calculationId) {
+            fetch(`/api/calculations/${calculationId}`, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => {
+                fetchCalculations();
+            });
+        }
+
+        function openEditCalculation(calculationId) {
+            fetch(`/api/calculations/${calculationId}`)
+                .then(response => response.json())
+                .then(calculation => {
+                    document.getElementById('editCalculationId').value = calculation.calculationId;
+                    document.getElementById('editArticleId').value = calculation.articleId;
+                    document.getElementById('editDescription').value = calculation.description;
+                    document.getElementById('editMeasurementType').value = calculation.measurementType;
+                    const options = document.getElementById('editMeasurementType').options;
+                    for (let i = 0; i < options.length; i++) {
+                        if (options[i].text === calculation.measurementType) {
+                            options[i].selected = true;
+                            break;
+                        }
+                    }
+                    document.getElementById('editMeasurementUnit').value = calculation.measurementUnit;
+                    document.getElementById('editQuantity').value = calculation.quantity;
+                    document.getElementById('editPricePerUnit').value = calculation.pricePerUnit;
+
+                    const editCalculationModal = new bootstrap.Modal(document.getElementById('editCalculationModal'));
+                    editCalculationModal.show();
+                });
+        }
+
+        function updateCalculation(event) {
+            event.preventDefault();
+            const calculationId = document.getElementById('editCalculationId').value;
+            const calculation = {
+                projectId: projectId,
+                articleId: parseInt(document.getElementById('editArticleId').value, 10),
+                description: document.getElementById('editDescription').value,
+                measurementType: document.getElementById('editMeasurementType').selectedOptions[0].innerText,
+                measurementUnit: document.getElementById('editMeasurementUnit').value,
+                quantity: parseInt(document.getElementById('editQuantity').value, 10),
+                pricePerUnit: parseFloat(document.getElementById('editPricePerUnit').value)
+            };
+
+            fetch(`/api/calculations/${calculationId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(calculation),
+            })
+            .then(response => response.json())
+            .then(data => {
+                fetchCalculations();
+                document.getElementById('editCalculationModal').querySelector('.btn-close').click();
             });
         }
 

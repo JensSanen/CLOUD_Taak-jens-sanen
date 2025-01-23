@@ -1,8 +1,8 @@
 import grpc
 from concurrent import futures
 import time
-import calculatie_pb2
-import calculatie_pb2_grpc
+import calculatie_pb2 as calculatie_pb2
+import calculatie_pb2_grpc as calculatie_pb2_grpc
 import pymysql
 import os
 
@@ -24,12 +24,12 @@ class CalculationService(calculatie_pb2_grpc.CalculationServiceServicer):
             cursor = db.cursor(pymysql.cursors.DictCursor)
             for request in request_iterator:
                 totalPrice = request.quantity * request.pricePerUnit
-                response = calculatie_pb2.CalculatePriceResponse(
-                    projectId=request.projectId,
+                response = calculatie_pb2.ConfirmCalculationResponse(
                     articleId=request.articleId,
-                    totalPrice=totalPrice
+                    description=request.description,
                 )
                 cursor.execute("INSERT INTO calculations (projectId, articleId, description, measurementType, measurementUnit, quantity, pricePerUnit, totalPrice) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (request.projectId, request.articleId, request.description, request.measurementType, request.measurementUnit, request.quantity, request.pricePerUnit, totalPrice))
+                context.set_code(grpc.StatusCode.OK)
                 yield response
             db.commit()
         except Exception as e:
@@ -39,7 +39,6 @@ class CalculationService(calculatie_pb2_grpc.CalculationServiceServicer):
             cursor.close()
             db.close()
 
-class ProjectCalculationService(calculatie_pb2_grpc.ProjectCalculationServiceServicer):
     def GetProjectCalculations(self, request, context):
         db = get_db_connection()
         cursor = db.cursor(pymysql.cursors.DictCursor)
@@ -47,7 +46,8 @@ class ProjectCalculationService(calculatie_pb2_grpc.ProjectCalculationServiceSer
             cursor.execute("SELECT * FROM calculations WHERE projectId = %s", (request.projectId))
             calculations = cursor.fetchall()
             for calculation in calculations:
-                yield calculatie_pb2.GetProjectCalculationsResponse(
+                context.set_code(grpc.StatusCode.OK)
+                yield calculatie_pb2.GetCalculationResponse(
                     calculationId=calculation['calculationId'],
                     projectId=calculation['projectId'],
                     articleId=calculation['articleId'],
@@ -65,10 +65,83 @@ class ProjectCalculationService(calculatie_pb2_grpc.ProjectCalculationServiceSer
             cursor.close()
             db.close()
 
+    def GetCalculation(self, request, context):
+        db = get_db_connection()
+        cursor = db.cursor(pymysql.cursors.DictCursor)
+        try:
+            cursor.execute("SELECT * FROM calculations WHERE calculationId = %s", (request.calculationId))
+            calculation = cursor.fetchone()
+            if calculation:
+                context.set_code(grpc.StatusCode.OK)
+                return calculatie_pb2.GetCalculationResponse(
+                    calculationId=calculation['calculationId'],
+                    projectId=calculation['projectId'],
+                    articleId=calculation['articleId'],
+                    description=calculation['description'],
+                    measurementType=calculation['measurementType'],
+                    measurementUnit=calculation['measurementUnit'],
+                    quantity=calculation['quantity'],
+                    pricePerUnit=calculation['pricePerUnit'],
+                    totalPrice=calculation['totalPrice']
+                )
+            else:
+                context.set_details("Berekening niet gevonden")
+                context.set_code(grpc.StatusCode.NOT_FOUND)
+        except Exception as e:
+            context.set_details(str(e))
+            context.set_code(grpc.StatusCode.INTERNAL)
+        finally:
+            cursor.close()
+            db.close()
+
+    def DeleteCalculation(self, request, context):
+        db = get_db_connection()
+        cursor = db.cursor(pymysql.cursors.DictCursor)
+        try:
+            cursor.execute("SELECT description, articleId FROM calculations WHERE calculationId = %s", (request.calculationId,))
+            result = cursor.fetchone()
+            if result:
+                description = result['description']
+                articleId = result['articleId']
+                cursor.execute("DELETE FROM calculations WHERE calculationId = %s", (request.calculationId,))
+                db.commit()
+                # context.set_code(grpc.StatusCode.OK)
+                return calculatie_pb2.ConfirmCalculationResponse(
+                    articleId=articleId,
+                    description=description
+                )
+            else:
+                context.set_details("Berekening niet gevonden")
+                context.set_code(grpc.StatusCode.NOT_FOUND)
+        except Exception as e:
+            context.set_details(str(e))
+            context.set_code(grpc.StatusCode.INTERNAL)
+        finally:
+            cursor.close()
+            db.close()
+
+    def UpdateCalculation(self, request, context):
+        db = get_db_connection()
+        cursor = db.cursor(pymysql.cursors.DictCursor)
+        try:
+            totalPrice = request.quantity * request.pricePerUnit
+            cursor.execute("UPDATE calculations SET projectId = %s, articleId = %s, description = %s, measurementType = %s, measurementUnit = %s, quantity = %s, pricePerUnit = %s, totalPrice = %s WHERE calculationId = %s", (request.projectId, request.articleId, request.description, request.measurementType, request.measurementUnit, request.quantity, request.pricePerUnit, totalPrice, request.calculationId))
+            db.commit()
+            context.set_code(grpc.StatusCode.OK)
+            return calculatie_pb2.ConfirmCalculationResponse(
+                articleId=request.articleId,
+                description=request.description
+            )
+        except Exception as e:
+            context.set_details(str(e))
+            context.set_code(grpc.StatusCode.INTERNAL)
+        finally:
+            cursor.close()
+            db.close()
+
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     calculatie_pb2_grpc.add_CalculationServiceServicer_to_server(CalculationService(), server)
-    calculatie_pb2_grpc.add_ProjectCalculationServiceServicer_to_server(ProjectCalculationService(), server)
 
     server.add_insecure_port('[::]:50051')
     print("Server draait op poort 50051...")

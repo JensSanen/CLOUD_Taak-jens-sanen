@@ -12,7 +12,8 @@
         <div id="message" ></div>
         <div class="d-flex justify-content-start mb-4">
             <button class="btn btn-secondary me-3" onclick="window.location.href = '/projects'">Projecten</button>
-            <button class="btn btn-secondary" onclick="window.location.href = '/stock'">Voorraad</button>
+            <button class="btn btn-secondary me-3" onclick="window.location.href = '/stock'">Voorraad</button>
+            <button class="btn btn-secondary me-3" onclick="window.location.href = '/monitoring'">Werf Monitoring</button>
         </div>
         <h1 class="text-center mb-4">Projecten Overzicht</h1>
         <div class="d-flex justify-content-end mb-4">
@@ -133,7 +134,8 @@
                                                 <button class="btn btn-primary btn-sm" onclick="openProjectPhases(${project.projectId})">Fases</button>
                                                 <button class="btn btn-primary btn-sm" onclick="openProjectHours(${project.projectId})">Gewerkte uren</button>
                                                 <button class="btn btn-primary btn-sm" onclick="openCalculations(${project.projectId})">Calculatie</button>
-                                                <button class="btn btn-primary btn-sm" onclick="openCalculations(${project.projectId})">Factuur</button>
+                                                <button class="btn btn-primary btn-sm"
+                                                onclick="openInvoice(${project.projectId})">Factuur</button>
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center gap-2">
@@ -179,6 +181,11 @@
         function openCalculations(projectId) {
             const projectCalculationsURL = `/projects/${projectId}/calculations`;
             window.open(projectCalculationsURL, '_blank');
+        }
+
+        function openInvoice(projectId) {
+            const projectInvoiceURL = `/projects/${projectId}/invoice`;
+            window.open(projectInvoiceURL, '_blank');
         }
 
         function updateProject(event) {

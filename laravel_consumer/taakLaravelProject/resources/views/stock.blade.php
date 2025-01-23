@@ -12,7 +12,8 @@
         <div id="message" ></div>
         <div class="d-flex justify-content-start mb-4">
             <button class="btn btn-secondary me-3" onclick="window.location.href = '/projects'">Projecten</button>
-            <button class="btn btn-secondary" onclick="window.location.href = '/stock'">Voorraad</button>
+            <button class="btn btn-secondary me-3" onclick="window.location.href = '/stock'">Voorraad</button>
+            <button class="btn btn-secondary me-3" onclick="window.location.href = '/monitoring'">Werf Monitoring</button>
         </div>
         <h1 class="text-center mb-4">Voorraad Beheren</h1>
         <div class="d-flex justify-content-between mb-4">
