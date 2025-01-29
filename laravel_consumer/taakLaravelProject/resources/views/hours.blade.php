@@ -138,6 +138,7 @@
             fetch(`/api/projects/${projectId}/hours`)
                 .then(response => response.json())
                 .then(hoursWorked => {
+                    console.log(hoursWorked);
                     const hoursWorkedList = document.getElementById('hoursTableBody');
                     hoursWorkedList.innerHTML = '';
                     hoursWorked.forEach(hourWorked => {

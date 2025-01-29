@@ -12,7 +12,7 @@ class WorkerController extends Controller
 
     public function __construct()
     {
-        $this->client = new Client(['base_uri' => 'uurregistratie_api:5000']);
+        $this->client = new Client(['base_uri' => 'uurregistratie_api2:8000']);
     }
 
     public function index()
@@ -20,7 +20,7 @@ class WorkerController extends Controller
         log::info("Fetching workers");
         $response = $this->client->get("/api/workers");
         $workers = json_decode($response->getBody()->getContents(), true);
-        // Log::info($workers);
+        Log::info($workers);
         return response()->json($workers);
     }
 

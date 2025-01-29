@@ -12,7 +12,7 @@ class WorkedHoursController extends Controller
 
     public function __construct()
     {
-        $this->client = new Client(['base_uri' => 'uurregistratie_api:5000']);
+        $this->client = new Client(['base_uri' => 'uurregistratie_api2:8000']);
     }
 
     public function index($projectId)
@@ -48,7 +48,6 @@ class WorkedHoursController extends Controller
             $response = $this->client->post("/api/projects/${projectId}/workedHours", [
                 'json' => $data
             ]);
-
             return response()->json(json_decode($response->getBody(), true), $response->getStatusCode());
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

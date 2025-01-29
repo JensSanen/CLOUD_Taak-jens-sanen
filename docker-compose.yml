@@ -116,6 +116,29 @@ services:
     networks:
       - mynetwork  
 
+  uurregistratie_api2:
+    image: bitnami/laravel:11-debian-12
+    container_name: uurregistratie_api2
+    restart: unless-stopped
+    # build:
+    #   context: ./uurregistratie2
+    #   dockerfile: Dockerfile
+    ports:
+      - "30010:8000"
+    volumes:
+      - ./uurregistratie2:/app
+    command: tail -f /dev/null  # Laat de container gewoon oneindig draaien. Goed voor development omgeving.
+    depends_on:
+      - uurregistratie_db
+    environment:
+      - DB_HOST=uurregistratie_db
+      - DB_PORT=3306
+      - DB_DATABASE=uurregistratieAPI
+      - DB_USERNAME=uurregistratie
+      - DB_PASSWORD=uurregistratiePwd
+    networks:
+      - mynetwork
+
   uurregistratie_db:
     image: mariadb:10.6.19-focal
     container_name: uurregistratie_db
