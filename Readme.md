@@ -9,7 +9,7 @@ Dit project is een platform voor de **bouwsector**, ontworpen om aannemers te he
 - **Calculatie & Meetstaatbeheer**: Per project kan een meetstaat worden beheerd voor nauwkeurige calculaties.  
 - **Globaal projectoverzicht**: Een totaaloverzicht van alle projecten is beschikbaar.  
 - **Werfmonitoring**: Een dashboard maakt het mogelijk om werven **op afstand** te monitoren.  
-- **Voorraadbeheer**: Een overzicht van alle producten in het magazijn en een overzicht van de verschillende leveranciers.
+- **Stockbeheer**: Een overzicht van alle producten in het magazijn en een overzicht van de verschillende leveranciers.
 
 ## **Technologieën**  
 Het platform is opgebouwd uit **verschillende microservices**, elk met hun eigen programmeertaal, communicatietechniek en data-uitwisselingsformaat:  
