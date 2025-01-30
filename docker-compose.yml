@@ -31,7 +31,7 @@ services:
     container_name: werfplanning_api2
     restart: unless-stopped
     ports:
-      - "30011:8080"
+      - "30007:8080"
     depends_on:
       - werfplanning_db
     environment:
@@ -143,7 +143,7 @@ services:
       context: ./uurregistratie2
       dockerfile: Dockerfile
     ports:
-      - "30010:8000"
+      - "30008:8000"
     volumes:
       - ./uurregistratie2:/app
     command: tail -f /dev/null  # Laat de container gewoon oneindig draaien. Goed voor development omgeving.
