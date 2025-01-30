@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 public class InvoiceEndpoint {
 
     private static final String NAMESPACE_URI = "http://com.jens.taak/facturatie";
-    private static final String API_PROJECT_URL = "http://host.docker.internal:30001/api/projects/";
+    private static final String API_PROJECT_URL = "http://host.docker.internal:30011/api/projects/";
     private static final String API_WORKERS_URL = "http://host.docker.internal:30010/api/projects/";
 
     private final RestTemplate restTemplate;
@@ -47,83 +47,101 @@ public class InvoiceEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getInvoiceRequest")
     @ResponsePayload
-    public GetInvoiceResponse getInvoice(@RequestPayload GetInvoiceRequest request) throws Exception {
-        logger.info("Received SOAP request: {}", request.toString());
-        logger.info("Creating invoice for project with ID: {}", request.getProjectId());
-        int projectId = request.getProjectId();
-        Invoice invoice = createInvoice(projectId);
-        GetInvoiceResponse response = new GetInvoiceResponse();
-        response.setInvoice(invoice);
-        return response;
+    public GetInvoiceResponse getInvoice(@RequestPayload GetInvoiceRequest request) {
+        logger.info("Received SOAP request: {}", request);
+        
+        try {
+            logger.info("Creating invoice for project with ID: {}", request.getProjectId());
+            int projectId = request.getProjectId();
+            Invoice invoice = createInvoice(projectId);
+            GetInvoiceResponse response = new GetInvoiceResponse();
+            response.setInvoice(invoice);
+            logger.info("Invoice successfully created for project ID: {}", projectId);
+            return response;
+        } catch (Exception e) {
+            logger.error("Error while processing invoice request: {}", e.getMessage(), e);
+            throw new RuntimeException("Failed to generate invoice", e);
+        }
     }
 
     private Project createProject(int projectId) throws Exception {
+        logger.info("Fetching project details for project ID: {}", projectId);
+        
         String project_URL = UriComponentsBuilder.fromUriString(API_PROJECT_URL + projectId).toUriString();
         String phases_URL = UriComponentsBuilder.fromUriString(project_URL + "/phases").toUriString();
-
-        // Stap 1: JSON ophalen van de API
-        String jsonResponseProject = restTemplate.getForObject(project_URL, String.class);
-        String jsonResponsePhases = restTemplate.getForObject(phases_URL, String.class);
-
-        // Stap 2: JSON naar objecten converteren 
-        Project project = jsonMapper.readValue(jsonResponseProject, Project.class);
-        Phase[] phasesArray = jsonMapper.readValue(jsonResponsePhases, Phase[].class);
-        List<Phase> phaseList = Arrays.asList(phasesArray);
-
-        // Voeg de nieuwe fases toe aan de bestaande lijst
-        project.getPhases().addAll(phaseList);
-
-        return project;
+        
+        try {
+            String jsonResponseProject = restTemplate.getForObject(project_URL, String.class);
+            String jsonResponsePhases = restTemplate.getForObject(phases_URL, String.class);
+            
+            Project project = jsonMapper.readValue(jsonResponseProject, Project.class);
+            Phase[] phasesArray = jsonMapper.readValue(jsonResponsePhases, Phase[].class);
+            List<Phase> phaseList = Arrays.asList(phasesArray);
+            project.getPhases().addAll(phaseList);
+            
+            logger.info("Successfully fetched project and phases for project ID: {}", projectId);
+            return project;
+        } catch (Exception e) {
+            logger.error("Error fetching project data for project ID {}: {}", projectId, e.getMessage(), e);
+            throw e;
+        }
     }
 
     private List<Worker> createWorkers(int projectId) throws Exception {
+        logger.info("Fetching workers for project ID: {}", projectId);
+        
         String workers_URL = UriComponentsBuilder.fromUriString(API_WORKERS_URL + projectId + "/workedHours").toUriString();
-
-        // Stap 1: JSON ophalen van de API
-        String jsonResponseWorkers = restTemplate.getForObject(workers_URL, String.class);
-
-        // Stap 2: JSON naar objecten converteren 
-        Worker[] workersArray = jsonMapper.readValue(jsonResponseWorkers, Worker[].class);
-        return Arrays.asList(workersArray);
+        
+        try {
+            String jsonResponseWorkers = restTemplate.getForObject(workers_URL, String.class);
+            Worker[] workersArray = jsonMapper.readValue(jsonResponseWorkers, Worker[].class);
+            logger.info("Successfully fetched {} workers for project ID: {}", workersArray.length, projectId);
+            return Arrays.asList(workersArray);
+        } catch (Exception e) {
+            logger.error("Error fetching workers for project ID {}: {}", projectId, e.getMessage(), e);
+            throw e;
+        }
     }
 
     private List<Calculation> fetchCalculations(int projectId) throws Exception {
-        // Haal berekeningen op via gRPC
-        List<GetCalculationResponse> grpcCalculations = grpcClient.getProjectCalculations(projectId);
-
-        // Zet de gRPC-responses om naar Calculation-objecten
-        return grpcCalculations.stream().map(calc -> {
-            Calculation calculation = new Calculation();
-            calculation.setProjectId(projectId);
-            calculation.setArticleId(calc.getArticleId());
-            calculation.setDescription(calc.getDescription());
-            calculation.setMeasurementType(calc.getMeasurementType());
-            calculation.setMeasurementUnit(calc.getMeasurementUnit());
-            calculation.setQuantity(calc.getQuantity());
-            calculation.setPricePerUnit(calc.getPricePerUnit());
-            calculation.setTotalPrice(calc.getTotalPrice());
-            return calculation;
-        }).collect(Collectors.toList());
+        logger.info("Fetching calculations for project ID: {}", projectId);
+        
+        try {
+            List<GetCalculationResponse> grpcCalculations = grpcClient.getProjectCalculations(projectId);
+            List<Calculation> calculations = grpcCalculations.stream().map(calc -> {
+                Calculation calculation = new Calculation();
+                calculation.setProjectId(projectId);
+                calculation.setArticleId(calc.getArticleId());
+                calculation.setDescription(calc.getDescription());
+                calculation.setMeasurementType(calc.getMeasurementType());
+                calculation.setMeasurementUnit(calc.getMeasurementUnit());
+                calculation.setQuantity(calc.getQuantity());
+                calculation.setPricePerUnit(calc.getPricePerUnit());
+                calculation.setTotalPrice(calc.getTotalPrice());
+                return calculation;
+            }).collect(Collectors.toList());
+            
+            logger.info("Successfully fetched {} calculations for project ID: {}", calculations.size(), projectId);
+            return calculations;
+        } catch (Exception e) {
+            logger.error("Error fetching calculations for project ID {}: {}", projectId, e.getMessage(), e);
+            throw e;
+        }
     }
 
     private Invoice createInvoice(int projectId) throws Exception {
+        logger.info("Creating invoice object for project ID: {}", projectId);
+        
         Project project = createProject(projectId);
         List<Worker> workers = createWorkers(projectId);
         List<Calculation> calculations = fetchCalculations(projectId);
-
-        // Voeg gegevens samen in een Invoice
+        
         Invoice invoice = new Invoice();
         invoice.getWorkers().addAll(workers);
         invoice.setProject(project);
         invoice.getCalculations().addAll(calculations);
-
+        
+        logger.info("Invoice object successfully created for project ID: {}", projectId);
         return invoice;
     }
 }
-
-// To run the application, use the following command:
-// ./mvnw spring-boot:run
-
-// To test the application, use the following command:
-// $response = Invoke-WebRequest -Uri "http://localhost:8080/ws" -Method Post -Body (Get-Content -Raw -Path "request.xml") -ContentType "text/xml"
-// $response.Content

@@ -1,29 +1,29 @@
 version: '3.8'
 
 services:
-  werfplanning_api:
-    container_name: werfplanning_api
-    restart: unless-stopped
-    build:
-      context: ./werfplanning
-      dockerfile: Dockerfile
-    command: tail -f /dev/null  # Start de Flask-app
-    ports:
-      - "30001:5000"
-    depends_on:
-      - werfplanning_db
-    environment:
-      - FLASK_APP=/app/app.py
-      - FLASK_ENV=development
-      - DB_HOST=werfplanning_db
-      - DB_PORT=3306
-      - DB_DATABASE=werfplanningAPI
-      - DB_USERNAME=werfplanning
-      - DB_PASSWORD=werfplanningPwd
-    volumes:
-      - ./werfplanning/app:/app
-    networks:
-      - mynetwork  
+  # werfplanning_api:
+  #   container_name: werfplanning_api
+  #   restart: unless-stopped
+  #   build:
+  #     context: ./werfplanning
+  #     dockerfile: Dockerfile
+  #   command: tail -f /dev/null  # Start de Flask-app
+  #   ports:
+  #     - "30001:5000"
+  #   depends_on:
+  #     - werfplanning_db
+  #   environment:
+  #     - FLASK_APP=/app/app.py
+  #     - FLASK_ENV=development
+  #     - DB_HOST=werfplanning_db
+  #     - DB_PORT=3306
+  #     - DB_DATABASE=werfplanningAPI
+  #     - DB_USERNAME=werfplanning
+  #     - DB_PASSWORD=werfplanningPwd
+  #   volumes:
+  #     - ./werfplanning/app:/app
+  #   networks:
+  #     - mynetwork  
 
   werfplanning_api2:
     image: werfplanning2
@@ -111,29 +111,29 @@ services:
     networks:
       - mynetwork
 
-  uurregistratie_api:
-    container_name: uurregistratie_api
-    restart: unless-stopped
-    build:
-      context: ./uurregistratie
-      dockerfile: Dockerfile
-    command: tail -f /dev/null  # Start de Flask-app
-    ports:
-      - "30003:5000"
-    depends_on:
-      - uurregistratie_db
-    environment:
-      - FLASK_APP=/app/app.py
-      - FLASK_ENV=development
-      - DB_HOST=uurregistratie_db
-      - DB_PORT=3306
-      - DB_DATABASE=uurregistratieAPI
-      - DB_USERNAME=uurregistratie
-      - DB_PASSWORD=uurregistratiePwd
-    volumes:
-      - ./uurregistratie/app:/app
-    networks:
-      - mynetwork  
+  # uurregistratie_api:
+  #   container_name: uurregistratie_api
+  #   restart: unless-stopped
+  #   build:
+  #     context: ./uurregistratie
+  #     dockerfile: Dockerfile
+  #   command: tail -f /dev/null  # Start de Flask-app
+  #   ports:
+  #     - "30003:5000"
+  #   depends_on:
+  #     - uurregistratie_db
+  #   environment:
+  #     - FLASK_APP=/app/app.py
+  #     - FLASK_ENV=development
+  #     - DB_HOST=uurregistratie_db
+  #     - DB_PORT=3306
+  #     - DB_DATABASE=uurregistratieAPI
+  #     - DB_USERNAME=uurregistratie
+  #     - DB_PASSWORD=uurregistratiePwd
+  #   volumes:
+  #     - ./uurregistratie/app:/app
+  #   networks:
+  #     - mynetwork  
 
   uurregistratie_api2:
     # image: bitnami/laravel:11-debian-12
