@@ -25,5 +25,3 @@ Het platform is opgebouwd uit **verschillende microservices**, elk met hun eigen
 | **Coördinaten bepalen (extern)**  | -                   | REST                     | JSON             |
 | **Weersvoorspelling (extern)**    | -                   | REST                     | JSON             |
 
-## **Conclusie**  
-Dit platform biedt een **geïntegreerde oplossing** voor de bouwsector, waarbij projectbeheer, calculatie en monitoring worden gecombineerd. Door gebruik te maken van **diverse technologieën en communicatiemethoden** is het systeem flexibel en efficiënt in de verwerking van gegevens.
