@@ -12,7 +12,7 @@ class PhaseController extends Controller
 
     public function __construct()
     {
-        $this->client = new Client(['base_uri' => 'werfplanning_api:5000']);
+        $this->client = new Client(['base_uri' => 'werfplanning_api2:8080']);
     }
 
     public function index($projectId)
@@ -41,8 +41,11 @@ class PhaseController extends Controller
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'startDate' => $request->input('startDate'),
-            'endDate' => $request->input('endDate')
+            'endDate' => $request->input('endDate'),
+            'projectId' => $projectId
         ];
+
+        Log::info("Creating phase for project with id: $projectId");
 
         try {
             $response = $this->client->post("/api/projects/{$projectId}/phases", [
@@ -69,10 +72,12 @@ class PhaseController extends Controller
     public function update($projectId, $phaseId, Request $request)
     {
         $data = [
+            'phaseId' => $phaseId,
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'startDate' => $request->input('startDate'),
-            'endDate' => $request->input('endDate')
+            'endDate' => $request->input('endDate'),
+            'projectId' => $projectId
         ];
 
         try {

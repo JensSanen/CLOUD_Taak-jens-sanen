@@ -30,7 +30,7 @@ public class InvoiceEndpoint {
 
     private static final String NAMESPACE_URI = "http://com.jens.taak/facturatie";
     private static final String API_PROJECT_URL = "http://host.docker.internal:30001/api/projects/";
-    private static final String API_WORKERS_URL = "http://host.docker.internal:30003/api/projects/";
+    private static final String API_WORKERS_URL = "http://host.docker.internal:30010/api/projects/";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper jsonMapper;
