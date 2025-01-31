@@ -175,8 +175,45 @@ Deze service haalt alle informatie van een project op. De API doet hiervoor een 
 1. **/api/invoice**  
    ➝ Dit endpoint haalt alle projectinformatie op. Hiervoor dient een XML **GetInvoiceRequest** te worden verstuurd volgens het WSDL-schema met een `projectId`. De service retourneert vervolgens een **XML GetInvoiceResponse**.
 
+---
 
+## **Stockbeheer Service**
 
+De **Stockbeheer Service** is een **GraphQL-based service**, ontwikkeld in **Node.js**, die zich richt op het beheer van producten in een magazijn. Deze service houdt niet alleen producten bij, maar koppelt ze ook aan leveranciers en bewaart ze in rekken binnen het magazijn. De keuze voor GraphQL biedt de flexibiliteit om verschillende queries en mutaties uit te voeren op basis van de vooraf gedefinieerde types, waardoor de service efficiënt en schaalbaar is.
 
+### **Technologieën en Architectuur**
+- **Backend**: Node.js
+- **Communicatietechniek**: GraphQL
+- **Database**: MariaDB (gebruikt via SQL queries binnen resolvers)
+- **Docker**: De service draait binnen een **Docker-container** op **poort 30005**.
 
+De service biedt verschillende **queries** om gegevens op te vragen en **mutaties** om gegevens te wijzigen. De belangrijkste entiteiten die worden beheerd zijn **producten**, **leveranciers**, **rekken** en **locaties** binnen het magazijn.
 
+### **GraphQL Queries**
+De service ondersteunt verschillende GraphQL-queries waarmee gebruikers de status van producten, rekken, locaties en leveranciers kunnen opvragen:
+
+1. **rack**: Haalt een rek op basis van het `rackId`.
+2. **racks**: Haalt een lijst op van alle rekken.
+3. **location**: Haalt een locatie op basis van het `locationId`.
+4. **locations**: Haalt een lijst op van alle locaties.
+5. **locationsEmpty**: Haalt een lijst op van alle lege locaties (waar geen producten aanwezig zijn).
+6. **supplier**: Haalt een leverancier op basis van het `supplierId`.
+7. **suppliers**: Haalt een lijst op van alle leveranciers.
+8. **product**: Haalt een product op basis van het `productId`.
+9. **products**: Haalt een lijst op van alle producten.
+
+### **GraphQL Mutations**
+De service biedt ook verschillende mutaties waarmee gegevens kunnen worden toegevoegd, verwijderd of gewijzigd:
+
+1. **addSupplier**: Voeg een leverancier toe met de opgegeven naam, e-mail en adres.
+2. **deleteSupplier**: Verwijder een leverancier op basis van `supplierId` en alle gekoppelde producten.
+3. **updateSupplier**: Werk een leverancier bij op basis van het `supplierId`, inclusief naam, e-mail en adres.
+4. **addProduct**: Voeg een product toe met de opgegeven naam, beschrijving, prijs, hoeveelheid, locatie en leverancier.
+5. **deleteProduct**: Verwijder een product op basis van `productId`.
+6. **updateProduct**: Werk een product bij op basis van `productId`, inclusief naam, beschrijving, prijs, hoeveelheid, locatie en leverancier.
+7. **moveProduct**: Verplaats een product naar een andere locatie binnen het magazijn.
+8. **addRack**: Voeg een rek toe met een naam en het aantal rijen.
+9. **deleteRack**: Verwijder een rek en de bijbehorende locaties.
+10. **updateRack**: Werk een rek bij, inclusief naam en het aantal rijen, en voeg/sta locaties toe of verwijder ze.
+
+---
