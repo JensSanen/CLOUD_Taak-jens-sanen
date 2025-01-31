@@ -6,9 +6,9 @@ Dit project is een **platform voor de bouwsector**, ontworpen om aannemers te on
 - **Projectbeheer**: Gebruikers kunnen projecten aanmaken, bewerken en verwijderen. Elk project kan worden onderverdeeld in verschillende fasen.  
 - **Weersvoorspelling**: Voor elk project wordt de weersvoorspelling voor de komende zes dagen op de locatie weergegeven.  
 - **Uurregistratie**: Werknemers kunnen hun gewerkte uren per project registreren.  
-- **Calculatie & Meetstaatbeheer**: Per project kan een meetstaat worden beheerd voor nauwkeurige calculaties.  
-- **Globaal projectoverzicht**: Een dashboard geeft een totaaloverzicht van alle projecten.  
-- **Werfmonitoring**: Real-time monitoring van werven via een dashboard.  
+- **Calculatie & Meetstaatbeheer**: Per project kan een meetstaat worden beheerd.  
+- **Globaal projectoverzicht**: Een duidelijk totaaloverzicht van een projecten.  
+- **Werfmonitoring**: Real-time monitoring van werven via een dashboard in Grafana.  
 - **Stockbeheer**: Overzicht van alle producten in het magazijn, inclusief informatie over leveranciers.  
 
 
@@ -174,7 +174,7 @@ De **Overzicht API** (genaamd facturatie-api omdat het initiële idee was om een
 Deze service haalt alle informatie van een project op. De API doet hiervoor een beroep op de bovengenoemde services door via de REST API's een **GET request** te versturen en deze informatie te verwerken. Voor de gRPC-service worden de stubs in Java opnieuw gegenereerd, zodat er direct met gRPC gecommuniceerd kan worden zonder de tussenlaag via REST.
 
 ### **Endpoint**  
-1. **/api/invoice**  
+1. **GET** `/api/invoice`
    ➝ Dit endpoint haalt alle projectinformatie op. Hiervoor dient een XML **GetInvoiceRequest** te worden verstuurd volgens het WSDL-schema met een `projectId`. De service retourneert vervolgens een **XML GetInvoiceResponse**.
 
 ---
