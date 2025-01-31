@@ -103,8 +103,9 @@ Deze API bevat **6 endpoints** voor het beheren van werknemers en hun gewerkte u
 5. **POST** `/api/projects/{projectId}/workedHours/`  
    ➝ Voegt een nieuw geboekt uur toe aan een project (`{projectId}`). De details van de boeking worden als JSON-payload meegestuurd.  
 
-6. **DELETE** `/api/workedHours/{whId}/`  
+6. **DELETE** `/api/workedHours/{whId}/?pwd=admin`  
    ➝ Verwijdert een geboekt uur op basis van het ID (`{whId}`).  
+   Dit endpoint is beveiligd met een wachtwoord, dat als queryparameter moet worden meegegeven. Het wachtwoord ingesteld op **"admin"**.  
 
 ---
 
