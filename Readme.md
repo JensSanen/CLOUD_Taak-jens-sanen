@@ -11,6 +11,7 @@ Dit project is een **platform voor de bouwsector**, ontworpen om aannemers te on
 - **Werfmonitoring**: Real-time monitoring van werven via een dashboard.  
 - **Stockbeheer**: Overzicht van alle producten in het magazijn, inclusief informatie over leveranciers.  
 
+Om het project op te starten dient `docker-compose up -d` in de terminal gerunt te worden. 
 Het project is een **Laravel-applicatie** die draait in een **Docker-container** op **poort 8000**. Het hoofdscherm is te bereiken via:  
 🔗 [http://localhost:8000/projects](http://localhost:8000/projects)
 
@@ -35,7 +36,8 @@ Het platform is opgebouwd uit **verschillende microservices**, waarbij elke serv
 ## **Werfplanning API**  
 
 De **Werfplanning API** is een REST-service, ontwikkeld in **C#**, die verbonden is met een **externe MariaDB-database**.  
-Oorspronkelijk werd deze service ontwikkeld in **Python** als proof of concept om de functionaliteit vooraf te testen.  
+Oorspronkelijk werd deze service ontwikkeld in **Python** als proof of concept om de functionaliteit vooraf te testen. 
+De API draait in een **Docker-container** op **poort 30007**.
 
 ### **Endpoints**  
 Deze API bevat **10 endpoints** voor het beheren van projecten en fasen.
@@ -73,4 +75,38 @@ Deze API bevat **10 endpoints** voor het beheren van projecten en fasen.
     ➝ Verwijdert een specifieke fase (`{phaseId}`) binnen een project (`{projectId}`).  
 
 ---
+
+## **Uurregistratie API**  
+
+De **Uurregistratie API** is een REST-service, ontwikkeld in **Laravel (PHP)**, die verbonden is met een **externe MariaDB-database**.  
+Oorspronkelijk werd deze service ontwikkeld in **Python** als proof of concept om de functionaliteit vooraf te testen.  
+De API draait in een **Docker-container** op **poort 30008**.  
+
+### **Endpoints**  
+Deze API bevat **6 endpoints** voor het beheren van werknemers en hun gewerkte uren binnen projecten.  
+
+### **Werknemers**  
+1. **GET** `/api/workers/`  
+   ➝ Haalt een lijst op van alle geregistreerde werknemers.  
+
+2. **GET** `/api/workers/{workerId}/`  
+   ➝ Haalt de details op van een specifieke werknemer (`{workerId}`).  
+
+### **Gewerkte uren**  
+3. **GET** `/api/projects/{projectId}/workedHours/`  
+   ➝ Haalt het totaal aantal gewerkte uren op van alle werknemers binnen een project (`{projectId}`).  
+
+4. **GET** `/api/projects/{projectId}/workedHours/{workerId}/`  
+   ➝ Haalt alle geboekte uren op van een specifieke werknemer (`{workerId}`) binnen een project (`{projectId}`).  
+
+5. **POST** `/api/projects/{projectId}/workedHours/`  
+   ➝ Voegt een nieuw geboekt uur toe aan een project (`{projectId}`). De details van de boeking worden als JSON-payload meegestuurd.  
+
+6. **DELETE** `/api/workedHours/{whId}/`  
+   ➝ Verwijdert een geboekt uur op basis van het ID (`{whId}`).  
+
+---
+
+
+
 
