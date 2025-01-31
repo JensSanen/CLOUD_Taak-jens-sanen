@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
+// Model voor de tabel 'worked_hours'
 class LaravelWorkedHours extends Model
 {
     /** @use HasFactory<\Database\Factories\LaravelWorkedHoursFactory> */

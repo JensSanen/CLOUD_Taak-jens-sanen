@@ -43,7 +43,9 @@ connectToDatabase().then(connection => {
     process.exit(1); // Stop de applicatie bij falen van de verbinding
 });
 
-// GraphQL types
+// Definieer de types
+
+// RackType = GraphQLObjectType stelt een rek in het magazijn voor met verschillende rijen
 const RackType = new GraphQLObjectType({
     name: "Rack",
     description: "This represents a rack in the warehouse",
@@ -90,6 +92,7 @@ const RackType = new GraphQLObjectType({
     })
 });
 
+// LocationType = GraphQLObjectType stelt een locatie in een rek in het magazijn voor
 const LocationType = new GraphQLObjectType({
     name: "Location",
     description: "This represents a location in a rack in the warehouse",
@@ -112,6 +115,7 @@ const LocationType = new GraphQLObjectType({
     })
 });
 
+// SupplierType = GraphQLObjectType stelt een leverancier van producten voor
 const SupplierType = new GraphQLObjectType({
     name: "Supplier",
     description: "This represents a supplier of products",
@@ -135,6 +139,7 @@ const SupplierType = new GraphQLObjectType({
     })
 });
 
+// ProductType = GraphQLObjectType stelt een product in het magazijn voor
 const ProductType = new GraphQLObjectType({
     name: "Product",
     description: "This represents a product in the warehouse",
@@ -531,7 +536,6 @@ const schema = new GraphQLSchema({
     mutation: RootMutationType,
 });
 
-// Stel de GraphQL HTTP middleware in
 app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true

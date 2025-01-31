@@ -15,6 +15,7 @@ class RackController extends Controller
         $this->client = new Client(['base_uri' => 'stockbeheer_api:30005']);
     }
 
+    // Functie om alle racks op te halen
     public function index()
     {
         Log::info("Fetching racks via GraphQL");
@@ -47,6 +48,7 @@ class RackController extends Controller
         }
     }
 
+    // Functie om alle rack namen op te halen -> gebruikt in dropdown voor aanmaken / updaten product
     public function indexNames()
     {
         Log::info("Fetching rack names via GraphQL");
@@ -75,6 +77,7 @@ class RackController extends Controller
         }
     }
 
+    // Functie om alle producten in een rack op te halen
     public function indexProducts($rackId)
     {
         Log::info("Fetching products in rack via GraphQL");
@@ -116,6 +119,7 @@ class RackController extends Controller
         }
     }
 
+    // Functie om alle lege locaties in een rack op te halen -> gebruikt in dropdown voor aanmaken / updaten product
     public function indexEmptyLocations($rackId)
     {
         Log::info("Fetching rack names via GraphQL");
@@ -146,6 +150,7 @@ class RackController extends Controller
         }
     }
 
+    // Functie om een rack op te halen
     public function show($rackId)
     {
         Log::info("Fetching rack via GraphQL");
@@ -175,6 +180,7 @@ class RackController extends Controller
         }
     }
 
+    // Functie om een rack op te slaan
     public function store(Request $request)
     {
         Log::info("Storing rack via GraphQL");
@@ -202,6 +208,7 @@ class RackController extends Controller
         }
     }
 
+    // Functie om een rack te verwijderen
     public function destroy($rackId)
     {
         Log::info("Deleting rack via GraphQL");
@@ -229,6 +236,7 @@ class RackController extends Controller
         }
     }
 
+    // Functie om een rack te updaten
     public function update(Request $request, $rackId)
     {
         Log::info("Updating rack via GraphQL");

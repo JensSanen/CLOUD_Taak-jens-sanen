@@ -1,5 +1,6 @@
 namespace werfplanning2.Models
 {
+    // Model klasse die een fase representeert
     public class Phase
     {
         public int phaseId { get; set; }

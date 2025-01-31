@@ -8,6 +8,7 @@ use App\Models\LaravelWorkers;
 
 class LaravelWorkersController extends Controller
 {
+    // Functie om alle werknemers op te halen
     public function index()
     {
         try {
@@ -19,6 +20,7 @@ class LaravelWorkersController extends Controller
         }
     }
 
+    // Functie om een werknemer op te halen
     public function show($workerId)
     {
         try {

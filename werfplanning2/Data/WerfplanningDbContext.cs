@@ -3,6 +3,7 @@ using werfplanning2.Models;
 
 namespace werfplanning2.Data
 {
+    // DbContext klasse die de database representeert
     public class WerfplanningDbContext : DbContext
     {
         public DbSet<Project> Projects { get; set; }

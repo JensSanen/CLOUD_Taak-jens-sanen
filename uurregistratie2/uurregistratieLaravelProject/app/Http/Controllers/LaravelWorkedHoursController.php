@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 class LaravelWorkedHoursController extends Controller
 {
+    // Functie om alle gewerkte uren op te halen voor een specifiek project
     public function getProjectWorkedHours($projectId)
     {
         try {
@@ -47,6 +48,7 @@ class LaravelWorkedHoursController extends Controller
         }
     }
 
+    // Functie om alle gewerkte uren van een werknemer op te halen voor een specifiek project
     public function getProjectWorkerWorkedHours($projectId, $workerId)
     {
         try {
@@ -63,6 +65,7 @@ class LaravelWorkedHoursController extends Controller
         }
     }
 
+    // Functie om gewerkte uren te verwijderen
     public function deleteWorkedHours(Request $request, $whId)
     {
         // Controleer of het wachtwoord correct is
@@ -88,6 +91,7 @@ class LaravelWorkedHoursController extends Controller
         }
     }
 
+    // Functie om gewerkte uren toe te voegen aan een project
     public function createWorkedHours(Request $request, $projectId)
     {
         Log::info("Creating worked hours for project with id: $projectId");

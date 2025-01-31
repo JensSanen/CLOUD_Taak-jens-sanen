@@ -20,6 +20,7 @@ namespace werfplanning2.Controllers
         }
 
         // GET: api/projects/{projectId}/phases
+        // Functie om alle fases van een project op te halen
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Phase>>> GetProjectPhases(int projectId)
         {
@@ -39,6 +40,7 @@ namespace werfplanning2.Controllers
         }
 
         // GET: api/projects/{projectId}/phases/{phaseId}
+        // Functie om een fase van een project op te halen
         [HttpGet("{phaseId}")]
         public async Task<ActionResult<Phase>> GetProjectPhase(int projectId, int phaseId)
         {
@@ -57,6 +59,8 @@ namespace werfplanning2.Controllers
         }
 
         // POST: api/projects/{projectId}/phases
+        // Functie om een fase aan te maken voor een project
+        // [FromBody] geeft aan dat de parameter uit de body van de request komt
         [HttpPost]
         public async Task<ActionResult<Phase>> CreateProjectPhase(int projectId, [FromBody] Phase phase)
         {
@@ -71,6 +75,8 @@ namespace werfplanning2.Controllers
         }
 
         // PUT: api/projects/{projectId}/phases/{phaseId}
+        // Functie om een fase van een project te updaten
+        // [FromBody] geeft aan dat de parameter uit de body van de request komt
         [HttpPut("{phaseId}")]
         public async Task<IActionResult> UpdateProjectPhase(int projectId, int phaseId, [FromBody] Phase phase)
         {
@@ -98,6 +104,7 @@ namespace werfplanning2.Controllers
         }
 
         // DELETE: api/projects/{projectId}/phases/{phaseId}
+        // Functie om een fase van een project te verwijderen
         [HttpDelete("{phaseId}")]
         public async Task<IActionResult> DeleteProjectPhase(int projectId, int phaseId)
         {

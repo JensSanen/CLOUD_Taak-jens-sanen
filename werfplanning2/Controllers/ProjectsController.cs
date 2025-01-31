@@ -18,6 +18,8 @@ namespace werfplanning2.Controllers
             _logger = logger;
         }
 
+        // GET: api/projects
+        // Functie om alle projecten op te halen
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
@@ -27,6 +29,8 @@ namespace werfplanning2.Controllers
             return projects;
         }
 
+        // GET: api/projects/{projectId}
+        // Functie om een project op te halen
         [HttpGet("{projectId}")]
         public async Task<ActionResult<Project>> GetProject(int projectId)
         {
@@ -40,6 +44,9 @@ namespace werfplanning2.Controllers
             return project;
         }
 
+        // POST: api/projects
+        // Functie om een project aan te maken
+        // [FromBody] geeft aan dat de parameter uit de body van de request komt
         [HttpPost]
         public async Task<ActionResult<Project>> CreateProject([FromBody] Project project)
         {
@@ -56,6 +63,10 @@ namespace werfplanning2.Controllers
             return CreatedAtAction(nameof(GetProject), new { projectId = project.projectId }, project);
         }
 
+
+        // PUT: api/projects/{projectId}
+        // Functie om een project te updaten
+        // [FromBody] geeft aan dat de parameter uit de body van de request komt
         [HttpPut("{projectId}")]
         public async Task<IActionResult> UpdateProject(int projectId, [FromBody] Project project)
         {
@@ -76,6 +87,8 @@ namespace werfplanning2.Controllers
             return Ok(new { message = "Project updated successfully" });
         }
 
+        // DELETE: api/projects/{projectId}
+        // Functie om een project te verwijderen
         [HttpDelete("{projectId}")]
         public async Task<IActionResult> DeleteProject(int projectId)
         {

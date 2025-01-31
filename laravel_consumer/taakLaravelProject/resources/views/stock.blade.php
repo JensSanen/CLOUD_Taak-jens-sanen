@@ -351,6 +351,7 @@
     </div>
 
     <script>
+        // Functie om een bericht te tonen aan de gebruiker als status is veranderd
         function showMessage(type, text) {
             const messageDiv = document.getElementById('message');
             messageDiv.innerHTML = `<div class="alert alert-${type}">${text}</div>`;
@@ -359,6 +360,7 @@
             }, 3000);
         }
 
+        // Functie om producten op te halen
         function fetchProducts() {
             document.getElementById('ProductsTable').classList.remove('d-none');
             document.getElementById('SuppliersTable').classList.add('d-none');

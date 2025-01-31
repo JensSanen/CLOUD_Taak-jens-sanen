@@ -1,5 +1,6 @@
 namespace werfplanning2.Models
 {
+    // Model klasse die een project representeert
     public class Project
     {
         public int projectId { get; set; }

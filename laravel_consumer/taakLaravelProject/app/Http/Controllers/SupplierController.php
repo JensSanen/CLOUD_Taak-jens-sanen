@@ -15,6 +15,8 @@ class SupplierController extends Controller
         $this->client = new Client(['base_uri' => 'stockbeheer_api:30005']);
     }
 
+
+    // Functie om alle leveranciers op te halen
     public function index()
     {
         Log::info("Fetching supplier via GraphQL");
@@ -59,6 +61,7 @@ class SupplierController extends Controller
         }
     }
 
+    // Functie om alle leverancier namen op te halen -> gebruikt in dropdown voor aanmaken / updaten product
     public function indexNames()
     {
         Log::info("Fetching supplier names via GraphQL");
@@ -87,6 +90,8 @@ class SupplierController extends Controller
         }
     }
 
+
+    // Functie om alle producten van een leverancier op te halen
     public function indexProducts($supplierId)
     {
         Log::info("Fetching products from supplier with supplierId: $supplierId via GraphQL");
@@ -127,6 +132,8 @@ class SupplierController extends Controller
         }
     }
 
+
+    // Functie om een leverancier op te halen
     public function show($supplierId)
     {
         Log::info("Fetching supplier with supplierId: $supplierId via GraphQL");
@@ -156,6 +163,8 @@ class SupplierController extends Controller
         }
     }
 
+
+    // Functie om een leverancier te updaten
     public function update(Request $request, $supplierId)
     {
         Log::info("Updating supplier with supplierId: $supplierId");
@@ -185,6 +194,7 @@ class SupplierController extends Controller
         }
     }
 
+    // Functie om een leverancier te verwijderen
     public function destroy($supplierId)
     {
         Log::info("Deleting supplier with supplierId: $supplierId");
@@ -209,6 +219,7 @@ class SupplierController extends Controller
         }
     }
 
+    // Functie om een leverancier aan te maken
     public function store(Request $request)
     {
         Log::info("Storing supplier");

@@ -15,8 +15,10 @@ class ProductController extends Controller
         $this->client = new Client(['base_uri' => 'stockbeheer_api:30005']);
     }
 
+    // Functie om alle producten op te halen
     public function index()
     {
+        // GraphQL query om alle producten op te halen
         Log::info("Fetching products via GraphQL");
         $query = <<<GQL
         query {
@@ -55,6 +57,7 @@ class ProductController extends Controller
         }
     }
 
+    // Functie om een product op te halen
     public function show($productId)
     {
         Log::info("Fetching product with productId: $productId via GraphQL");
@@ -98,6 +101,7 @@ class ProductController extends Controller
         }
     }
 
+    // Functie om de leverancier van een product op te halen
     public function showSupplier($productId)
     {
         Log::info("Fetching supplier of product with productId: $productId via GraphQL");
@@ -130,6 +134,7 @@ class ProductController extends Controller
         }
     }
 
+    // Functie om de locatie van een product op te halen
     public function update(Request $request, $productId)
     {
         Log::info("Updating product with id: $productId");
@@ -164,6 +169,7 @@ class ProductController extends Controller
         }
     }
 
+    // Functie om een product te verwijderen
     public function destroy($productId)
     {
         Log::info("Deleting product with id: $productId");
@@ -189,6 +195,8 @@ class ProductController extends Controller
         }
     }
 
+
+    // Functie om een product toe te voegen
     public function store (Request $request)
     {
         Log::info("Creating new product");
