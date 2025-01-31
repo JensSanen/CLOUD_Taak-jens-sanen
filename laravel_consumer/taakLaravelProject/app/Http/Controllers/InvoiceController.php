@@ -85,11 +85,6 @@ class InvoiceController extends Controller
             // Log de XML na verwerking om te controleren of deze correct is geladen
             Log::info("Processed XML: " . $xml->asXML());
 
-            // // Convert XML to JSON
-            // $invoice = $this->xmlToJson($xml->asXML());
-
-            // Log::info("Returning JSON: " . $invoice);
-
             return response($xml->asXML(), 200)->header('Content-Type', 'text/xml');
         } catch (\Exception $e) {
             Log::error("Invoice not found: " . $e->getMessage());

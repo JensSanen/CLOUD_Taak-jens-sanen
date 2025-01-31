@@ -42,7 +42,17 @@ def run_calculation(projectId, request_data):
     except grpc.RpcError as e:
         return {"error": f"Fout tijdens berekening: {e.details()} (Statuscode: {e.code()})"}
 
-# REST API endpoint voor berekening
+"""
+Endpoint om meetstaatberekeningen uit te voeren voor een specifiek project.
+URL: /api/projects/<int:projectId>/calculations
+Args:
+    projectId (int): Het ID van het project waarvoor berekeningen moeten worden uitgevoerd.
+    request_data (JSON): De gegevens van de berekeningen die moeten worden uitgevoerd.
+Retourneert:
+    Response: JSON-reactie met het resultaat van de berekening of een foutmelding.
+        - 201: Berekening was succesvol toegevoegd en resultaat wordt geretourneerd.
+        - 400: Er zijn geen gegevens ontvangen in het verzoek.
+"""
 @app.route('/api/projects/<int:projectId>/calculations', methods=['POST'])
 def calculate(projectId):
     request_data = request.get_json()
@@ -54,7 +64,7 @@ def calculate(projectId):
     result = run_calculation(projectId, request_data)
     return jsonify(result), 201
 
-# Functie om projectberekeningen op te halen
+# Functie om meetstaatberekeningen op te halen
 def run_get_project_calculations(projectId):
     stub = calculatie_pb2_grpc.CalculationServiceStub(channel)
 
@@ -79,12 +89,22 @@ def run_get_project_calculations(projectId):
     except grpc.RpcError as e:
         return {"error": f"Fout bij ophalen berekeningen: {e.details()} (Statuscode: {e.code()})"}
 
-# REST API endpoint voor projectberekeningen
+"""
+Endpoint om meetstaatberekeningen op te halen voor een specifiek project.
+URL: /api/projects/<int:projectId>/calculations
+Args:
+    projectId (int): Het ID van het project waarvoor berekeningen moeten worden opgehaald.
+Retourneert:
+    Response: JSON-reactie met de berekeningen van het project of een foutmelding.
+        - 200: Berekeningen zijn succesvol opgehaald en geretourneerd.
+
+"""
 @app.route('/api/projects/<int:projectId>/calculations', methods=['GET'])
 def get_project_calculations(projectId):
     result = run_get_project_calculations(projectId)
-    return jsonify(result)
+    return jsonify(result), 200
 
+# Functie om één berekening op te halen
 def run_get_calculation(calculationId):
     stub = calculatie_pb2_grpc.CalculationServiceStub(channel)
 
@@ -107,11 +127,22 @@ def run_get_calculation(calculationId):
     except grpc.RpcError as e:
         return {"error": f"Fout bij ophalen berekening: {e.details()} (Statuscode: {e.code()})"}
     
+"""
+Endpoint om één berekening op te halen.
+URL: /api/calculations/<int:calculationId>
+Args:
+    calculationId (int): Het ID van de berekening die moet worden opgehaald.
+Retourneert:
+    Response: JSON-reactie met de berekening of een foutmelding.
+        - 200: Berekening is succesvol opgehaald en geretourneerd.
+"""
 @app.route('/api/calculations/<int:calculationId>', methods=['GET'])
 def get_calculation(calculationId):
     result = run_get_calculation(calculationId)
-    return jsonify(result)
+    return jsonify(result), 200
 
+
+# Functie om één berekening te verwijderen
 def run_delete_calculation(calculationId):
     stub = calculatie_pb2_grpc.CalculationServiceStub(channel)
 
@@ -126,12 +157,22 @@ def run_delete_calculation(calculationId):
         return result
     except grpc.RpcError as e:
         return {"error": f"Fout bij verwijderen berekening: {e.details()} (Statuscode: {e.code()})"}
-    
+
+"""
+Endpoint om één berekening te verwijderen.
+URL: /api/calculations/<int:calculationId>
+Args:
+    calculationId (int): Het ID van de berekening die moet worden verwijderd.
+Retourneert:
+    Response: JSON-reactie met de verwijderde berekening of een foutmelding.
+        - 200: Berekening is succesvol verwijderd.
+"""
 @app.route('/api/calculations/<int:calculationId>', methods=['DELETE'])
 def delete_calculation(calculationId):
     result = run_delete_calculation(calculationId)
-    return jsonify(result)
+    return jsonify(result), 200
 
+# Functie om één berekening bij te werken
 def run_update_calculation(calculationId, request_data):
     stub = calculatie_pb2_grpc.CalculationServiceStub(channel)
 
@@ -156,6 +197,17 @@ def run_update_calculation(calculationId, request_data):
     except grpc.RpcError as e:
         return {"error": f"Fout bij bijwerken berekening: {e.details()} (Statuscode: {e.code()})"}
     
+"""
+Endpoint om één berekening bij te werken.
+URL: /api/calculations/<int:calculationId>
+Args:
+    calculationId (int): Het ID van de berekening die moet worden bijgewerkt.
+    request_data (JSON): De gegevens die moeten worden bijgewerkt.
+Retourneert:
+    Response: JSON-reactie met de bijgewerkte berekening of een foutmelding.
+        - 200: Berekening is succesvol bijgewerkt.
+        - 400: Er zijn geen gegevens ontvangen in het verzoek.
+"""
 @app.route('/api/calculations/<int:calculationId>', methods=['PUT'])
 def update_calculation(calculationId):
     request_data = request.get_json()
@@ -163,7 +215,7 @@ def update_calculation(calculationId):
         return jsonify({"error": "Geen gegevens ontvangen"}), 400
 
     result = run_update_calculation(calculationId, request_data)
-    return jsonify(result)
+    return jsonify(result), 200
 
 # Start de Flask-server
 if __name__ == '__main__':

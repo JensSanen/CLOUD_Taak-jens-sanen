@@ -135,7 +135,7 @@
                                                 <button class="btn btn-primary btn-sm" onclick="openProjectHours(${project.projectId})">Gewerkte uren</button>
                                                 <button class="btn btn-primary btn-sm" onclick="openCalculations(${project.projectId})">Calculatie</button>
                                                 <button class="btn btn-primary btn-sm"
-                                                onclick="openInvoice(${project.projectId})">Factuur</button>
+                                                onclick="openInvoice(${project.projectId})">Overzicht</button>
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center gap-2">

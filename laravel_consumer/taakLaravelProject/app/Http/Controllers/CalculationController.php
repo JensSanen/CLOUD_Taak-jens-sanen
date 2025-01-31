@@ -12,9 +12,13 @@ class CalculationController extends Controller
 
     public function __construct()
     {
+        // Gebruik een REST API om te communiceren met de gRPC server
+        // Ik heb geprobeerd direct een gRPC request te maken, maar ik kreeg gRPC en protobuf niet geïnstalleerd op mijn Laravel project -> daarom heb ik gekozen voor een REST API als tussenlaag
         $this->client = new Client(['base_uri' => 'calculatie_rest_layer:5000']);
     }
 
+
+    // Haal alle berekeningen op voor een specifiek project
     public function index($projectId)
     {
         log::info("Fetching calculations for project with id: $projectId");
@@ -30,6 +34,7 @@ class CalculationController extends Controller
         }
     }
 
+    // Haal een specifieke berekening op
     public function show($calculationId)
     {
         log::info("Fetching calculation with id: $calculationId");
@@ -45,6 +50,7 @@ class CalculationController extends Controller
         }
     }
 
+    // Maak een nieuwe berekening aan
     public function store($projectId, Request $request)
     {
         Log::info("Storing calculation for project with id: $projectId");
@@ -64,6 +70,7 @@ class CalculationController extends Controller
         }
     }
 
+    // Update een specifieke berekening
     public function update($calculationId, Request $request)
     {
         Log::info("Updating calculation with id: $calculationId");
@@ -85,6 +92,7 @@ class CalculationController extends Controller
         }
     }
 
+    // Verwijder een specifieke berekening
     public function destroy($calculationId)
     {
         Log::info("Deleting calculation with id: $calculationId");

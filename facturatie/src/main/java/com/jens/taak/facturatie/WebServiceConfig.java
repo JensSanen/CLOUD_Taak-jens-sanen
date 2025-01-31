@@ -33,6 +33,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean<>(servlet, "/api/invoice");
     }
 
+    // http://localhost:30004/api/invoice
     @Bean(name = "invoice")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema invoiceSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
