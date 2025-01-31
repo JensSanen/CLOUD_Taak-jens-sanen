@@ -16,6 +16,8 @@ Om het project te starten, voer het commando `docker-compose up -d` uit in de te
 Het project is een **Laravel-applicatie** die draait in een **Docker-container** op **poort 8000**. Het hoofdscherm is te bereiken via:  
 🔗 [http://localhost:8000/projects](http://localhost:8000/projects)
 
+Alle verzoeken die via de frontend worden aangeroepen, worden doorgestuurd naar een backend-endpoint. Dit endpoint maakt vervolgens via een controller de daadwerkelijke oproep naar de verschillende services en retourneert het resultaat naar de front-end.
+
 ---
 
 ## **Technologieën**  
