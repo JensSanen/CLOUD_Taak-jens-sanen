@@ -217,3 +217,19 @@ De service biedt ook verschillende mutaties waarmee gegevens kunnen worden toege
 10. **updateRack**: Werk een rek bij, inclusief naam en het aantal rijen, en voeg/sta locaties toe of verwijder ze.
 
 ---
+
+## **Werfmonitoring Service**
+
+De **Werfmonitoring Service** is een **MQTT-client**, ontwikkeld in **Python**, die wordt gebruikt voor het monitoren van werfactiviteiten. Deze service simuleert sensorgegevens van een werf, waarbij zowel arbeiders met smartwatches als machines met GPS-trackers worden gevolgd. 
+
+### **Functionaliteit**
+- **Arbeiders** dragen smartwatches die hun hartslag, decibelniveaus en GPS-locatie monitoren.
+- **Machines** op de werf worden gevolgd op basis van hun locatie en brandstofniveau.
+- Wanneer een arbeider te dicht bij een machine komt of wanneer de brandstof van een machine op is, wordt de machine automatisch uitgeschakeld.
+
+### **Architectuur**
+- De service draait binnen een **Docker-container** zonder een extern endpoint.
+- De verzamelde gegevens worden gepubliceerd naar een **Mosquitto broker** via MQTT.
+- Een **Telegraf-container** is gesubscribed op de corresponderende topics op de Mosquitto broker en plaatst de ontvangen data in een **InfluxDB time-series database**.
+- **Grafana** wordt gebruikt om de gegevens in real-time te visualiseren op een dashboard, dat is ingebed in de front-end van het project.
+
