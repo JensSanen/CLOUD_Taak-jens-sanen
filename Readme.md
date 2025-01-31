@@ -162,6 +162,8 @@ De **CalculationService** bevat de volgende **5 RPC-methoden**:
 5. **UpdateCalculation (UpdateCalculationRequest) → (ConfirmCalculationResponse)**  
    ➝ Werkt een meetstaatberekening bij en retourneert een bevestiging.  
 
+Ik heb geprobeerd om gRPC-verzoeken rechtstreeks vanuit een controller in mijn Laravel-project uit te voeren, maar het lukte niet om de gRPC- en Protobuf-extensies correct te installeren. Daarom heb ik een **REST API in Python** ontwikkeld als tussenlaag. Deze API biedt endpoints die inkomende verzoeken verwerken, deze doorsturen naar de gRPC-server en de respons terugsturen. Deze service draait in een **Docker-container op poort 30006**.
+
 ---
 
 
