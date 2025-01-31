@@ -109,17 +109,15 @@ Deze API bevat **6 endpoints** voor het beheren van werknemers en hun gewerkte u
 
 ---
 
-## **Calculatie Service**  
+## **Calculatie Service**
 
-De **Calculatie Service** is een **gRPC-service**, ontwikkeld in **Python**, die verbonden is met een **externe MariaDB-database**.  
-De service draait in een **Docker-container** op **poort 30002** en maakt gebruik van **gRPC** om efficiënte communicatie mogelijk te maken.  
+De **Calculatie Service** is een **gRPC-service**, ontwikkeld in **Python**, die communiceert met een externe **MariaDB-database**. Er is bewust gekozen voor gRPC om de berekeningen efficiënt uit te voeren. De service draait binnen een **Docker-container** op **poort 30002** en maakt gebruik van gRPC voor snelle en efficiënte communicatie.
 
 ### **Functionaliteit**  
-Deze service maakt het mogelijk om **meetstaatberekeningen** uit te voeren, op te slaan, op te vragen, bij te werken en te verwijderen.  
+Deze service stelt gebruikers in staat om **meetstaatberekeningen** uit te voeren, op te slaan, op te vragen, bij te werken en te verwijderen.
 
 ### **gRPC Requests & Responses**  
-De service is gebaseerd op een `.proto`-bestand waarin **vijf requests** en **twee responses** zijn gedefinieerd.  
-Hiermee kunnen de volgende vijf gRPC-methoden worden aangeroepen:
+De service is gebaseerd op een **.proto**-bestand, waarin **vijf verzoeken** (requests) en **twee antwoorden** (responses) zijn gedefinieerd. De volgende vijf gRPC-methoden kunnen worden aangeroepen:
 
 ### **Requests**  
 1. **CalculatePriceRequest**  
@@ -162,9 +160,21 @@ De **CalculationService** bevat de volgende **5 RPC-methoden**:
 5. **UpdateCalculation (UpdateCalculationRequest) → (ConfirmCalculationResponse)**  
    ➝ Werkt een meetstaatberekening bij en retourneert een bevestiging.  
 
-Ik heb geprobeerd om gRPC-verzoeken rechtstreeks vanuit een controller in mijn Laravel-project uit te voeren, maar het lukte niet om de gRPC- en Protobuf-extensies correct te installeren. Daarom heb ik een **REST API in Python** ontwikkeld als tussenlaag. Deze API biedt endpoints die inkomende verzoeken verwerken, deze doorsturen naar de gRPC-server en de respons terugsturen. Deze service draait in een **Docker-container op poort 30006**.
+Omdat het niet lukte om gRPC-verzoeken direct vanuit een controller in mijn Laravel-project uit te voeren vanwege problemen met het installeren van de gRPC- en Protobuf-extensies, heb ik een **REST API in Python** ontwikkeld als tussenlaag. Deze API biedt endpoints die inkomende verzoeken verwerken, deze doorsturen naar de gRPC-server en de respons terugsturen. Deze service draait in een **Docker-container op poort 30006**.
 
 ---
+
+## **Overzicht API**
+
+De **Overzicht API** (genaamd facturatie-api omdat het initiële idee was om een factuur te genereren) is een **SOAP API**, ontwikkeld in **Java**, die informatie retourneert in **XML-formaat**. Er is bewust gekozen voor SOAP omdat deze technologie goed beveiligde informatieoverdracht mogelijk maakt. De service draait in een **Docker-container** op **poort 30004**.
+
+### **Functionaliteit**  
+Deze service haalt alle informatie van een project op. De API doet hiervoor een beroep op de bovengenoemde services door via de REST API's een **GET request** te versturen en deze informatie te verwerken. Voor de gRPC-service worden de stubs in Java opnieuw gegenereerd, zodat er direct met gRPC gecommuniceerd kan worden zonder de tussenlaag via REST.
+
+### **Endpoint**  
+1. **/api/invoice**  
+   ➝ Dit endpoint haalt alle projectinformatie op. Hiervoor dient een XML **GetInvoiceRequest** te worden verstuurd volgens het WSDL-schema met een `projectId`. De service retourneert vervolgens een **XML GetInvoiceResponse**.
+
 
 
 
