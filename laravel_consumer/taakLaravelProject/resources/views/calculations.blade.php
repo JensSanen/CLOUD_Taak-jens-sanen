@@ -135,29 +135,31 @@
         function fetchCalculations() {
             // GET request om meetstaatberekeningen op te halen
             fetch(`/api/projects/${projectId}/calculations`)
-                .then(response => response.json())
-                .then(calculations => {
-                    // console.log(calculations);
-                    const calculationsTableBody = document.getElementById('calculationsTableBody');
-                    calculationsTableBody.innerHTML = '';
-                    calculations.forEach(calculation => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                        <td>${calculation.articleId}</td>
-                        <td>${calculation.description}</td>
-                        <td>${calculation.measurementType}</td>
-                        <td>${calculation.measurementUnit}</td>
-                        <td>${calculation.quantity.toFixed(2)}</td>
-                        <td>€${calculation.pricePerUnit.toFixed(2)}</td>
-                        <td>€${calculation.totalPrice.toFixed(2)}</td>
-                        <td>
-                            <button class="btn btn-primary" onclick="openEditCalculation(${calculation.calculationId})">Bewerken</button>
-                            <button class="btn btn-danger" onclick="deleteCalculation(${calculation.calculationId})">Verwijderen</button>
-                        </td>
-                        `;
-                        calculationsTableBody.appendChild(row);
-                    });
+            .then(response => response.json())
+            .then(calculations => {
+                // Sorteer de berekeningen op artikelnummer
+                calculations.sort((a, b) => a.articleId - b.articleId);
+
+                const calculationsTableBody = document.getElementById('calculationsTableBody');
+                calculationsTableBody.innerHTML = '';
+                calculations.forEach(calculation => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${calculation.articleId}</td>
+                <td>${calculation.description}</td>
+                <td>${calculation.measurementType}</td>
+                <td>${calculation.measurementUnit}</td>
+                <td>${calculation.quantity.toFixed(2)}</td>
+                <td>€${calculation.pricePerUnit.toFixed(2)}</td>
+                <td>€${calculation.totalPrice.toFixed(2)}</td>
+                <td>
+                    <button class="btn btn-primary" onclick="openEditCalculation(${calculation.calculationId})">Bewerken</button>
+                    <button class="btn btn-danger" onclick="deleteCalculation(${calculation.calculationId})">Verwijderen</button>
+                </td>
+                `;
+                calculationsTableBody.appendChild(row);
                 });
+            });
         }
 
         // Functie om rij toe te voegen in modal voor nieuwe meetstaatberekeningen

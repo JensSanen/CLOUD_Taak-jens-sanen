@@ -244,7 +244,7 @@
                 .then(data => {
                     showMessage('success', data.message);
                     fetchPhases();
-                    document.getElementById('addPhaseModal').reset();
+                    document.getElementById('addPhaseForm').reset();
                     const addPhaseModal = bootstrap.Modal.getInstance(document.getElementById('addPhaseModal'));
                     addPhaseModal.hide();
                 })
