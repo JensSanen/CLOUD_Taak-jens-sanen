@@ -233,3 +233,13 @@ De **Werfmonitoring Service** is een **MQTT-client**, ontwikkeld in **Python**, 
 - Een **Telegraf-container** is gesubscribed op de corresponderende topics op de Mosquitto broker en plaatst de ontvangen data in een **InfluxDB time-series database**.
 - **Grafana** wordt gebruikt om de gegevens in real-time te visualiseren op een dashboard, dat is ingebed in de front-end van het project.
 
+---
+
+## **Weervoorspelling Service**
+
+De **Weervoorspelling Service** maakt gebruik van twee **externe REST API-endpoints** om de aannemer te voorzien van weersinformatie, waarmee hij zijn planning kan optimaliseren op basis van de weersvoorspelling voor de komende week.
+
+### **Functionaliteit**
+1. De service maakt gebruik van de **PositionStack API** om de locatie van een project om te zetten naar **longitude** en **latitude** coördinaten.
+2. Deze coördinaten worden vervolgens als parameter doorgegeven aan een **GET request** naar de **Tomorrow API**, waarmee het weersbericht voor de komende zes dagen wordt opgehaald.
+
