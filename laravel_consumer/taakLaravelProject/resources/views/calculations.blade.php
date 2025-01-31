@@ -122,6 +122,7 @@
 
         console.log(projectId);
 
+        // Functie om naam van project op te halen
         function fetchProjectInformation() {
             fetch(`/api/projects/${projectId}`)
             .then(response => response.json())
@@ -130,7 +131,9 @@
             });
         }
 
+        // Functie om meetstaatberekeningen op te halen en in tabel te tonen
         function fetchCalculations() {
+            // GET request om meetstaatberekeningen op te halen
             fetch(`/api/projects/${projectId}/calculations`)
                 .then(response => response.json())
                 .then(calculations => {
@@ -157,6 +160,7 @@
                 });
         }
 
+        // Functie om rij toe te voegen in modal voor nieuwe meetstaatberekeningen
         function addCalculationRow() {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -179,10 +183,12 @@
             document.getElementById('calculationRows').appendChild(row);
         }
 
+        // Functie om rij te verwijderen in modal voor nieuwe meetstaatberekeningen
         function removeCalculationRow(button) {
             button.closest('tr').remove();
         }
 
+        // Functie om modal voor nieuwe meetstaatberekeningen te initialiseren
         function initiateAddcalculations() {
             document.getElementById('calculationRows').innerHTML = '';
             for (let i = 0; i < 5; i++) {
@@ -190,6 +196,7 @@
             }
         }
 
+        // Functie om meetstaatberekeningen toe te voegen
         function addCalculations() {
             const calculationRows = document.querySelectorAll('#calculationRows tr');
             const calculations = [];
@@ -204,7 +211,7 @@
                     pricePerUnit: parseFloat(cells[5].innerText),
                 };
 
-                // Check if any value is missing
+                // Controleren of alle velden zijn ingevuld van een rij
                 if (isNaN(calculation.articleId) || !calculation.description || !calculation.measurementType || !calculation.measurementUnit || isNaN(calculation.quantity) || isNaN(calculation.pricePerUnit)) {
                     row.remove();
                 } else {
@@ -213,6 +220,7 @@
 
             });
 
+            // POST request om meetstaatberekeningen toe te voegen
             fetch(`/api/projects/${projectId}/calculations`, {
                 method: 'POST',
                 headers: {
@@ -229,7 +237,9 @@
             });
         }
 
+        // Functie om een meetstaatberekening te verwijderen
         function deleteCalculation(calculationId) {
+            // DELETE request om meetstaatberekening te verwijderen
             fetch(`/api/calculations/${calculationId}`, {
                 method: 'DELETE',
             })
@@ -239,6 +249,7 @@
             });
         }
 
+        // Functie om modal voor bewerken van meetstaatberekening te openen
         function openEditCalculation(calculationId) {
             fetch(`/api/calculations/${calculationId}`)
                 .then(response => response.json())
@@ -263,6 +274,7 @@
                 });
         }
 
+        // Functie om meetstaatberekening te bewerken
         function updateCalculation(event) {
             event.preventDefault();
             const calculationId = document.getElementById('editCalculationId').value;
@@ -276,6 +288,7 @@
                 pricePerUnit: parseFloat(document.getElementById('editPricePerUnit').value)
             };
 
+            // PUT request om meetstaatberekening te bewerken
             fetch(`/api/calculations/${calculationId}`, {
                 method: 'PUT',
                 headers: {

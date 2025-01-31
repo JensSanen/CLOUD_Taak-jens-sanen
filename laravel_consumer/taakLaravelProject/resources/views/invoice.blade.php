@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container my-5">
-        <h1 id="projectName">Factuur voor project</h1>
+        <h1 id="projectName">Overzicht voor project</h1>
 
         <div id="invoiceDetails" class="mt-4"></div>
     </div>
@@ -18,15 +18,18 @@
         const projectId = {{ $projectId }};
         const invoiceContainer = document.getElementById('invoiceDetails');
 
+        // Fetch naam van het project
         function fetchProjectInformation() {
             fetch(`/api/projects/${projectId}`)
                 .then(response => response.json())
                 .then(project => {
-                    document.getElementById('projectName').innerText = `Factuur voor project: ${project.name}`;
+                    document.getElementById('projectName').innerText = `Overzicht voor project: ${project.name}`;
                 });
         }
 
+        // Fetch de factuur data
         function fetchInvoiceData() {
+            // GET request voor de factuur data
             fetch(`/api/projects/${projectId}/invoice`)
                 .then(response => response.text())
                 .then(xmlString => {

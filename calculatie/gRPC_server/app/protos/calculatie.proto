@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package calculatie;
 
-
 message CalculatePriceRequest {
   int32 projectId = 1; 
   int32 articleId = 2;

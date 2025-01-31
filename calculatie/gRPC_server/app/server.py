@@ -6,6 +6,8 @@ import calculatie_pb2_grpc as calculatie_pb2_grpc
 import pymysql
 import os
 
+
+# Functie om een databaseverbinding te maken
 def get_db_connection():
     return pymysql.connect( 
         host=os.getenv('DB_HOST', 'calculatie_db'),
@@ -18,10 +20,14 @@ def get_db_connection():
 
 # Implementatie van de CalculationService
 class CalculationService(calculatie_pb2_grpc.CalculationServiceServicer):
+    # Service voor het uitvoeren van meetstaatberekeningen
+    # Request = CalculatePriceRequest (streaming)
+    # Response = ConfirmCalculationResponse (streaming)
     def CalculateProject(self, request_iterator, context):
         try:
             db = get_db_connection()
             cursor = db.cursor(pymysql.cursors.DictCursor)
+            # Maak een nieuwe berekening voor elk item in de request_iterator (streaming)
             for request in request_iterator:
                 totalPrice = request.quantity * request.pricePerUnit
                 response = calculatie_pb2.ConfirmCalculationResponse(
@@ -39,6 +45,9 @@ class CalculationService(calculatie_pb2_grpc.CalculationServiceServicer):
             cursor.close()
             db.close()
 
+    # Service voor het ophalen van alle berekeningen voor een project
+    # Request = GetProjectCalculationsRequest 
+    # Response = GetCalculationResponse (streaming)
     def GetProjectCalculations(self, request, context):
         db = get_db_connection()
         cursor = db.cursor(pymysql.cursors.DictCursor)
@@ -65,6 +74,9 @@ class CalculationService(calculatie_pb2_grpc.CalculationServiceServicer):
             cursor.close()
             db.close()
 
+    # Service voor het ophalen van één berekening
+    # Request = GetCalculationRequest
+    # Response = GetCalculationResponse
     def GetCalculation(self, request, context):
         db = get_db_connection()
         cursor = db.cursor(pymysql.cursors.DictCursor)
@@ -94,6 +106,9 @@ class CalculationService(calculatie_pb2_grpc.CalculationServiceServicer):
             cursor.close()
             db.close()
 
+    # Service voor het verwijderen van een berekening
+    # Request = DeleteCalculationRequest
+    # Response = ConfirmCalculationResponse
     def DeleteCalculation(self, request, context):
         db = get_db_connection()
         cursor = db.cursor(pymysql.cursors.DictCursor)
@@ -120,6 +135,9 @@ class CalculationService(calculatie_pb2_grpc.CalculationServiceServicer):
             cursor.close()
             db.close()
 
+    # Service voor het bijwerken van een berekening
+    # Request = UpdateCalculationRequest
+    # Response = ConfirmCalculationResponse
     def UpdateCalculation(self, request, context):
         db = get_db_connection()
         cursor = db.cursor(pymysql.cursors.DictCursor)
