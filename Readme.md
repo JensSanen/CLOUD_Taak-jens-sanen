@@ -11,7 +11,8 @@ Dit project is een **platform voor de bouwsector**, ontworpen om aannemers te on
 - **Werfmonitoring**: Real-time monitoring van werven via een dashboard.  
 - **Stockbeheer**: Overzicht van alle producten in het magazijn, inclusief informatie over leveranciers.  
 
-Om het project op te starten dient `docker-compose up -d` in de terminal gerunt te worden. 
+
+Om het project te starten, voer het commando `docker-compose up -d` uit in de terminal.
 Het project is een **Laravel-applicatie** die draait in een **Docker-container** op **poort 8000**. Het hoofdscherm is te bereiken via:  
 🔗 [http://localhost:8000/projects](http://localhost:8000/projects)
 
