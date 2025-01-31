@@ -4,11 +4,11 @@
 Dit project is een platform voor de **bouwsector**, ontworpen om aannemers te helpen bij het **beheer van projecten en magazijnvoorraad**. Het systeem biedt diverse functionaliteiten, waaronder:  
 
 - **Projectbeheer**: Gebruikers kunnen projecten aanmaken, aanpassen en verwijderen. Elk project kan worden onderverdeeld in verschillende fases.  
-- **Weersvoorspelling**: Voor elk project wordt de **weersvoorspelling** voor de komende zes dagen op de locatie weergegeven.  
+- **Weersvoorspelling**: Voor elk project wordt de weersvoorspelling voor de komende zes dagen op de locatie weergegeven.  
 - **Uurregistratie**: De gewerkte uren van werknemers kunnen per project worden bijgehouden.  
 - **Calculatie & Meetstaatbeheer**: Per project kan een meetstaat worden beheerd voor nauwkeurige calculaties.  
-- **Globaal projectoverzicht**: Een totaaloverzicht van alle projecten is beschikbaar.  
-- **Werfmonitoring**: Een dashboard maakt het mogelijk om werven **op afstand** te monitoren.  
+- **Globaal projectoverzicht**: Een totaaloverzicht van elk projecten is beschikbaar.  
+- **Werfmonitoring**: Een dashboard maakt het mogelijk om werven op afstand te monitoren.  
 - **Stockbeheer**: Een overzicht van alle producten in het magazijn en een overzicht van de verschillende leveranciers.
 
 ## **Technologieën**  
