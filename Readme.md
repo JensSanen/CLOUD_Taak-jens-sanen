@@ -109,6 +109,62 @@ Deze API bevat **6 endpoints** voor het beheren van werknemers en hun gewerkte u
 
 ---
 
+# **Calculatie Service**  
+
+De **Calculatie Service** is een **gRPC-service**, ontwikkeld in **Python**, die verbonden is met een **externe MariaDB-database**.  
+De service draait in een **Docker-container** op **poort 30002** en maakt gebruik van **gRPC** om efficiënte communicatie mogelijk te maken.  
+
+## **Functionaliteit**  
+Deze service maakt het mogelijk om **meetstaatberekeningen** uit te voeren, op te slaan, op te vragen, bij te werken en te verwijderen.  
+
+## **gRPC Requests & Responses**  
+De service is gebaseerd op een `.proto`-bestand waarin **vijf requests** en **twee responses** zijn gedefinieerd.  
+Hiermee kunnen de volgende vijf gRPC-methoden worden aangeroepen:
+
+### **Requests**  
+1. **CalculatePriceRequest**  
+   ➝ Voert een meetstaatberekening uit en slaat deze op in de database.  
+
+2. **GetProjectCalculationsRequest**  
+   ➝ Haalt alle meetstaatberekeningen op voor een specifiek project (`projectId`).  
+
+3. **GetCalculationRequest**  
+   ➝ Haalt de details op van een specifieke meetstaatberekening (`calculationId`).  
+
+4. **DeleteCalculationRequest**  
+   ➝ Verwijdert een meetstaatberekening op basis van het ID (`calculationId`).  
+
+5. **UpdateCalculationRequest**  
+   ➝ Werkt een bestaande meetstaatberekening bij met nieuwe gegevens.  
+
+### **Responses**  
+1. **ConfirmCalculationResponse**  
+   ➝ Bevestigt een uitgevoerde berekening en retourneert het artikel-ID en een beschrijving.  
+
+2. **GetCalculationResponse**  
+   ➝ Retourneert alle details van een specifieke meetstaatberekening, inclusief het totaalbedrag.  
+
+## **gRPC Endpoints (RPC-methoden)**  
+De **CalculationService** bevat de volgende **5 RPC-methoden**:
+
+1. **CalculateProject (stream CalculatePriceRequest) → (stream ConfirmCalculationResponse)**  
+   ➝ Voert berekeningen uit voor een project en slaat de resultaten op in de database.  
+
+2. **GetProjectCalculations (GetProjectCalculationsRequest) → (stream GetCalculationResponse)**  
+   ➝ Haalt alle meetstaatberekeningen op voor een project.  
+
+3. **GetCalculation (GetCalculationRequest) → (GetCalculationResponse)**  
+   ➝ Haalt een specifieke meetstaatberekening op op basis van het `calculationId`.  
+
+4. **DeleteCalculation (DeleteCalculationRequest) → (ConfirmCalculationResponse)**  
+   ➝ Verwijdert een meetstaatberekening en retourneert een bevestiging.  
+
+5. **UpdateCalculation (UpdateCalculationRequest) → (ConfirmCalculationResponse)**  
+   ➝ Werkt een meetstaatberekening bij en retourneert een bevestiging.  
+
+---
+
+
 
 
 
