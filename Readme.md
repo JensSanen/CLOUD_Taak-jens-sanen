@@ -109,15 +109,15 @@ Deze API bevat **6 endpoints** voor het beheren van werknemers en hun gewerkte u
 
 ---
 
-# **Calculatie Service**  
+## **Calculatie Service**  
 
 De **Calculatie Service** is een **gRPC-service**, ontwikkeld in **Python**, die verbonden is met een **externe MariaDB-database**.  
 De service draait in een **Docker-container** op **poort 30002** en maakt gebruik van **gRPC** om efficiënte communicatie mogelijk te maken.  
 
-## **Functionaliteit**  
+### **Functionaliteit**  
 Deze service maakt het mogelijk om **meetstaatberekeningen** uit te voeren, op te slaan, op te vragen, bij te werken en te verwijderen.  
 
-## **gRPC Requests & Responses**  
+### **gRPC Requests & Responses**  
 De service is gebaseerd op een `.proto`-bestand waarin **vijf requests** en **twee responses** zijn gedefinieerd.  
 Hiermee kunnen de volgende vijf gRPC-methoden worden aangeroepen:
 
@@ -144,7 +144,7 @@ Hiermee kunnen de volgende vijf gRPC-methoden worden aangeroepen:
 2. **GetCalculationResponse**  
    ➝ Retourneert alle details van een specifieke meetstaatberekening, inclusief het totaalbedrag.  
 
-## **gRPC Endpoints (RPC-methoden)**  
+### **gRPC Endpoints (RPC-methoden)**  
 De **CalculationService** bevat de volgende **5 RPC-methoden**:
 
 1. **CalculateProject (stream CalculatePriceRequest) → (stream ConfirmCalculationResponse)**  
