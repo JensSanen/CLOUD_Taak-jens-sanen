@@ -1,8 +1,8 @@
 FROM bitnami/laravel:11-debian-12
 
-WORKDIR /app/uurregistratieLaravelProject
+WORKDIR /app
 
-COPY ./uurregistratieLaravelProject /app/uurregistratieLaravelProject
+COPY ./uurregistratieLaravelProject /app
 
 # Installeer Composer dependencies, inclusief Guzzle
 RUN composer install --no-dev --optimize-autoloader && \

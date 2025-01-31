@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("werfplanning2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ca7dc50317f16ab150955db31c170b0ecf30a06")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+660b734957ee0df33443c8627d88440643f56a99")]
 [assembly: System.Reflection.AssemblyProductAttribute("werfplanning2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("werfplanning2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,10 +1,8 @@
 FROM bitnami/laravel:11-debian-12
 
-# Zet de werkdirectory correct
-WORKDIR /app/taakLaravelProject
+WORKDIR /app
 
-# Kopieer de Laravel-app naar de container
-COPY ./taakLaravelProject /app/taakLaravelProject
+COPY ./taakLaravelProject /app
 
 # Installeer Composer dependencies, inclusief Guzzle
 RUN composer install --no-dev --optimize-autoloader && \
