@@ -136,7 +136,6 @@ services:
   #     - mynetwork  
 
   uurregistratie_api2:
-    # image: bitnami/laravel:11-debian-12
     container_name: uurregistratie_api2
     restart: unless-stopped
     build:
@@ -145,7 +144,7 @@ services:
     ports:
       - "30008:8000"
     volumes:
-      - ./uurregistratie2:/app
+      - ./uurregistratie2/uurregistratieLaravelProject:/app
     command: tail -f /dev/null  # Laat de container gewoon oneindig draaien. Goed voor development omgeving.
     depends_on:
       - uurregistratie_db
@@ -231,7 +230,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./laravel_consumer:/app
+      - ./laravel_consumer/taakLaravelProject:/app
     command: tail -f /dev/null  # Laat de container gewoon oneindig draaien. Goed voor development omgeving.
     depends_on:
       - consume_api_db
