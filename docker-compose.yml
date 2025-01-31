@@ -143,8 +143,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "30008:8000"
-    volumes:
-      - ./uurregistratie2/uurregistratieLaravelProject:/app
+    # volumes:
+    #   - ./uurregistratie2/uurregistratieLaravelProject:/app
     command: tail -f /dev/null  # Laat de container gewoon oneindig draaien. Goed voor development omgeving.
     depends_on:
       - uurregistratie_db
@@ -229,8 +229,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    volumes:
-      - ./laravel_consumer/taakLaravelProject:/app
+    # volumes:
+    #   - ./laravel_consumer/taakLaravelProject:/app
     command: tail -f /dev/null  # Laat de container gewoon oneindig draaien. Goed voor development omgeving.
     depends_on:
       - consume_api_db
